@@ -5,7 +5,8 @@ import be.edenglen.tournament.ws.model.service.EaterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/ws/eaters")
+@RestController
+@RequestMapping("/ws/eaters")
 public class EaterController {
 
     private final EaterService eaterService;

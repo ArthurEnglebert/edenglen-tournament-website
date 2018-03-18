@@ -5,7 +5,8 @@ import be.edenglen.tournament.ws.model.service.InscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/ws/inscriptions")
+@RestController
+@RequestMapping("/ws/inscriptions")
 public class InscriptionController {
 
     private final InscriptionService inscriptionService;

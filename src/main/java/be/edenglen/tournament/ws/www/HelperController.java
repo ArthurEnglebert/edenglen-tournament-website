@@ -5,7 +5,8 @@ import be.edenglen.tournament.ws.model.service.HelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/ws/helpers")
+@RestController
+@RequestMapping("/ws/helpers")
 public class HelperController {
 
     private final HelperService helperService;

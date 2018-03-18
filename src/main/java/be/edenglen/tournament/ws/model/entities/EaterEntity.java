@@ -2,15 +2,14 @@ package be.edenglen.tournament.ws.model.entities;
 
 import be.edenglen.tournament.ws.model.Eater;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "eaters")
 public class EaterEntity implements Eater {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

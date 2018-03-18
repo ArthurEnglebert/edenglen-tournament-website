@@ -6,6 +6,8 @@ import java.util.List;
 
 @Value.Immutable
 public interface Inscription {
+    boolean DEFAULT_PAID_STATUS = false;
+
     Long getId();
 
     String getName();
@@ -17,4 +19,9 @@ public interface Inscription {
     List<Eater> getEaters();
 
     Integer getDonation();
+
+    @Value.Default
+    default boolean isPaid() {
+        return DEFAULT_PAID_STATUS;
+    }
 }

@@ -5,7 +5,8 @@ import be.edenglen.tournament.ws.model.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/ws/players")
+@RestController
+@RequestMapping("/ws/players")
 public class PlayerController {
 
     private final PlayerService playerService;

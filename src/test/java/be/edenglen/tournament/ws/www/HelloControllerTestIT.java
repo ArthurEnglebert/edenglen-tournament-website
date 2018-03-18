@@ -1,6 +1,6 @@
 package be.edenglen.tournament.ws.www;
 
-import be.edenglen.tournament.ws.config.Application;
+import be.edenglen.tournament.ws.Application;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

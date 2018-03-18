@@ -2,15 +2,14 @@ package be.edenglen.tournament.ws.model.entities;
 
 import be.edenglen.tournament.ws.model.Helper;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "helpers")
 public class HelperEntity implements Helper {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

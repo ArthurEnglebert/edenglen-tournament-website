@@ -5,10 +5,11 @@ import be.edenglen.tournament.ws.model.*;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "players")
 public class PlayerEntity implements Player {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
