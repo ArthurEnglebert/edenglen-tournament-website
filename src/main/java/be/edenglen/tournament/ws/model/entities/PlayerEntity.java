@@ -1,6 +1,9 @@
 package be.edenglen.tournament.ws.model.entities;
 
-import be.edenglen.tournament.ws.model.*;
+import be.edenglen.tournament.ws.model.ChampionshipLevel;
+import be.edenglen.tournament.ws.model.Player;
+import be.edenglen.tournament.ws.model.Sex;
+import be.edenglen.tournament.ws.model.SkillLevel;
 
 import javax.persistence.*;
 
