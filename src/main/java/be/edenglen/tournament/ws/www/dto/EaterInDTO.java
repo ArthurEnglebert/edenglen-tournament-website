@@ -9,4 +9,5 @@ public interface EaterInDTO {
     String getName();
     String getFirstName();
     Integer getAge();
+    String getEmail();
 }

@@ -17,4 +17,5 @@ public interface PlayerInDTO {
     SkillLevel getSkillLevel();
     String getPhone();
     ChampionshipLevel getChampionshipLevel();
+    boolean isDining();
 }

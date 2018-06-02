@@ -42,11 +42,16 @@ class InscriptionServiceImpl implements InscriptionService {
 
     @Override
     public Inscription create(Inscription inscription) {
-        InscriptionEntity entity = inscriptionRepository.save(Optional.of(inscription)
+        ImmutableInscription toCreate = ImmutableInscription.builder()
+                .from(inscription)
+                .amount(amountCalculatorService.calculateDue(inscription))
+                .build();
+
+        InscriptionEntity entity = inscriptionRepository.save(Optional.of(toCreate)
                 .map(InscriptionEntity::new)
                 .orElseThrow(IllegalArgumentException::new)
         );
-        return update(entity.getId(), ImmutableInscriptionUpdateRequest.builder().updateAmount(amountCalculatorService.calculateDue(inscription)).build());
+        return toDTO(entity);
     }
 
     @Override

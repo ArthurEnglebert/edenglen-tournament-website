@@ -42,6 +42,7 @@ public class ClientConverterImpl implements ClientConverter {
                 .skillLevel(player.getSkillLevel())
                 .phone(player.getPhone())
                 .championshipLevel(player.getChampionshipLevel())
+                .isDining(player.isDining())
                 .build();
     }
 
@@ -51,6 +52,7 @@ public class ClientConverterImpl implements ClientConverter {
                 .name(eater.getName())
                 .firstName(eater.getFirstName())
                 .age(eater.getAge())
+                .email(eater.getEmail())
                 .build();
     }
 

@@ -23,6 +23,7 @@ public interface Inscription {
     @Nullable
     Integer getDonation();
 
+    @Nullable
     Integer getAmount();
 
     @Value.Default

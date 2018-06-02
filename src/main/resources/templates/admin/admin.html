@@ -55,20 +55,20 @@
                 <p>
                     Total recettes attendues : <span th:text="${stats.awaitedTotal.total}" th:remove="tag">10</span>
                     (Tennis : <span th:text="${stats.awaitedTotal.fromTennis}" th:remove="tag">6</span>)
-                    (Tennis : <span th:text="${stats.awaitedTotal.fromDinners}" th:remove="tag">3</span>
-                    (Tennis : <span th:text="${stats.awaitedTotal.fromDonations}" th:remove="tag">1</span>
+                    (Diner : <span th:text="${stats.awaitedTotal.fromDinners}" th:remove="tag">3</span>)
+                    (Donation : <span th:text="${stats.awaitedTotal.fromDonations}" th:remove="tag">1</span>)
                 </p>
                 <p>
-                    Total recettes attendues : <span th:text="${stats.validatedTotal.total}" th:remove="tag">6</span>
+                    Total recettes validées : <span th:text="${stats.validatedTotal.total}" th:remove="tag">6</span>
                     (Tennis : <span th:text="${stats.validatedTotal.fromTennis}" th:remove="tag">3</span>)
-                    (Tennis : <span th:text="${stats.validatedTotal.fromDinners}" th:remove="tag">2</span>
-                    (Tennis : <span th:text="${stats.validatedTotal.fromDonations}" th:remove="tag">1</span>
+                    (Diner : <span th:text="${stats.validatedTotal.fromDinners}" th:remove="tag">2</span>)
+                    (Donation : <span th:text="${stats.validatedTotal.fromDonations}" th:remove="tag">1</span>)
                 </p>
                 <p>
-                    Total recettes attendues : <span th:text="${stats.waitingTotal.total}" th:remove="tag">4</span>
+                    Total recettes en attente : <span th:text="${stats.waitingTotal.total}" th:remove="tag">4</span>
                     (Tennis : <span th:text="${stats.waitingTotal.fromTennis}" th:remove="tag">2</span>)
-                    (Tennis : <span th:text="${stats.waitingTotal.fromDinners}" th:remove="tag">2</span>
-                    (Tennis : <span th:text="${stats.waitingTotal.fromDonations}" th:remove="tag">0</span>
+                    (Diner : <span th:text="${stats.waitingTotal.fromDinners}" th:remove="tag">2</span>)
+                    (Donation : <span th:text="${stats.waitingTotal.fromDonations}" th:remove="tag">0</span>)
                 </p>
                 <p>
                     Disparité joueurs 10-12 : Hommes <span th:text="${stats.disparity1012.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1012.absoluteWomenNumber}" th:remove="tag">4</span> Femmes

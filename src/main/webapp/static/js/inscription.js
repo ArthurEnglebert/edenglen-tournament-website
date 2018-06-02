@@ -20,13 +20,13 @@ $(document).ready(function() {
         player1["skillLevel"] = $("#inputSkillLevelPlayer1 option:selected").text();
         player1["phone"] = $("#inputPhonePlayer1").val();
         player1["championshipLevel"] = $("#inputChampionshipLevelPlayer1 option:selected").text();
-        player1["isDining"] = $("#input[name=inputIsComingPlayer1]:checked").val();
+        player1["isDining"] = $("#inputIsComingPlayer1").is(":checked");
         data["players"] = [player1];
 
         var eater1 = {};
         eater1["name"] = $("#inputNameEater1").val();
         eater1["firstName"] = $("#inputFirstNameEater1").val();
-        eater1["emailAddress"] = $("#inputEmailEater1").val();
+        eater1["email"] = $("#inputEmailEater1").val();
         eater1["age"] = $("#inputAgeEater1").val();
         data["eaters"] = [eater1];
 

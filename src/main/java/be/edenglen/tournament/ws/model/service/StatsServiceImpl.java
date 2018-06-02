@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-class StatsServiceImpl implements StatsService {
+public class StatsServiceImpl implements StatsService {
     private final AmountCalculatorService amountCalculatorService;
     private final InscriptionService inscriptionService;
     private final PlayerService playerService;
@@ -28,6 +28,7 @@ class StatsServiceImpl implements StatsService {
         ImmutableStatsDTOOut.Builder builder = ImmutableStatsDTOOut.builder();
 
         buildAwaitedAmounts(builder);
+        buildDisparities(builder);
 
         return builder.build();
     }
