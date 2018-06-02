@@ -25,13 +25,8 @@ class StatsServiceImpl implements StatsService {
 
     @Override
     public StatsDTOOut getStats() {
-
-
-        inscriptionService.findAll().forEach(inscription -> {
-
-        });
-
         ImmutableStatsDTOOut.Builder builder = ImmutableStatsDTOOut.builder();
+
         buildAwaitedAmounts(builder);
 
         return builder.build();
