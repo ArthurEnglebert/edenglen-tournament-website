@@ -71,8 +71,16 @@
                     (Tennis : <span th:text="${stats.waitingTotal.fromDonations}" th:remove="tag">0</span>
                 </p>
                 <p>
-                    Disparité joueurs 10-12 :
-
+                    Disparité joueurs 10-12 : Hommes <span th:text="${stats.disparity1012.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1012.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 13-16 : Hommes <span th:text="${stats.disparity1316.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1316.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 17-25 : Hommes <span th:text="${stats.disparity1725.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1725.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 26-> : Hommes <span th:text="${stats.disparity26Onwards.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity26Onwards.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
                 </p>
             </div>
         </div>

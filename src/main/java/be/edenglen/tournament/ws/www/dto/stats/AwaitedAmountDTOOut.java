@@ -5,7 +5,7 @@ import org.immutables.value.Value;
 
 @Value.Immutable
 @JsonDeserialize(as = ImmutableAwaitedAmountDTOOut.class)
-interface AwaitedAmountDTOOut {
+public interface AwaitedAmountDTOOut {
     Integer getTotal();
 
     Integer getFromTennis();

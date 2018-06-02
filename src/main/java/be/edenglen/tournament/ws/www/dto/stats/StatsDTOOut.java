@@ -1,6 +1,5 @@
 package be.edenglen.tournament.ws.www.dto.stats;
 
-import be.edenglen.tournament.ws.www.dto.ImmutableStatsDTOOut;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.immutables.value.Value;
 
