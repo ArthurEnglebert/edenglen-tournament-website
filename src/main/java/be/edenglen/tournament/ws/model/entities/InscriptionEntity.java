@@ -37,6 +37,7 @@ public class InscriptionEntity implements Inscription {
 
     private Integer donation;
 
+    private Integer amount;
     private boolean isPaid;
 
     private InscriptionEntity() {
@@ -44,6 +45,7 @@ public class InscriptionEntity implements Inscription {
     }
 
     public InscriptionEntity(Inscription inscription) {
+        this.id = inscription.getId();
         this.name = inscription.getName();
         this.firstName = inscription.getFirstName();
         this.email = inscription.getEmail();
@@ -51,6 +53,7 @@ public class InscriptionEntity implements Inscription {
         this.players = inscription.getPlayers().stream().map(PlayerEntity::new).collect(Collectors.toList());
         this.eaters = inscription.getEaters().stream().map(EaterEntity::new).collect(Collectors.toList());
         this.donation = inscription.getDonation();
+        this.amount = inscription.getAmount();
         this.isPaid = inscription.isPaid();
     }
 
@@ -92,6 +95,11 @@ public class InscriptionEntity implements Inscription {
     @Override
     public Integer getDonation() {
         return this.donation;
+    }
+
+    @Override
+    public Integer getAmount() {
+        return this.amount;
     }
 
     @Override

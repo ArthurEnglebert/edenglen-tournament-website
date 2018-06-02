@@ -1,6 +1,7 @@
 package be.edenglen.tournament.ws.model;
 
 import org.immutables.value.Value;
+import org.springframework.lang.Nullable;
 
 @Value.Immutable
 public interface Helper {
@@ -9,6 +10,7 @@ public interface Helper {
     boolean DEFAULT_COMING_UNBUILD = false;
     boolean DEFAULT_COMING_TO_DECORATE = false;
 
+    @Nullable
     Long getId();
     String getName();
     String getFirstName();
@@ -30,4 +32,6 @@ public interface Helper {
     default boolean isComingToDecorate() {
         return DEFAULT_COMING_TO_DECORATE;
     }
+
+    Integer getNumberComing();
 }

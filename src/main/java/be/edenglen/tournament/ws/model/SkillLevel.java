@@ -1,5 +1,9 @@
 package be.edenglen.tournament.ws.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import java.util.Arrays;
+
 public enum SkillLevel {
     C30_5("C30.5"),
     C30_4("C30.4"),
@@ -35,5 +39,13 @@ public enum SkillLevel {
 
     public String getRepresentation() {
         return representation;
+    }
+
+    @JsonCreator
+    public static SkillLevel fromRepr(String repr) {
+        return Arrays.stream(SkillLevel.values())
+                .filter(skillLevel -> skillLevel.getRepresentation().equals(repr))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(repr));
     }
 }

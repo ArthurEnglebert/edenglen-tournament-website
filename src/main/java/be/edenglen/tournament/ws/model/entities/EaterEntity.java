@@ -15,15 +15,18 @@ public class EaterEntity implements Eater {
     private String name;
     private String firstName;
     private Integer age;
+    private String email;
 
     private EaterEntity() {
         //JPA only
     }
 
     public EaterEntity(Eater eater) {
+        this.id = eater.getId();
         this.name = eater.getName();
         this.firstName = eater.getFirstName();
         this.age = eater.getAge();
+        this.email = eater.getEmail();
     }
 
     @Override
@@ -44,5 +47,10 @@ public class EaterEntity implements Eater {
     @Override
     public Integer getAge() {
         return this.age;
+    }
+
+    @Override
+    public String getEmail() {
+        return this.email;
     }
 }

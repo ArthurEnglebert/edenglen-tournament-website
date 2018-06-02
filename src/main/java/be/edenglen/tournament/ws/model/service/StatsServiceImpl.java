@@ -1,5 +1,6 @@
 package be.edenglen.tournament.ws.model.service;
 
+import be.edenglen.tournament.ws.www.dto.stats.StatsDTOOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,10 @@ class StatsServiceImpl implements StatsService {
         this.inscriptionService = inscriptionService;
         this.eaterService = eaterService;
         this.helperService = helperService;
+    }
+
+    @Override
+    public StatsDTOOut getStats() {
+        return null;
     }
 }

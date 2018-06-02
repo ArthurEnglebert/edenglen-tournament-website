@@ -8,16 +8,23 @@ import be.edenglen.tournament.ws.model.repositories.InscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 class InscriptionServiceImpl implements InscriptionService {
 
     private final InscriptionRepository inscriptionRepository;
+    private final AmountCalculatorService amountCalculatorService;
 
     @Autowired
-    InscriptionServiceImpl(InscriptionRepository inscriptionRepository) {
+    InscriptionServiceImpl(InscriptionRepository inscriptionRepository,
+                           AmountCalculatorService amountCalculatorService) {
         this.inscriptionRepository = inscriptionRepository;
+        this.amountCalculatorService = amountCalculatorService;
     }
 
     @Override
@@ -35,12 +42,35 @@ class InscriptionServiceImpl implements InscriptionService {
 
     @Override
     public Inscription create(Inscription inscription) {
+        InscriptionEntity entity = inscriptionRepository.save(Optional.of(inscription)
+                .map(InscriptionEntity::new)
+                .orElseThrow(IllegalArgumentException::new)
+        );
+        return update(entity.getId(), ImmutableInscriptionUpdateRequest.builder().updateAmount(amountCalculatorService.calculateDue(inscription)).build());
+    }
+
+    @Override
+    public Inscription update(Long id, InscriptionUpdateRequest request) {
+        Inscription inscription = get(id);
+        ImmutableInscription.Builder from = ImmutableInscription.builder().from(inscription);
+
+        request.switchPaidStatus().ifPresent(paid -> from.isPaid(!inscription.isPaid()));
+        request.updateAmount().ifPresent(from::amount);
+
+        ImmutableInscription updated = from.build();
         return toDTO(
-                inscriptionRepository.save(Optional.of(inscription)
-                        .map(InscriptionEntity::new)
-                        .orElseThrow(IllegalArgumentException::new)
+                inscriptionRepository.save(Optional.of(updated)
+                .map(InscriptionEntity::new)
+                .orElseThrow(IllegalArgumentException::new)
                 )
         );
+    }
+
+    @Override
+    public List<Inscription> findAll() {
+        return inscriptionRepository.findAll().stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
     private Inscription toDTO(Inscription inscription) {

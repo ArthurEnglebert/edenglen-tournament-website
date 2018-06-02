@@ -26,12 +26,14 @@ public class PlayerEntity implements Player {
     private String phone;
     @Enumerated(EnumType.STRING)
     private ChampionshipLevel championshipLevel;
+    private boolean isDining;
 
     private PlayerEntity() {
         //jpa only
     }
 
     public PlayerEntity(Player player) {
+        this.id = player.getId();
         this.name = player.getName();
         this.firstName = player.getFirstName();
         this.email = player.getEmail();
@@ -40,6 +42,7 @@ public class PlayerEntity implements Player {
         this.skillLevel = player.getSkillLevel();
         this.phone = player.getPhone();
         this.championshipLevel = player.getChampionshipLevel();
+        this.isDining = player.isDining();
     }
 
     @Override
@@ -85,5 +88,10 @@ public class PlayerEntity implements Player {
     @Override
     public ChampionshipLevel getChampionshipLevel() {
         return this.championshipLevel;
+    }
+
+    @Override
+    public boolean isDining() {
+        return this.isDining;
     }
 }

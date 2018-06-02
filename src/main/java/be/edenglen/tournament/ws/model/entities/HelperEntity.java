@@ -19,12 +19,14 @@ public class HelperEntity implements Helper {
     private boolean isComingToBuild;
     private boolean isComingToUnBuild;
     private boolean isComingToDecorate;
+    private Integer numberComing;
 
     private HelperEntity() {
         //JPA ONLY
     }
 
     public HelperEntity(Helper helper) {
+        this.id = helper.getId();
         this.name = helper.getName();
         this.firstName = helper.getFirstName();
         this.phone = helper.getPhone();
@@ -32,6 +34,7 @@ public class HelperEntity implements Helper {
         this.isComingToBuild = helper.isComingToBuild();
         this.isComingToUnBuild = helper.isComingToUnBuild();
         this.isComingToDecorate = helper.isComingToDecorate();
+        this.numberComing = helper.getNumberComing();
     }
 
     @Override
@@ -72,5 +75,10 @@ public class HelperEntity implements Helper {
     @Override
     public boolean isComingToDecorate() {
         return this.isComingToDecorate;
+    }
+
+    @Override
+    public Integer getNumberComing() {
+        return this.numberComing;
     }
 }
