@@ -1,11 +1,18 @@
 package be.edenglen.tournament.ws.model.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import be.edenglen.tournament.ws.model.ChampionshipLevel;
+import be.edenglen.tournament.ws.model.Inscription;
 import be.edenglen.tournament.ws.model.Player;
 import be.edenglen.tournament.ws.model.Sex;
 import be.edenglen.tournament.ws.model.SkillLevel;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "players")
@@ -14,6 +21,9 @@ public class PlayerEntity implements Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    private InscriptionEntity inscription;
 
     private String name;
     private String firstName;
@@ -32,8 +42,9 @@ public class PlayerEntity implements Player {
         //jpa only
     }
 
-    public PlayerEntity(Player player) {
+    public PlayerEntity(Player player, InscriptionEntity inscription) {
         this.id = player.getId();
+        this.inscription = inscription;
         this.name = player.getName();
         this.firstName = player.getFirstName();
         this.email = player.getEmail();
@@ -48,6 +59,11 @@ public class PlayerEntity implements Player {
     @Override
     public Long getId() {
         return this.id;
+    }
+
+    @Override
+    public Inscription getInscription() {
+        return this.inscription;
     }
 
     @Override

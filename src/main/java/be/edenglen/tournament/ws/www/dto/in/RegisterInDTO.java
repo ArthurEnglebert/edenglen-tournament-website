@@ -1,7 +1,7 @@
-package be.edenglen.tournament.ws.www.dto;
+package be.edenglen.tournament.ws.www.dto.in;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.immutables.value.Value;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Value.Immutable
 @JsonDeserialize(as = ImmutableRegisterInDTO.class)

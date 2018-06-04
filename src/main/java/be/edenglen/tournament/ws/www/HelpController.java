@@ -1,14 +1,14 @@
 package be.edenglen.tournament.ws.www;
 
-import be.edenglen.tournament.ws.model.service.ClientConverter;
-import be.edenglen.tournament.ws.model.service.HelperService;
-import be.edenglen.tournament.ws.www.dto.ImmutableHelperInDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import be.edenglen.tournament.ws.model.service.ClientConverter;
+import be.edenglen.tournament.ws.model.service.HelperService;
+import be.edenglen.tournament.ws.www.dto.in.ImmutableHelperInDTO;
 
 import static be.edenglen.tournament.ws.www.PublicController.PUBLIC_FOLDER;
 

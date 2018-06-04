@@ -1,14 +1,14 @@
 package be.edenglen.tournament.ws.model.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import be.edenglen.tournament.ws.exception.NotFoundException;
 import be.edenglen.tournament.ws.model.Eater;
 import be.edenglen.tournament.ws.model.ImmutableEater;
-import be.edenglen.tournament.ws.model.entities.EaterEntity;
 import be.edenglen.tournament.ws.model.repositories.EaterRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 class EaterServiceImpl implements EaterService {
@@ -34,13 +34,10 @@ class EaterServiceImpl implements EaterService {
     }
 
     @Override
-    public Eater create(Eater eater) {
-        return toDTO(
-                eaterRepository.save(Optional.of(eater)
-                        .map(EaterEntity::new)
-                        .orElseThrow(IllegalArgumentException::new)
-                )
-        );
+    public List<Eater> findAll() {
+        return eaterRepository.findAll().stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 
     private Eater toDTO(Eater eater) {

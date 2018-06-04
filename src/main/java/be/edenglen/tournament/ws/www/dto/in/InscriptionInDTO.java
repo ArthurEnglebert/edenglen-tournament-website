@@ -1,9 +1,8 @@
-package be.edenglen.tournament.ws.www.dto;
-
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.immutables.value.Value;
+package be.edenglen.tournament.ws.www.dto.in;
 
 import java.util.List;
+import org.immutables.value.Value;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Value.Immutable
 @JsonDeserialize(as = ImmutableInscriptionInDTO.class)

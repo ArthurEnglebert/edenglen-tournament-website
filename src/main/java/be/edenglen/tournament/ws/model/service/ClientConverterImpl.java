@@ -1,13 +1,21 @@
 package be.edenglen.tournament.ws.model.service;
 
-import be.edenglen.tournament.ws.model.*;
-import be.edenglen.tournament.ws.www.dto.EaterInDTO;
-import be.edenglen.tournament.ws.www.dto.HelperInDTO;
-import be.edenglen.tournament.ws.www.dto.InscriptionInDTO;
-import be.edenglen.tournament.ws.www.dto.PlayerInDTO;
-import org.springframework.stereotype.Component;
-
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Component;
+import be.edenglen.tournament.ws.model.Eater;
+import be.edenglen.tournament.ws.model.Helper;
+import be.edenglen.tournament.ws.model.ImmutableEater;
+import be.edenglen.tournament.ws.model.ImmutableHelper;
+import be.edenglen.tournament.ws.model.ImmutableInscription;
+import be.edenglen.tournament.ws.model.ImmutablePlayer;
+import be.edenglen.tournament.ws.model.Inscription;
+import be.edenglen.tournament.ws.model.Player;
+import be.edenglen.tournament.ws.www.dto.in.EaterInDTO;
+import be.edenglen.tournament.ws.www.dto.in.HelperInDTO;
+import be.edenglen.tournament.ws.www.dto.in.InscriptionInDTO;
+import be.edenglen.tournament.ws.www.dto.in.PlayerInDTO;
+import be.edenglen.tournament.ws.www.dto.out.ImmutableInscriptionOutDTO;
+import be.edenglen.tournament.ws.www.dto.out.InscriptionOutDTO;
 
 @Component
 public class ClientConverterImpl implements ClientConverter {
@@ -28,6 +36,19 @@ public class ClientConverterImpl implements ClientConverter {
                         .collect(Collectors.toList())
                 )
                 .donation(inscription.getDonation())
+                .build();
+    }
+
+    @Override
+    public InscriptionOutDTO toDTO(Inscription inscription) {
+        return ImmutableInscriptionOutDTO.builder()
+                .id(inscription.getId())
+                .firstName(inscription.getFirstName())
+                .name(inscription.getName())
+                .email(inscription.getEmail())
+                .phone(inscription.getPhone())
+                .amount(inscription.getAmount())
+                .isPaid(inscription.isPaid())
                 .build();
     }
 

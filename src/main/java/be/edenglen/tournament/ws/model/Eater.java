@@ -7,6 +7,8 @@ import org.springframework.lang.Nullable;
 public interface Eater {
     @Nullable
     Long getId();
+    @Nullable
+    Inscription getInscription();
     String getName();
     String getFirstName();
     Integer getAge();

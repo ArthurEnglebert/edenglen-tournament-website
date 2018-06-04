@@ -1,10 +1,10 @@
-package be.edenglen.tournament.ws.www.dto;
+package be.edenglen.tournament.ws.www.dto.in;
 
+import org.immutables.value.Value;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import be.edenglen.tournament.ws.model.ChampionshipLevel;
 import be.edenglen.tournament.ws.model.Sex;
 import be.edenglen.tournament.ws.model.SkillLevel;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import org.immutables.value.Value;
 
 @Value.Immutable
 @JsonDeserialize(as = ImmutablePlayerInDTO.class)

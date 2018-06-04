@@ -1,8 +1,13 @@
 package be.edenglen.tournament.ws.model.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import be.edenglen.tournament.ws.model.Eater;
-
-import javax.persistence.*;
+import be.edenglen.tournament.ws.model.Inscription;
 
 @Entity
 @Table(name = "eaters")
@@ -11,6 +16,9 @@ public class EaterEntity implements Eater {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    private InscriptionEntity inscription;
 
     private String name;
     private String firstName;
@@ -21,8 +29,9 @@ public class EaterEntity implements Eater {
         //JPA only
     }
 
-    public EaterEntity(Eater eater) {
+    public EaterEntity(Eater eater, InscriptionEntity inscription) {
         this.id = eater.getId();
+        this.inscription = inscription;
         this.name = eater.getName();
         this.firstName = eater.getFirstName();
         this.age = eater.getAge();
@@ -32,6 +41,11 @@ public class EaterEntity implements Eater {
     @Override
     public Long getId() {
         return this.id;
+    }
+
+    @Override
+    public Inscription getInscription() {
+        return this.inscription;
     }
 
     @Override

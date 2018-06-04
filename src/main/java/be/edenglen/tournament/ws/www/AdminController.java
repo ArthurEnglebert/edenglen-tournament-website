@@ -1,21 +1,30 @@
 package be.edenglen.tournament.ws.www;
 
-import be.edenglen.tournament.ws.model.Inscription;
-import be.edenglen.tournament.ws.model.service.InscriptionService;
-import be.edenglen.tournament.ws.model.service.StatsService;
-import be.edenglen.tournament.ws.www.dto.datatable.DataTableOrderDTO;
-import be.edenglen.tournament.ws.www.dto.datatable.DataTableRequestDTO;
-import be.edenglen.tournament.ws.www.dto.datatable.DataTableResponseDTO;
-import be.edenglen.tournament.ws.www.dto.datatable.ImmutableDataTableResponseDTO;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import be.edenglen.tournament.ws.model.Inscription;
+import be.edenglen.tournament.ws.model.service.ClientConverter;
+import be.edenglen.tournament.ws.model.service.ExportService;
+import be.edenglen.tournament.ws.model.service.InscriptionService;
+import be.edenglen.tournament.ws.model.service.StatsService;
+import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
+import be.edenglen.tournament.ws.www.dto.datatable.DataTableOrderDTO;
+import be.edenglen.tournament.ws.www.dto.datatable.DataTableRequestDTO;
+import be.edenglen.tournament.ws.www.dto.datatable.DataTableResponseDTO;
+import be.edenglen.tournament.ws.www.dto.datatable.ImmutableDataTableResponseDTO;
 
 @Controller
 @RequestMapping("admin")
@@ -27,6 +36,10 @@ public class AdminController {
     private InscriptionService inscriptionService;
     @Autowired
     private StatsService statsService;
+    @Autowired
+    private ExportService exportService;
+    @Autowired
+    private ClientConverter clientConverter;
 
     @RequestMapping
     public String admin(Model model) {
@@ -77,7 +90,20 @@ public class AdminController {
                 .draw(request.getDraw())
                 .recordsTotal(inscriptions.size())
                 .recordsFiltered(inscriptions.size())
-                .addAllData(inscriptions)
+                .addAllData(inscriptions.stream().map(clientConverter::toDTO).collect(Collectors.toList()))
                 .build();
+    }
+
+    @RequestMapping(value = "export")
+    @ResponseStatus(HttpStatus.OK)
+    public void downloadExportFile(@RequestParam(value = "type") ExportTypeDTO exportType,
+                                   HttpServletResponse response) throws IOException {
+        Cookie fileDownload = new Cookie("fileDownload", "true");
+        fileDownload.setPath("/");
+        response.addCookie(fileDownload);
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + exportType + System.currentTimeMillis() + ".xlsx" + "\"");
+        exportService.generateAndDownloadExportFile(exportType, response.getOutputStream());
     }
 }

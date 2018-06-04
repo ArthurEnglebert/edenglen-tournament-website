@@ -1,13 +1,18 @@
 package be.edenglen.tournament.ws.model.entities;
 
-import be.edenglen.tournament.ws.model.Eater;
-import be.edenglen.tournament.ws.model.Inscription;
-import be.edenglen.tournament.ws.model.Player;
-
-import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import be.edenglen.tournament.ws.model.Eater;
+import be.edenglen.tournament.ws.model.Inscription;
+import be.edenglen.tournament.ws.model.Player;
 
 @Entity
 @Table(name = "inscriptions")
@@ -21,18 +26,10 @@ public class InscriptionEntity implements Inscription {
     private String firstName;
     private String email;
     private String phone;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "inscriptions_players",
-            joinColumns = @JoinColumn(name = "inscription_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id", referencedColumnName = "id")
-    )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "inscription")
     private List<PlayerEntity> players;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "inscriptions_eaters",
-            joinColumns = @JoinColumn(name = "inscription_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "eater_id", referencedColumnName = "id")
-    )
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "inscription")
     private List<EaterEntity> eaters;
 
     private Integer donation;
@@ -50,8 +47,8 @@ public class InscriptionEntity implements Inscription {
         this.firstName = inscription.getFirstName();
         this.email = inscription.getEmail();
         this.phone = inscription.getPhone();
-        this.players = inscription.getPlayers().stream().map(PlayerEntity::new).collect(Collectors.toList());
-        this.eaters = inscription.getEaters().stream().map(EaterEntity::new).collect(Collectors.toList());
+        this.players = inscription.getPlayers().stream().map(player -> new PlayerEntity(player, this)).collect(Collectors.toList());
+        this.eaters = inscription.getEaters().stream().map(eater -> new EaterEntity(eater, this)).collect(Collectors.toList());
         this.donation = inscription.getDonation();
         this.amount = inscription.getAmount();
         this.isPaid = inscription.isPaid();

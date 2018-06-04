@@ -1,26 +1,3 @@
-create table `eaters` (
-  id bigint not null AUTO_INCREMENT,
-  name varchar(255) not null,
-  first_name varchar(255) not null,
-  age integer not null,
-  email varchar(255) not null,
-  PRIMARY KEY (`id`)
-);
-
-create table `players` (
-  id bigint not null AUTO_INCREMENT,
-  name varchar(255) not null,
-  first_name varchar(255) not null,
-  email varchar(255) not null,
-  age integer not null,
-  sex varchar(50) not null,
-  skill_level varchar(255) not null,
-  phone varchar(255) not null,
-  championship_level varchar(255) not null,
-  is_dining tinyint(1) not null default false,
-  PRIMARY KEY (`id`)
-);
-
 create table `inscriptions` (
   id bigint not null AUTO_INCREMENT,
   name varchar(255) not null,
@@ -33,20 +10,31 @@ create table `inscriptions` (
   PRIMARY KEY (`id`)
 );
 
-create table `inscriptions_players` (
+create table `players` (
+  id bigint not null AUTO_INCREMENT,
   `inscription_id` bigint not null,
-  `player_id` bigint not null,
-  PRIMARY KEY (`inscription_id`, `player_id`),
-  FOREIGN KEY (`player_id`) REFERENCES `players`(`id`),
-  FOREIGN KEY (`inscription_id`) REFERENCES `inscriptions`(`id`)
+  name varchar(255) not null,
+  first_name varchar(255) not null,
+  email varchar(255) not null,
+  age integer not null,
+  sex varchar(50) not null,
+  skill_level varchar(255) not null,
+  phone varchar(255) not null,
+  championship_level varchar(255) not null,
+  is_dining tinyint(1) not null default false,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_players_inscription` FOREIGN KEY (`inscription_id`) REFERENCES `inscriptions`(`id`)
 );
 
-create table `inscriptions_eaters` (
+create table `eaters` (
+  id bigint not null AUTO_INCREMENT,
   `inscription_id` bigint not null,
-  `eater_id` bigint not null,
-  PRIMARY KEY (`inscription_id`, `eater_id`),
-  FOREIGN KEY (`eater_id`) REFERENCES `eaters`(`id`),
-  FOREIGN KEY (`inscription_id`) REFERENCES `inscriptions`(`id`)
+  name varchar(255) not null,
+  first_name varchar(255) not null,
+  age integer not null,
+  email varchar(255) not null,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `FK_eaters_inscription` FOREIGN KEY (`inscription_id`) REFERENCES `inscriptions`(`id`)
 );
 
 create table `helpers` (
