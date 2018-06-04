@@ -1,129 +1,97 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="CSRF_TOKEN" />
+    <title>Template HTML</title>
+    <link rel="stylesheet"  th:href="@{/static/dist/assets/css/app.css}" />
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>One Page Wonder - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" type="text/css" th:href="@{/static/css/one-page-wonder.css}">
-
+    <script>
+        window.POST_REGISTER = '/inscription/submit';
+        window.POST_HELP = '/help/submit';
+    </script>
 </head>
-
 <body>
 
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">Start Bootstrap</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Log In</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<header class="header">
+    <div class="header__logo">
+        <div class="row align-middle">
+            <div class="columns shrink">
+                <a href="/"><img class="header__logo__img" th:src="@{/static/dist/assets/img/logo-edenglen.png}" /></a>
+            </div>
+            <div class="columns">
 
-<header class="masthead text-center text-white">
-    <div class="masthead-content">
-        <div class="container">
-            <h1 class="masthead-heading mb-0">One Page Wonder</h1>
-            <h2 class="masthead-subheading mb-0">Will Rock Your Socks Off</h2>
-            <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
+                <h1 class="header__logo__title">Edenglen <br>Championship</h1>
+            </div>
         </div>
     </div>
-    <div class="bg-circle-1 bg-circle"></div>
-    <div class="bg-circle-2 bg-circle"></div>
-    <div class="bg-circle-3 bg-circle"></div>
-    <div class="bg-circle-4 bg-circle"></div>
+
+    <div class="header__menu">
+        <ul>
+            <li><a href="/inscription">Inscription</a></li>
+            <li><a href="/help">Nous aider</a></li>
+            <li><a href="/sponsors">Sponsors</a></li>
+            <li><a href="/editions">Editions précédentes</a></li>
+        </ul>
+    </div>
 </header>
 
-<section>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 order-lg-2">
-                <div class="p-5">
-                    <img class="img-fluid rounded-circle" th:src="@{/static/img/01.jpg}" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="p-5">
-                    <h2 class="display-4">For those about to rock...</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                </div>
-            </div>
+<div id="app" class="app grid-container">
+    <div class="container-center row">
+        <div class="home-message">
+            <p>Bienvenue sur le site du tournoi “Edenglen Championship”. Si tu es sur ce site aujourd’hui, c’est parce que tu as reçu une lettre dans ta boîte mail.
+                Ne manque cette occasion de jouer et de participer au repas chandelles et quelques pas de danse. C’est donc avec plaisir que nous t’invitons à cliquer sur l’onglet
+                <a href="/inscription">Inscription</a> pour finaliser ta démarche.
+                Tu peux également parcourir l’onglet <a href="/sponsors">Sponsors</a>, tu y visualiseras tous ceux qui nous soutiennent ou encore l’onglet <a href="/editions-precedentes">Editions précédentes</a>  pour quelques photos souvenirs des tournois passés.
+            </p>
+
+            <p>Tout ceci étant dit, l’activité du 15 septembre est organisé au profit de : Vivre Son Deuil-Belgique.
+                C’est une équipe de 10 bénévoles qui propose différents services pour accompagner
+                les personnes endeuillées à traverser cette épreuve. Parmi ces services, nous retrouvons : les écoutes téléphoniques,
+                des groupes d’entraides d’adultes – un suivi individuel, des groupes d’entraides pour des enfants de 5-12 ans dit “groupe tournesol”, accompagnement dans les écoles, …
+            </p>
+            <br>
+
+            <p style="text-align: center">
+                <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                    Vivre son Deuil <br><br>
+                    <img style="width: 110px" src="http://www.vivresondeuil.be/Vivre_son_Deuil/Qui_sommes-nous_files/shapeimage_4.png" alt="vivre-son-deuil">
+                </a>
+            </p>
+
+            <p style="text-align: center">
+                <img src="http://placehold.it/100x100" alt="sponsor">
+                <img src="http://placehold.it/100x100" alt="sponsor">
+                <img src="http://placehold.it/100x100" alt="sponsor">
+            </p>
+
         </div>
     </div>
-</section>
+</div>
 
-<section>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="p-5">
-                    <img class="img-fluid rounded-circle" th:src="@{/static/img/02.jpg}" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="p-5">
-                    <h2 class="display-4">We salute you!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                </div>
-            </div>
+<footer class="footer">
+    <div class="row align-middle">
+        <div class="columns small-12 large-4 medium-6 footer__sponsors">
+            <img src="http://placehold.it/100x100" alt="sponsor1">
+            <img src="http://placehold.it/100x100" alt="sponsor2">
+            <img src="http://placehold.it/100x100" alt="sponsor3">
+        </div>
+
+        <div class="columns small-12 medium-3 large-4">
+            <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                www.vivresondeuil.be
+            </a>
+        </div>
+
+        <div class="columns small-12 large-4 medium-3">
+            <b>Nous contacter :</b><br>
+            <a href="mailto:email@email.com">email@email.com</a> | <a href="tel:0483 24 23 23">0483 24 23 23</a>
         </div>
     </div>
-</section>
-
-<section>
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 order-lg-2">
-                <div class="p-5">
-                    <img class="img-fluid rounded-circle" th:src="@{/static/img/03jpg}" alt="">
-                </div>
-            </div>
-            <div class="col-lg-6 order-lg-1">
-                <div class="p-5">
-                    <h2 class="display-4">Let there be rock!</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="py-5 bg-black">
-    <div class="container">
-        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2018</p>
-    </div>
-    <!-- /.container -->
 </footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
-<script src="webjars/bootstrap/4.0.0-2/js/bootstrap.bundle.min.js"></script>
-
+<script th:src="@{/static/dist/assets/js/app.js}"></script>
 </body>
-
 </html>

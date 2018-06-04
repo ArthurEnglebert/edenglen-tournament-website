@@ -1,0 +1,114 @@
+.block {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 80px;
+  height: auto;
+  background-color: $white;
+  -webkit-box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.46);
+  -moz-box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.46);
+  box-shadow: 0px 0px 40px 0px rgba(0,0,0,0.46);
+  border-radius: 5px;
+  padding: 30px;
+
+  h2 {
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  th {
+    padding: 10px 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 10px 5px;
+
+    input, select {
+      margin: 0;
+    }
+
+    .switch {
+      margin: 0;
+
+      .switch-inactive {
+        right: 9%;
+      }
+    }
+  }
+
+  .button-envoyer {
+    width: 100%;
+    margin-top: 30px;
+    background-color: $secondary-color;
+
+    &:hover {
+      background-color: darken($secondary-color, 14);
+    }
+  }
+
+  .result {
+    text-align: center;
+    h3 {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .category {
+    min-width: 100px;
+  }
+
+  .collapse-item {
+    border-bottom: 1px solid;
+    padding: 10px 0;
+
+    .panel {
+      display: none;
+
+      &.is-open {
+        display: block;
+      }
+    }
+  }
+
+  .input-group-euro {
+    background-color: $light-gray;
+    padding: 6px 18px;
+    font-weight: 600;
+  }
+
+  .decoration {
+    input {
+      max-width: 50px;
+      display: inline-block;
+    }
+  }
+
+   .button {
+     text-transform: uppercase;
+   }
+
+  .total {
+    font-weight: 600;
+    font-size: 25px;
+    text-align: right;
+  }
+}
+
+.sponsors {
+  &__intro {
+    font-weight: 600;
+    text-align: center;
+    padding: 30px;
+  }
+}
+
+.sponsor {
+  margin-bottom: 30px;
+
+  &__logo {
+    text-align: center;
+  }
+}

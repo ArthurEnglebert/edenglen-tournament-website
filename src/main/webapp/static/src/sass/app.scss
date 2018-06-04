@@ -1,0 +1,32 @@
+@charset 'utf-8';
+
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+// Foundation
+@import 'node_modules/foundation-sites/scss/foundation';
+@import "node_modules/foundation-sites/scss/util/util";
+@import 'config/settings';
+
+@include foundation-global-styles;
+@include foundation-flex-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+@include foundation-menu;
+@include foundation-table;
+@include foundation-visibility-classes;
+@include foundation-flex-classes;
+@include foundation-switch;
+
+// APP
+@import "modules/utils";
+@import "modules/header";
+@import "modules/container";
+@import "modules/register";
+@import "modules/footer";
+@import "modules/lightbox";
+
+[v-cloak] {
+  display: none;
+}
