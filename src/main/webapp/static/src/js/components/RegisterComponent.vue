@@ -272,7 +272,7 @@
                     total: 0,
                     donate: 0,
                     error: false,
-                    showMessage: true,
+                    showMessage: false,
                 }
             },
 
@@ -382,7 +382,6 @@
                             }
                         })
                         .catch(e => {
-                            this.showMessage = true;
                             this.error = true;
                         });
                 }
