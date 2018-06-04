@@ -1,17 +1,18 @@
 package be.edenglen.tournament.ws.model.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import be.edenglen.tournament.ws.exception.NotFoundException;
 import be.edenglen.tournament.ws.model.ImmutableInscription;
 import be.edenglen.tournament.ws.model.Inscription;
 import be.edenglen.tournament.ws.model.entities.InscriptionEntity;
 import be.edenglen.tournament.ws.model.repositories.InscriptionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -19,12 +20,15 @@ class InscriptionServiceImpl implements InscriptionService {
 
     private final InscriptionRepository inscriptionRepository;
     private final AmountCalculatorService amountCalculatorService;
+    private final MailService mailService;
 
     @Autowired
     InscriptionServiceImpl(InscriptionRepository inscriptionRepository,
-                           AmountCalculatorService amountCalculatorService) {
+                           AmountCalculatorService amountCalculatorService,
+                           MailService mailService) {
         this.inscriptionRepository = inscriptionRepository;
         this.amountCalculatorService = amountCalculatorService;
+        this.mailService = mailService;
     }
 
     @Override
@@ -51,6 +55,15 @@ class InscriptionServiceImpl implements InscriptionService {
                 .map(InscriptionEntity::new)
                 .orElseThrow(IllegalArgumentException::new)
         );
+
+        //fixme implements listener around transaction start / commit to decouple dependencies
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                mailService.sendConfirmationMail(entity);
+            }
+        });
+
         return toDTO(entity);
     }
 
