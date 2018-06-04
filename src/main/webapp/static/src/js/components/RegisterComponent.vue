@@ -9,9 +9,9 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Âge</th>
-                        <th>Sexe</th>
+                        <th>sex</th>
                         <th>Catégorie</th>
-                        <th>Classement</th>
+                        <th>championshipLevel</th>
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Participer au diner</th>
@@ -21,33 +21,33 @@
                 <tbody>
                     <tr v-for="(tenn, index) in tennis">
                         <td>
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_lastname'" v-model="tenn.lastname" :class="{'is-invalid-input': errors.has('tennis_' + index + '_lastname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </td>
                         <td>
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstname'" v-model="tenn.firstname" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
                         </td>
                         <td>
                             <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
                         </td>
                         <td>
                             <div class="switch large">
-                                <input class="switch-input" :id="'tennis-sexe-' + index" type="checkbox" v-model="tenn.sexe" >
-                                <label class="switch-paddle" :for="'tennis-sexe-' + index">
-                                    <span class="show-for-sr">Sexe</span>
+                                <input class="switch-input" :id="'tennis-sex-' + index" type="checkbox" v-model="tenn.sex" >
+                                <label class="switch-paddle" :for="'tennis-sex-' + index">
+                                    <span class="show-for-sr">sex</span>
                                     <span class="switch-active" aria-hidden="true">F</span>
                                     <span class="switch-inactive" aria-hidden="true">H</span>
                                 </label>
                             </div>
                         </td>
                         <td>
-                            <select v-model="tenn.categorie" class="category">
+                            <select v-model="tenn.skillLevel" class="category">
                                 <option value="debutant">Débutant</option>
                                 <option value="semi-pro">Semi pro</option>
                                 <option value="pro">Pro</option>
                             </select>
                         </td>
                         <td>
-                            <input v-validate="'required'" type="text" v-model="tenn.classement" data-vv-as="Classement" :name="'tennis_' + index + '_classement'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_classement')}">
+                            <input v-validate="'required'" type="text" v-model="tenn.championshipLevel" data-vv-as="championshipLevel" :name="'tennis_' + index + '_championshipLevel'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_championshipLevel')}">
                         </td>
                         <td>
                             <input  v-validate="'required|email'" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             <div class="switch large">
-                                <input class="switch-input" :id="'tennis-dinner-' + index" type="checkbox" v-model="tenn.diner">
+                                <input class="switch-input" :id="'tennis-dinner-' + index" type="checkbox" v-model="tenn.isDining">
                                 <label class="switch-paddle" :for="'tennis-dinner-' + index">
                                     <span class="show-for-sr">Participer au diner ?</span>
                                     <span class="switch-active" aria-hidden="true">Oui</span>
@@ -71,17 +71,17 @@
 
             <div class="collapse-mobile hide-for-large" >
                 <div :class="{'collapse-item': true}" v-for="(tenn, index) in tennis">
-                    <a href="javascript:void(0);" v-on:click="openTennis(tenn)">{{ tenn.lastname ? tenn.firstname + ' ' + tenn.lastname : 'SANS NOM' }}</a>
+                    <a href="javascript:void(0);" v-on:click="openTennis(tenn)">{{ tenn.name ? tenn.firstName + ' ' + tenn.name : 'SANS NOM' }}</a>
 
                     <div :class="{'panel': true, 'is-open': tenn.open || tennis.length == 1}">
                         <label>
                             Nom
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_lastname'" v-model="tenn.lastname" :class="{'is-invalid-input': errors.has('tennis_' + index + '_lastname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </label>
 
                         <label>
                             Prénom
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstname'" v-model="tenn.firstname" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
                         </label>
 
                         <label>
@@ -90,11 +90,11 @@
                         </label>
 
                         <label>
-                            Sexe
+                            sex
                             <div class="switch large">
-                                <input class="switch-input" :id="'tennis-sexe-' + index" type="checkbox" v-model="tenn.sexe" >
-                                <label class="switch-paddle" :for="'tennis-sexe-' + index">
-                                    <span class="show-for-sr">Sexe</span>
+                                <input class="switch-input" :id="'tennis-sex-' + index" type="checkbox" v-model="tenn.sex" >
+                                <label class="switch-paddle" :for="'tennis-sex-' + index">
+                                    <span class="show-for-sr">sex</span>
                                     <span class="switch-active" aria-hidden="true">F</span>
                                     <span class="switch-inactive" aria-hidden="true">H</span>
                                 </label>
@@ -103,7 +103,7 @@
 
                         <label>
                             Catégorie
-                            <select v-model="tenn.categorie" class="category">
+                            <select v-model="tenn.skillLevel" class="category">
                                 <option value="debutant">Débutant</option>
                                 <option value="semi-pro">Semi pro</option>
                                 <option value="pro">Pro</option>
@@ -111,8 +111,8 @@
                         </label>
 
                         <label>
-                            Classement
-                            <input v-validate="'required'" type="text" v-model="tenn.classement" data-vv-as="Classement" :name="'tennis_' + index + '_classement'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_classement')}">
+                            championshipLevel
+                            <input v-validate="'required'" type="text" v-model="tenn.championshipLevel" data-vv-as="championshipLevel" :name="'tennis_' + index + '_championshipLevel'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_championshipLevel')}">
                         </label>
 
                         <label>
@@ -128,7 +128,7 @@
                         <label>
                             Participer au diner ?
                             <div class="switch large">
-                                <input class="switch-input" :id="'tennis-dinner-' + index" type="checkbox" v-model="tenn.diner">
+                                <input class="switch-input" :id="'tennis-dinner-' + index" type="checkbox" v-model="tenn.isDining">
                                 <label class="switch-paddle" :for="'tennis-dinner-' + index">
                                     <span class="show-for-sr">Participer au diner ?</span>
                                     <span class="switch-active" aria-hidden="true">Oui</span>
@@ -140,7 +140,7 @@
                 </div>
             </div>
 
-            <button class="button button-primary" v-on:click="addTennis">Ajouter</button>
+            <a class="button button-primary" v-on:click="addTennis">Ajouter</a>
 
             <hr>
 
@@ -158,10 +158,10 @@
                 <tbody>
                 <tr v-for="(dinn, index) in diner">
                     <td>
-                        <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_lastname'" v-model="dinn.lastname" :class="{'is-invalid-input': errors.has('diner_' + index + '_lastname')}">
+                        <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                     </td>
                     <td>
-                        <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstname'" v-model="dinn.firstname" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstname')}">
+                        <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
                     </td>
                     <td>
                         <input  v-validate="'required|email'" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
@@ -172,17 +172,17 @@
 
             <div class="collapse-mobile hide-for-large" >
                 <div :class="{'collapse-item': true}" v-for="(dinn, index) in diner">
-                    <a href="javascript:void(0);" v-on:click="openDiner(dinn)">{{ dinn.lastname ? dinn.firstname + ' ' + dinn.lastname : 'SANS NOM' }}</a>
+                    <a href="javascript:void(0);" v-on:click="openDiner(dinn)">{{ dinn.name ? dinn.firstName + ' ' + dinn.name : 'SANS NOM' }}</a>
 
                     <div :class="{'panel': true, 'is-open': dinn.open || diner.length == 1}">
                         <label>
                             Nom
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_lastname'" v-model="dinn.lastname" :class="{'is-invalid-input': errors.has('diner_' + index + '_lastname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                         </label>
 
                         <label>
                             Prénom
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstname'" v-model="dinn.firstname" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstname')}">
+                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
                         </label>
 
                         <label>
@@ -193,7 +193,7 @@
                 </div>
             </div>
 
-            <button class="button button-primary"v-on:click="addDinner">Ajouter</button>
+            <a class="button button-primary"v-on:click="addDinner">Ajouter</a>
 
             <hr>
 
@@ -245,22 +245,22 @@
                 return {
                     tennis: [
                         {
-                            firstname: '',
-                            lastname: '',
-                            sexe: '',
+                            firstName: '',
+                            name: '',
+                            sex: false,
                             age: '',
-                            categorie: 'debutant',
-                            classement: '',
+                            skillLevel: 'debutant',
+                            championshipLevel: '',
                             email: '',
                             phone: '',
-                            diner: false,
+                            isDining: false,
                             open: false
                         }
                     ],
                     diner: [
                         {
-                            firstname: '',
-                            lastname: '',
+                            firstName: '',
+                            name: '',
                             email: '',
                             open: false
                         }
@@ -273,6 +273,7 @@
                     donate: 0,
                     error: false,
                     showMessage: false,
+                    players: []
                 }
             },
 
@@ -304,12 +305,12 @@
                     e.preventDefault();
 
                     this.tennis.push({
-                        firstname: '',
-                        lastname: '',
-                        sexe: '',
+                        firstName: '',
+                        name: '',
+                        sex: '',
                         age: '',
-                        categorie: 'debutant',
-                        classement: '',
+                        skillLevel: 'debutant',
+                        championshipLevel: '',
                         email: '',
                         telephone: '',
                         diner: false,
@@ -322,8 +323,8 @@
                     e.preventDefault();
 
                     this.diner.push({
-                        firstname: '',
-                        lastname: '',
+                        firstName: '',
+                        name: '',
                         email: '',
                         open: false
                     });
@@ -336,13 +337,13 @@
                     let tennisPrice = this.prices.tennis;
 
                     this.tennis.forEach((tenn) => {
-                        if (tenn.lastname !== '') {
+                        if (tenn.name !== '') {
                             total += tennisPrice;
                         }
                     });
 
                     this.diner.forEach((dinn) => {
-                        if (dinn.lastname !== '') {
+                        if (dinn.name !== '') {
                             total += dinnerPrice;
                         }
                     });
@@ -369,21 +370,39 @@
                 sendForm(e) {
                     e.preventDefault();
 
-                    HTTP.post(window.POST_REGISTER, {
-                        tennis: this.tennis,
-                        diner: this.diner,
-                        donate: this.donate
-                    })
-                        .then((response) => {
-                            this.showMessage = true;
+                    this.$validator.validate().then(result => {
+                        if (result) {
+                            this.players = [];
 
-                            if (response.body.success) {
-                                console.log('success');
-                            }
-                        })
-                        .catch(e => {
-                            this.error = true;
-                        });
+                            this.tennis.forEach((item) => {
+                                this.players.push({
+                                    firstName: item.firstName,
+                                    name: item.name,
+                                    sex: item.sex == true ? 'FEMALE' : 'MALE',
+                                    age: item.age,
+                                    skillLevel: item.skillLevel,
+                                    championshipLevel: item.championshipLevel,
+                                    email: item.email,
+                                    phone: item.phone,
+                                    isDining: item.sex == true ? 1 : 0,
+                                })
+                            });
+
+
+                            HTTP.post(window.POST_REGISTER, {
+                                players: this.players,
+                                eaters: this.diner,
+                            donation: this.donate
+                            })
+                            .then((response) => {
+                              this.showMessage = true;
+                            })
+                            .catch(e => {
+                              this.error = true;
+                            });
+                        }
+                  });
+
                 }
             }
         }

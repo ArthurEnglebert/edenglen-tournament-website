@@ -41507,20 +41507,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             tennis: [{
-                firstname: '',
-                lastname: '',
-                sexe: '',
+                firstName: '',
+                name: '',
+                sex: false,
                 age: '',
-                categorie: 'debutant',
-                classement: '',
+                skillLevel: 'debutant',
+                championshipLevel: '',
                 email: '',
                 phone: '',
-                diner: false,
+                isDining: false,
                 open: false
             }],
             diner: [{
-                firstname: '',
-                lastname: '',
+                firstName: '',
+                name: '',
                 email: '',
                 open: false
             }],
@@ -41531,7 +41531,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             total: 0,
             donate: 0,
             error: false,
-            showMessage: false
+            showMessage: false,
+            players: []
         };
     },
 
@@ -41564,12 +41565,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             e.preventDefault();
 
             this.tennis.push({
-                firstname: '',
-                lastname: '',
-                sexe: '',
+                firstName: '',
+                name: '',
+                sex: '',
                 age: '',
-                categorie: 'debutant',
-                classement: '',
+                skillLevel: 'debutant',
+                championshipLevel: '',
                 email: '',
                 telephone: '',
                 diner: false,
@@ -41582,8 +41583,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             e.preventDefault();
 
             this.diner.push({
-                firstname: '',
-                lastname: '',
+                firstName: '',
+                name: '',
                 email: '',
                 open: false
             });
@@ -41596,13 +41597,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var tennisPrice = this.prices.tennis;
 
             this.tennis.forEach(function (tenn) {
-                if (tenn.lastname !== '') {
+                if (tenn.name !== '') {
                     total += tennisPrice;
                 }
             });
 
             this.diner.forEach(function (dinn) {
-                if (dinn.lastname !== '') {
+                if (dinn.name !== '') {
                     total += dinnerPrice;
                 }
             });
@@ -41631,18 +41632,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             e.preventDefault();
 
-            __WEBPACK_IMPORTED_MODULE_2__http__["a" /* HTTP */].post(window.POST_REGISTER, {
-                tennis: this.tennis,
-                diner: this.diner,
-                donate: this.donate
-            }).then(function (response) {
-                _this.showMessage = true;
+            this.$validator.validate().then(function (result) {
+                if (result) {
+                    _this.players = [];
 
-                if (response.body.success) {
-                    console.log('success');
+                    _this.tennis.forEach(function (item) {
+                        _this.players.push({
+                            firstName: item.firstName,
+                            name: item.name,
+                            sex: item.sex == true ? 'FEMALE' : 'MALE',
+                            age: item.age,
+                            skillLevel: item.skillLevel,
+                            championshipLevel: item.championshipLevel,
+                            email: item.email,
+                            phone: item.phone,
+                            isDining: item.sex == true ? 1 : 0
+                        });
+                    });
+
+                    __WEBPACK_IMPORTED_MODULE_2__http__["a" /* HTTP */].post(window.POST_REGISTER, {
+                        players: _this.players,
+                        eaters: _this.diner,
+                        donation: _this.donate
+                    }).then(function (response) {
+                        _this.showMessage = true;
+                    }).catch(function (e) {
+                        _this.error = true;
+                    });
                 }
-            }).catch(function (e) {
-                _this.error = true;
             });
         }
     }
@@ -41708,27 +41725,27 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: tenn.lastname,
-                          expression: "tenn.lastname"
+                          value: tenn.name,
+                          expression: "tenn.name"
                         }
                       ],
                       class: {
                         "is-invalid-input": _vm.errors.has(
-                          "tennis_" + index + "_lastname"
+                          "tennis_" + index + "_name"
                         )
                       },
                       attrs: {
                         type: "text",
                         "data-vv-as": "Nom",
-                        name: "tennis_" + index + "_lastname"
+                        name: "tennis_" + index + "_name"
                       },
-                      domProps: { value: tenn.lastname },
+                      domProps: { value: tenn.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(tenn, "lastname", $event.target.value)
+                          _vm.$set(tenn, "name", $event.target.value)
                         }
                       }
                     })
@@ -41746,27 +41763,27 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: tenn.firstname,
-                          expression: "tenn.firstname"
+                          value: tenn.firstName,
+                          expression: "tenn.firstName"
                         }
                       ],
                       class: {
                         "is-invalid-input": _vm.errors.has(
-                          "tennis_" + index + "_firstname"
+                          "tennis_" + index + "_firstName"
                         )
                       },
                       attrs: {
                         type: "text",
                         "data-vv-as": "Prénom",
-                        name: "tennis_" + index + "_firstname"
+                        name: "tennis_" + index + "_firstName"
                       },
-                      domProps: { value: tenn.firstname },
+                      domProps: { value: tenn.firstName },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(tenn, "firstname", $event.target.value)
+                          _vm.$set(tenn, "firstName", $event.target.value)
                         }
                       }
                     })
@@ -41817,20 +41834,20 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.sexe,
-                            expression: "tenn.sexe"
+                            value: tenn.sex,
+                            expression: "tenn.sex"
                           }
                         ],
                         staticClass: "switch-input",
-                        attrs: { id: "tennis-sexe-" + index, type: "checkbox" },
+                        attrs: { id: "tennis-sex-" + index, type: "checkbox" },
                         domProps: {
-                          checked: Array.isArray(tenn.sexe)
-                            ? _vm._i(tenn.sexe, null) > -1
-                            : tenn.sexe
+                          checked: Array.isArray(tenn.sex)
+                            ? _vm._i(tenn.sex, null) > -1
+                            : tenn.sex
                         },
                         on: {
                           change: function($event) {
-                            var $$a = tenn.sexe,
+                            var $$a = tenn.sex,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
@@ -41838,17 +41855,17 @@ var render = function() {
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 &&
-                                  _vm.$set(tenn, "sexe", $$a.concat([$$v]))
+                                  _vm.$set(tenn, "sex", $$a.concat([$$v]))
                               } else {
                                 $$i > -1 &&
                                   _vm.$set(
                                     tenn,
-                                    "sexe",
+                                    "sex",
                                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                   )
                               }
                             } else {
-                              _vm.$set(tenn, "sexe", $$c)
+                              _vm.$set(tenn, "sex", $$c)
                             }
                           }
                         }
@@ -41858,11 +41875,11 @@ var render = function() {
                         "label",
                         {
                           staticClass: "switch-paddle",
-                          attrs: { for: "tennis-sexe-" + index }
+                          attrs: { for: "tennis-sex-" + index }
                         },
                         [
                           _c("span", { staticClass: "show-for-sr" }, [
-                            _vm._v("Sexe")
+                            _vm._v("sex")
                           ]),
                           _vm._v(" "),
                           _c(
@@ -41895,8 +41912,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.categorie,
-                            expression: "tenn.categorie"
+                            value: tenn.skillLevel,
+                            expression: "tenn.skillLevel"
                           }
                         ],
                         staticClass: "category",
@@ -41912,7 +41929,7 @@ var render = function() {
                               })
                             _vm.$set(
                               tenn,
-                              "categorie",
+                              "skillLevel",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
@@ -41948,27 +41965,31 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: tenn.classement,
-                          expression: "tenn.classement"
+                          value: tenn.championshipLevel,
+                          expression: "tenn.championshipLevel"
                         }
                       ],
                       class: {
                         "is-invalid-input": _vm.errors.has(
-                          "tennis_" + index + "_classement"
+                          "tennis_" + index + "_championshipLevel"
                         )
                       },
                       attrs: {
                         type: "text",
-                        "data-vv-as": "Classement",
-                        name: "tennis_" + index + "_classement"
+                        "data-vv-as": "championshipLevel",
+                        name: "tennis_" + index + "_championshipLevel"
                       },
-                      domProps: { value: tenn.classement },
+                      domProps: { value: tenn.championshipLevel },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(tenn, "classement", $event.target.value)
+                          _vm.$set(
+                            tenn,
+                            "championshipLevel",
+                            $event.target.value
+                          )
                         }
                       }
                     })
@@ -42051,8 +42072,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.diner,
-                            expression: "tenn.diner"
+                            value: tenn.isDining,
+                            expression: "tenn.isDining"
                           }
                         ],
                         staticClass: "switch-input",
@@ -42061,13 +42082,13 @@ var render = function() {
                           type: "checkbox"
                         },
                         domProps: {
-                          checked: Array.isArray(tenn.diner)
-                            ? _vm._i(tenn.diner, null) > -1
-                            : tenn.diner
+                          checked: Array.isArray(tenn.isDining)
+                            ? _vm._i(tenn.isDining, null) > -1
+                            : tenn.isDining
                         },
                         on: {
                           change: function($event) {
-                            var $$a = tenn.diner,
+                            var $$a = tenn.isDining,
                               $$el = $event.target,
                               $$c = $$el.checked ? true : false
                             if (Array.isArray($$a)) {
@@ -42075,17 +42096,17 @@ var render = function() {
                                 $$i = _vm._i($$a, $$v)
                               if ($$el.checked) {
                                 $$i < 0 &&
-                                  _vm.$set(tenn, "diner", $$a.concat([$$v]))
+                                  _vm.$set(tenn, "isDining", $$a.concat([$$v]))
                               } else {
                                 $$i > -1 &&
                                   _vm.$set(
                                     tenn,
-                                    "diner",
+                                    "isDining",
                                     $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                   )
                               }
                             } else {
-                              _vm.$set(tenn, "diner", $$c)
+                              _vm.$set(tenn, "isDining", $$c)
                             }
                           }
                         }
@@ -42146,8 +42167,8 @@ var render = function() {
                   [
                     _vm._v(
                       _vm._s(
-                        tenn.lastname
-                          ? tenn.firstname + " " + tenn.lastname
+                        tenn.name
+                          ? tenn.firstName + " " + tenn.name
                           : "SANS NOM"
                       )
                     )
@@ -42178,27 +42199,27 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.lastname,
-                            expression: "tenn.lastname"
+                            value: tenn.name,
+                            expression: "tenn.name"
                           }
                         ],
                         class: {
                           "is-invalid-input": _vm.errors.has(
-                            "tennis_" + index + "_lastname"
+                            "tennis_" + index + "_name"
                           )
                         },
                         attrs: {
                           type: "text",
                           "data-vv-as": "Nom",
-                          name: "tennis_" + index + "_lastname"
+                          name: "tennis_" + index + "_name"
                         },
-                        domProps: { value: tenn.lastname },
+                        domProps: { value: tenn.name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(tenn, "lastname", $event.target.value)
+                            _vm.$set(tenn, "name", $event.target.value)
                           }
                         }
                       })
@@ -42219,27 +42240,27 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.firstname,
-                            expression: "tenn.firstname"
+                            value: tenn.firstName,
+                            expression: "tenn.firstName"
                           }
                         ],
                         class: {
                           "is-invalid-input": _vm.errors.has(
-                            "tennis_" + index + "_firstname"
+                            "tennis_" + index + "_firstName"
                           )
                         },
                         attrs: {
                           type: "text",
                           "data-vv-as": "Prénom",
-                          name: "tennis_" + index + "_firstname"
+                          name: "tennis_" + index + "_firstName"
                         },
-                        domProps: { value: tenn.firstname },
+                        domProps: { value: tenn.firstName },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(tenn, "firstname", $event.target.value)
+                            _vm.$set(tenn, "firstName", $event.target.value)
                           }
                         }
                       })
@@ -42288,7 +42309,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("label", [
                       _vm._v(
-                        "\n                        Sexe\n                        "
+                        "\n                        sex\n                        "
                       ),
                       _c("div", { staticClass: "switch large" }, [
                         _c("input", {
@@ -42296,23 +42317,23 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: tenn.sexe,
-                              expression: "tenn.sexe"
+                              value: tenn.sex,
+                              expression: "tenn.sex"
                             }
                           ],
                           staticClass: "switch-input",
                           attrs: {
-                            id: "tennis-sexe-" + index,
+                            id: "tennis-sex-" + index,
                             type: "checkbox"
                           },
                           domProps: {
-                            checked: Array.isArray(tenn.sexe)
-                              ? _vm._i(tenn.sexe, null) > -1
-                              : tenn.sexe
+                            checked: Array.isArray(tenn.sex)
+                              ? _vm._i(tenn.sex, null) > -1
+                              : tenn.sex
                           },
                           on: {
                             change: function($event) {
-                              var $$a = tenn.sexe,
+                              var $$a = tenn.sex,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -42320,19 +42341,19 @@ var render = function() {
                                   $$i = _vm._i($$a, $$v)
                                 if ($$el.checked) {
                                   $$i < 0 &&
-                                    _vm.$set(tenn, "sexe", $$a.concat([$$v]))
+                                    _vm.$set(tenn, "sex", $$a.concat([$$v]))
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       tenn,
-                                      "sexe",
+                                      "sex",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(tenn, "sexe", $$c)
+                                _vm.$set(tenn, "sex", $$c)
                               }
                             }
                           }
@@ -42342,11 +42363,11 @@ var render = function() {
                           "label",
                           {
                             staticClass: "switch-paddle",
-                            attrs: { for: "tennis-sexe-" + index }
+                            attrs: { for: "tennis-sex-" + index }
                           },
                           [
                             _c("span", { staticClass: "show-for-sr" }, [
-                              _vm._v("Sexe")
+                              _vm._v("sex")
                             ]),
                             _vm._v(" "),
                             _c(
@@ -42382,8 +42403,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: tenn.categorie,
-                              expression: "tenn.categorie"
+                              value: tenn.skillLevel,
+                              expression: "tenn.skillLevel"
                             }
                           ],
                           staticClass: "category",
@@ -42399,7 +42420,7 @@ var render = function() {
                                 })
                               _vm.$set(
                                 tenn,
-                                "categorie",
+                                "skillLevel",
                                 $event.target.multiple
                                   ? $$selectedVal
                                   : $$selectedVal[0]
@@ -42425,7 +42446,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("label", [
                       _vm._v(
-                        "\n                        Classement\n                        "
+                        "\n                        championshipLevel\n                        "
                       ),
                       _c("input", {
                         directives: [
@@ -42438,27 +42459,31 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: tenn.classement,
-                            expression: "tenn.classement"
+                            value: tenn.championshipLevel,
+                            expression: "tenn.championshipLevel"
                           }
                         ],
                         class: {
                           "is-invalid-input": _vm.errors.has(
-                            "tennis_" + index + "_classement"
+                            "tennis_" + index + "_championshipLevel"
                           )
                         },
                         attrs: {
                           type: "text",
-                          "data-vv-as": "Classement",
-                          name: "tennis_" + index + "_classement"
+                          "data-vv-as": "championshipLevel",
+                          name: "tennis_" + index + "_championshipLevel"
                         },
-                        domProps: { value: tenn.classement },
+                        domProps: { value: tenn.championshipLevel },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(tenn, "classement", $event.target.value)
+                            _vm.$set(
+                              tenn,
+                              "championshipLevel",
+                              $event.target.value
+                            )
                           }
                         }
                       })
@@ -42550,8 +42575,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: tenn.diner,
-                              expression: "tenn.diner"
+                              value: tenn.isDining,
+                              expression: "tenn.isDining"
                             }
                           ],
                           staticClass: "switch-input",
@@ -42560,13 +42585,13 @@ var render = function() {
                             type: "checkbox"
                           },
                           domProps: {
-                            checked: Array.isArray(tenn.diner)
-                              ? _vm._i(tenn.diner, null) > -1
-                              : tenn.diner
+                            checked: Array.isArray(tenn.isDining)
+                              ? _vm._i(tenn.isDining, null) > -1
+                              : tenn.isDining
                           },
                           on: {
                             change: function($event) {
-                              var $$a = tenn.diner,
+                              var $$a = tenn.isDining,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -42574,19 +42599,23 @@ var render = function() {
                                   $$i = _vm._i($$a, $$v)
                                 if ($$el.checked) {
                                   $$i < 0 &&
-                                    _vm.$set(tenn, "diner", $$a.concat([$$v]))
+                                    _vm.$set(
+                                      tenn,
+                                      "isDining",
+                                      $$a.concat([$$v])
+                                    )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
                                       tenn,
-                                      "diner",
+                                      "isDining",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(tenn, "diner", $$c)
+                                _vm.$set(tenn, "isDining", $$c)
                               }
                             }
                           }
@@ -42631,7 +42660,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "button",
+            "a",
             {
               staticClass: "button button-primary",
               on: { click: _vm.addTennis }
@@ -42662,27 +42691,27 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: dinn.lastname,
-                          expression: "dinn.lastname"
+                          value: dinn.name,
+                          expression: "dinn.name"
                         }
                       ],
                       class: {
                         "is-invalid-input": _vm.errors.has(
-                          "diner_" + index + "_lastname"
+                          "diner_" + index + "_name"
                         )
                       },
                       attrs: {
                         type: "text",
                         "data-vv-as": "Nom",
-                        name: "diner_" + index + "_lastname"
+                        name: "diner_" + index + "_name"
                       },
-                      domProps: { value: dinn.lastname },
+                      domProps: { value: dinn.name },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(dinn, "lastname", $event.target.value)
+                          _vm.$set(dinn, "name", $event.target.value)
                         }
                       }
                     })
@@ -42700,27 +42729,27 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: dinn.firstname,
-                          expression: "dinn.firstname"
+                          value: dinn.firstName,
+                          expression: "dinn.firstName"
                         }
                       ],
                       class: {
                         "is-invalid-input": _vm.errors.has(
-                          "diner_" + index + "_firstname"
+                          "diner_" + index + "_firstName"
                         )
                       },
                       attrs: {
                         type: "text",
                         "data-vv-as": "Prénom",
-                        name: "diner_" + index + "_firstname"
+                        name: "diner_" + index + "_firstName"
                       },
-                      domProps: { value: dinn.firstname },
+                      domProps: { value: dinn.firstName },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(dinn, "firstname", $event.target.value)
+                          _vm.$set(dinn, "firstName", $event.target.value)
                         }
                       }
                     })
@@ -42786,8 +42815,8 @@ var render = function() {
                   [
                     _vm._v(
                       _vm._s(
-                        dinn.lastname
-                          ? dinn.firstname + " " + dinn.lastname
+                        dinn.name
+                          ? dinn.firstName + " " + dinn.name
                           : "SANS NOM"
                       )
                     )
@@ -42818,27 +42847,27 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: dinn.lastname,
-                            expression: "dinn.lastname"
+                            value: dinn.name,
+                            expression: "dinn.name"
                           }
                         ],
                         class: {
                           "is-invalid-input": _vm.errors.has(
-                            "diner_" + index + "_lastname"
+                            "diner_" + index + "_name"
                           )
                         },
                         attrs: {
                           type: "text",
                           "data-vv-as": "Nom",
-                          name: "diner_" + index + "_lastname"
+                          name: "diner_" + index + "_name"
                         },
-                        domProps: { value: dinn.lastname },
+                        domProps: { value: dinn.name },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(dinn, "lastname", $event.target.value)
+                            _vm.$set(dinn, "name", $event.target.value)
                           }
                         }
                       })
@@ -42859,27 +42888,27 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: dinn.firstname,
-                            expression: "dinn.firstname"
+                            value: dinn.firstName,
+                            expression: "dinn.firstName"
                           }
                         ],
                         class: {
                           "is-invalid-input": _vm.errors.has(
-                            "diner_" + index + "_firstname"
+                            "diner_" + index + "_firstName"
                           )
                         },
                         attrs: {
                           type: "text",
                           "data-vv-as": "Prénom",
-                          name: "diner_" + index + "_firstname"
+                          name: "diner_" + index + "_firstName"
                         },
-                        domProps: { value: dinn.firstname },
+                        domProps: { value: dinn.firstName },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(dinn, "firstname", $event.target.value)
+                            _vm.$set(dinn, "firstName", $event.target.value)
                           }
                         }
                       })
@@ -42932,7 +42961,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "button",
+            "a",
             {
               staticClass: "button button-primary",
               on: { click: _vm.addDinner }
@@ -43038,11 +43067,11 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Âge")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Sexe")]),
+        _c("th", [_vm._v("sex")]),
         _vm._v(" "),
         _c("th", [_vm._v("Catégorie")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Classement")]),
+        _c("th", [_vm._v("championshipLevel")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
@@ -43235,17 +43264,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: [],
     data: function data() {
         return {
-            firstname: null,
-            lastname: null,
+            firstName: null,
+            name: null,
             phone: null,
-            decoration: false,
-            salade: false,
-            decoration_start: null,
-            decoration_end: null,
-            ranger: false,
-            ranger_start: null,
-            ranger_end: null,
-            people: null
+            isComingToBuild: false,
+            isBringingFood: false,
+            isComingToBuildStart: null,
+            isComingToBuildEnd: null,
+            isComingToUnBuild: false,
+            isComingToUnBuildStart: null,
+            isComingToUnBuildEnd: null,
+            isComingToDecorate: false,
+            numberComing: null
         };
     },
 
@@ -43259,12 +43289,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             e.preventDefault();
 
-            __WEBPACK_IMPORTED_MODULE_2__http__["a" /* HTTP */].post(window.POST_REGISTER, {}).then(function (response) {
-                if (response.body.success) {
-                    console.log('success');
+            this.$validator.validate().then(function (result) {
+                if (result) {
+                    __WEBPACK_IMPORTED_MODULE_2__http__["a" /* HTTP */].post(window.POST_HELP, {
+                        firstName: _this.firstName,
+                        name: _this.name,
+                        phone: _this.phone,
+                        isComingToBuild: _this.isComingToBuild,
+                        isBringingFood: _this.isBringingFood,
+                        isComingToBuildStart: _this.isComingToBuildStart,
+                        isComingToBuildEnd: _this.isComingToBuildEnd,
+                        isComingToUnBuild: _this.isComingToUnBuild,
+                        isComingToUnBuildStart: _this.isComingToUnBuildStart,
+                        isComingToUnBuildEnd: _this.isComingToUnBuildEnd,
+                        numberComing: _this.numberComing,
+                        isComingToDecorate: _this.isComingToDecorate
+                    }).then(function (response) {
+                        alert('Invitation à aider reçue');
+                    }).catch(function (e) {
+                        _this.error = true;
+                    });
                 }
-            }).catch(function (e) {
-                _this.error = true;
             });
         }
     }
@@ -43284,25 +43329,25 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
-          _c("label", { attrs: { for: "lastname" } }, [
+          _c("label", { attrs: { for: "name" } }, [
             _vm._v("\n                    Nom\n                    "),
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.lastname,
-                  expression: "lastname"
+                  value: _vm.name,
+                  expression: "name"
                 }
               ],
               attrs: { type: "text", required: "" },
-              domProps: { value: _vm.lastname },
+              domProps: { value: _vm.name },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.lastname = $event.target.value
+                  _vm.name = $event.target.value
                 }
               }
             })
@@ -43310,25 +43355,25 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
-          _c("label", { attrs: { for: "firstname" } }, [
+          _c("label", { attrs: { for: "firstName" } }, [
             _vm._v("\n                    Prénom\n                    "),
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.firstname,
-                  expression: "firstname"
+                  value: _vm.firstName,
+                  expression: "firstName"
                 }
               ],
               attrs: { type: "text", required: "" },
-              domProps: { value: _vm.firstname },
+              domProps: { value: _vm.firstName },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.firstname = $event.target.value
+                  _vm.firstName = $event.target.value
                 }
               }
             })
@@ -43370,35 +43415,35 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.decoration,
-                  expression: "decoration"
+                  value: _vm.isComingToBuild,
+                  expression: "isComingToBuild"
                 }
               ],
               staticClass: "switch-input",
-              attrs: { id: "decoration", type: "checkbox" },
+              attrs: { id: "isComingToBuild", type: "checkbox" },
               domProps: {
-                checked: Array.isArray(_vm.decoration)
-                  ? _vm._i(_vm.decoration, null) > -1
-                  : _vm.decoration
+                checked: Array.isArray(_vm.isComingToBuild)
+                  ? _vm._i(_vm.isComingToBuild, null) > -1
+                  : _vm.isComingToBuild
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.decoration,
+                  var $$a = _vm.isComingToBuild,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.decoration = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.isComingToBuild = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.decoration = $$a
+                        (_vm.isComingToBuild = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.decoration = $$c
+                    _vm.isComingToBuild = $$c
                   }
                 }
               }
@@ -43417,22 +43462,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.decoration_start,
-                expression: "decoration_start"
+                value: _vm.isComingToBuildStart,
+                expression: "isComingToBuildStart"
               }
             ],
             attrs: {
               type: "number",
-              required: _vm.decoration,
-              disabled: !_vm.decoration
+              required: _vm.isComingToBuild,
+              disabled: !_vm.isComingToBuild
             },
-            domProps: { value: _vm.decoration_start },
+            domProps: { value: _vm.isComingToBuildStart },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.decoration_start = $event.target.value
+                _vm.isComingToBuildStart = $event.target.value
               }
             }
           }),
@@ -43442,22 +43487,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.decoration_end,
-                expression: "decoration_end"
+                value: _vm.isComingToBuildEnd,
+                expression: "isComingToBuildEnd"
               }
             ],
             attrs: {
               type: "number",
-              required: _vm.decoration,
-              disabled: !_vm.decoration
+              required: _vm.isComingToBuild,
+              disabled: !_vm.isComingToBuild
             },
-            domProps: { value: _vm.decoration_end },
+            domProps: { value: _vm.isComingToBuildEnd },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.decoration_end = $event.target.value
+                _vm.isComingToBuildEnd = $event.target.value
               }
             }
           }),
@@ -43473,35 +43518,35 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.salade,
-                  expression: "salade"
+                  value: _vm.isBringingFood,
+                  expression: "isBringingFood"
                 }
               ],
               staticClass: "switch-input",
-              attrs: { id: "salade", type: "checkbox" },
+              attrs: { id: "isBringingFood", type: "checkbox" },
               domProps: {
-                checked: Array.isArray(_vm.salade)
-                  ? _vm._i(_vm.salade, null) > -1
-                  : _vm.salade
+                checked: Array.isArray(_vm.isBringingFood)
+                  ? _vm._i(_vm.isBringingFood, null) > -1
+                  : _vm.isBringingFood
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.salade,
+                  var $$a = _vm.isBringingFood,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.salade = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.isBringingFood = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.salade = $$a
+                        (_vm.isBringingFood = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.salade = $$c
+                    _vm.isBringingFood = $$c
                   }
                 }
               }
@@ -43513,7 +43558,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
           _vm._v(
-            "\n                Je peux faire une salade pour 10 personnes.\n            "
+            "\n                Je peux faire une isBringingFood pour 10 personnes.\n            "
           )
         ])
       ]),
@@ -43526,35 +43571,35 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.ranger,
-                  expression: "ranger"
+                  value: _vm.isComingToUnBuild,
+                  expression: "isComingToUnBuild"
                 }
               ],
               staticClass: "switch-input",
-              attrs: { id: "ranger", type: "checkbox" },
+              attrs: { id: "isComingToUnBuild", type: "checkbox" },
               domProps: {
-                checked: Array.isArray(_vm.ranger)
-                  ? _vm._i(_vm.ranger, null) > -1
-                  : _vm.ranger
+                checked: Array.isArray(_vm.isComingToUnBuild)
+                  ? _vm._i(_vm.isComingToUnBuild, null) > -1
+                  : _vm.isComingToUnBuild
               },
               on: {
                 change: function($event) {
-                  var $$a = _vm.ranger,
+                  var $$a = _vm.isComingToUnBuild,
                     $$el = $event.target,
                     $$c = $$el.checked ? true : false
                   if (Array.isArray($$a)) {
                     var $$v = null,
                       $$i = _vm._i($$a, $$v)
                     if ($$el.checked) {
-                      $$i < 0 && (_vm.ranger = $$a.concat([$$v]))
+                      $$i < 0 && (_vm.isComingToUnBuild = $$a.concat([$$v]))
                     } else {
                       $$i > -1 &&
-                        (_vm.ranger = $$a
+                        (_vm.isComingToUnBuild = $$a
                           .slice(0, $$i)
                           .concat($$a.slice($$i + 1)))
                     }
                   } else {
-                    _vm.ranger = $$c
+                    _vm.isComingToUnBuild = $$c
                   }
                 }
               }
@@ -43566,29 +43611,29 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "columns decoration" }, [
           _vm._v(
-            "\n                Je viens aider à ranger le 16 septembre de\n                "
+            "\n                Je viens aider à isComingToUnBuild le 16 septembre de\n                "
           ),
           _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.ranger_start,
-                expression: "ranger_start"
+                value: _vm.isComingToUnBuildStart,
+                expression: "isComingToUnBuildStart"
               }
             ],
             attrs: {
               type: "number",
-              required: _vm.ranger,
-              disabled: !_vm.ranger
+              required: _vm.isComingToUnBuild,
+              disabled: !_vm.isComingToUnBuild
             },
-            domProps: { value: _vm.ranger_start },
+            domProps: { value: _vm.isComingToUnBuildStart },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.ranger_start = $event.target.value
+                _vm.isComingToUnBuildStart = $event.target.value
               }
             }
           }),
@@ -43598,22 +43643,22 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.ranger_end,
-                expression: "ranger_end"
+                value: _vm.isComingToUnBuildEnd,
+                expression: "isComingToUnBuildEnd"
               }
             ],
             attrs: {
               type: "number",
-              required: _vm.ranger,
-              disabled: !_vm.ranger
+              required: _vm.isComingToUnBuild,
+              disabled: !_vm.isComingToUnBuild
             },
-            domProps: { value: _vm.ranger_end },
+            domProps: { value: _vm.isComingToUnBuildEnd },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.ranger_end = $event.target.value
+                _vm.isComingToUnBuildEnd = $event.target.value
               }
             }
           }),
@@ -43625,7 +43670,7 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "columns decoration",
+            staticClass: "columns isComingToBuild",
             staticStyle: { "margin-left": "30%" }
           },
           [
@@ -43635,22 +43680,22 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.people,
-                  expression: "people"
+                  value: _vm.numberComing,
+                  expression: "numberComing"
                 }
               ],
               attrs: {
                 type: "number",
-                required: _vm.ranger,
-                disabled: !_vm.ranger
+                required: _vm.name,
+                disabled: !_vm.name
               },
-              domProps: { value: _vm.people },
+              domProps: { value: _vm.numberComing },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.people = $event.target.value
+                  _vm.numberComing = $event.target.value
                 }
               }
             }),
@@ -43685,7 +43730,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "switch-paddle", attrs: { for: "decoration" } },
+      { staticClass: "switch-paddle", attrs: { for: "isComingToBuild" } },
       [_c("span", { staticClass: "show-for-sr" }, [_vm._v("Décoration")])]
     )
   },
@@ -43695,8 +43740,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "switch-paddle", attrs: { for: "salade" } },
-      [_c("span", { staticClass: "show-for-sr" }, [_vm._v("Salade")])]
+      { staticClass: "switch-paddle", attrs: { for: "isBringingFood" } },
+      [_c("span", { staticClass: "show-for-sr" }, [_vm._v("isBringingFood")])]
     )
   },
   function() {
@@ -43705,8 +43750,12 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "label",
-      { staticClass: "switch-paddle", attrs: { for: "ranger" } },
-      [_c("span", { staticClass: "show-for-sr" }, [_vm._v("Ranger")])]
+      { staticClass: "switch-paddle", attrs: { for: "isComingToUnBuild" } },
+      [
+        _c("span", { staticClass: "show-for-sr" }, [
+          _vm._v("isComingToUnBuild")
+        ])
+      ]
     )
   }
 ]
