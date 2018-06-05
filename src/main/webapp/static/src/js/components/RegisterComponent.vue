@@ -290,7 +290,7 @@
                 <div class="columns small-12 medium-6">
                     <div class="input-group">
                         <span class="input-group-label">Faire un don</span>
-                        <input v-validate="'required'" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
+                        <input v-validate="diner[0].name == '' && tennis[0].name == '' ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
                         <div class="input-group-euro">
                             €
                         </div>

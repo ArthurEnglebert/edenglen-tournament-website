@@ -1,7 +1,12 @@
 <template>
     <slick ref="slick" :options="slickOptions" :class="{footer__slider: true}">
         <div v-for="(slide, index) in slides" :class="{footer__slide: true}">
-           <img :src="slide" :alt="'sponsor-' + (index + 1)"/>
+            <a :href="slide.link" v-if="slide.link" target="_blank" rel="noreferrer nofollow">
+                <img :src="slide.img" :alt="'sponsor-' + (index + 1)"/>
+            </a>
+
+
+           <img :src="slide.img" :alt="'sponsor-' + (index + 1)" v-else />
         </div>
     </slick>
 </template>
@@ -23,16 +28,8 @@
                     speed: 1000
                 },
                 slides: [
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
-                    'http://placehold.it/100x100',
+                    {img: '/static/dist/assets/img/sponsors/puilaetcodewaay.jpg', link: 'https://www.puilaetcodewaay.be/fr'},
+                    {img: '/static/dist/assets/img/sponsors/puilaetcodewaay.jpg', link: 'https://www.puilaetcodewaay.be/fr'},
                 ]
             };
         },
