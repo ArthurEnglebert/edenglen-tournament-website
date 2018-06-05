@@ -1,9 +1,6 @@
 package be.edenglen.tournament.ws.model.service;
 
 import java.util.stream.Collectors;
-
-import be.edenglen.tournament.ws.www.dto.out.ImmutableInscriptionOutDTO;
-import be.edenglen.tournament.ws.www.dto.out.InscriptionOutDTO;
 import org.springframework.stereotype.Component;
 import be.edenglen.tournament.ws.model.Eater;
 import be.edenglen.tournament.ws.model.Helper;
@@ -17,6 +14,8 @@ import be.edenglen.tournament.ws.www.dto.in.EaterInDTO;
 import be.edenglen.tournament.ws.www.dto.in.HelperInDTO;
 import be.edenglen.tournament.ws.www.dto.in.InscriptionInDTO;
 import be.edenglen.tournament.ws.www.dto.in.PlayerInDTO;
+import be.edenglen.tournament.ws.www.dto.out.ImmutableInscriptionOutDTO;
+import be.edenglen.tournament.ws.www.dto.out.InscriptionOutDTO;
 
 @Component
 public class ClientConverterImpl implements ClientConverter {
@@ -85,9 +84,12 @@ public class ClientConverterImpl implements ClientConverter {
                 .firstName(helper.getFirstName())
                 .phone(helper.getPhone())
                 .isBringingFood(helper.isBringingFood())
-                .isComingToBuild(helper.isComingToBuild())
+                .isComingToBuildAndDecorate(helper.isComingToBuildAndDecorate())
+                .comingToBuildAndDecorateStart(helper.getComingToBuildAndDecorateStart())
+                .comingToBuildAndDecorateEnd(helper.getComingToBuildAndDecorateEnd())
                 .isComingToUnBuild(helper.isComingToUnBuild())
-                .isComingToDecorate(helper.isComingToDecorate())
+                .comingToUnBuildStart(helper.getComingToUnBuildStart())
+                .comingToUnBuildEnd(helper.getComingToUnBuildEnd())
                 .numberComing(helper.getNumberComing())
                 .build();
     }

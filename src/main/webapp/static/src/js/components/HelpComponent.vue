@@ -6,21 +6,21 @@
                     <b>Je m'inscris pour aider :</b>
                 </div>
                 <div class="columns">
-                    <label for="name">
+                    <label :for="name">
                         Nom
                         <input type="text" v-model="name" required>
                     </label>
                 </div>
 
                 <div class="columns">
-                    <label for="firstName">
+                    <label :for="firstName">
                         Prénom
                         <input type="text" v-model="firstName" required>
                     </label>
                 </div>
 
                 <div class="columns">
-                    <label for="phone">
+                    <label :for="phone">
                         Téléphone
                         <input type="text" v-model="phone" required>
                     </label>
@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="columns shrink">
                     <div class="switch small">
-                        <input class="switch-input" id="isComingToBuild" type="checkbox" v-model="isComingToBuild">
+                        <input class="switch-input" id="isComingToBuild" type="checkbox" v-model="isComingToBuildAndDecorate">
                         <label class="switch-paddle" for="isComingToBuild">
                             <span class="show-for-sr">Décoration</span>
                         </label>
@@ -39,7 +39,7 @@
 
                 <div class="columns decoration">
                     Je viens aider le 14 septembre à la décoration de la tente et la mise en place des tables de
-                    <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H à <input type="number" v-model="isComingToBuildEnd" :required="isComingToBuild" :disabled="!isComingToBuild"> H.
+                    <input type="number" v-model="isComingToBuildAndDecorateStart" :required="isComingToBuildAndDecorate" :disabled="!isComingToBuildAndDecorate"> H à <input type="number" v-model="isComingToBuildAndDecorateEnd" :required="isComingToBuildAndDecorate" :disabled="!isComingToBuildAndDecorate"> H.
                 </div>
             </div>
 
@@ -97,14 +97,13 @@
                     firstName: null,
                     name: null,
                     phone: null,
-                    isComingToBuild: false,
                     isBringingFood: false,
-                    isComingToBuildStart: null,
-                    isComingToBuildEnd: null,
+                    isComingToBuildAndDecorate: false,
+                    isComingToBuildAndDecorateStart: null,
+                    isComingToBuildAndDecorateEnd: null,
                     isComingToUnBuild: false,
                     isComingToUnBuildStart: null,
                     isComingToUnBuildEnd: null,
-                    isComingToDecorate: false,
                     numberComing: null,
                 }
             },
@@ -127,15 +126,14 @@
                                 firstName: this.firstName,
                                 name: this.name,
                                 phone: this.phone,
-                                isComingToBuild: this.isComingToBuild,
                                 isBringingFood: this.isBringingFood,
-                                isComingToBuildStart: this.isComingToBuildStart,
-                                isComingToBuildEnd: this.isComingToBuildEnd,
+                                isComingToBuildAndDecorate: this.isComingToBuildAndDecorate,
+                                comingToBuildAndDecorateStart: this.isComingToBuildAndDecorateStart,
+                                comingToBuildAndDecorateEnd: this.isComingToBuildAndDecorateEnd,
                                 isComingToUnBuild: this.isComingToUnBuild,
-                                isComingToUnBuildStart: this.isComingToUnBuildStart,
-                                isComingToUnBuildEnd: this.isComingToUnBuildEnd,
+                                comingToUnBuildStart: this.isComingToUnBuildStart,
+                                comingToUnBuildEnd: this.isComingToUnBuildEnd,
                                 numberComing: this.numberComing,
-                                isComingToDecorate: this.isComingToDecorate,
                             })
                                 .then((response) => {
                                     alert('Invitation à aider reçue');

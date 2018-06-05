@@ -1,5 +1,6 @@
 package be.edenglen.tournament.ws.model.service.export;
 
+import java.util.Optional;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -14,7 +15,13 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"id", "name", "firstName", "phone", "numberComing", "bringingFood", "comingToBuild", "comingToUnBuild", "comingToDecorate"};
+	private static final String[] HEADERS = {"id",
+			"name", "firstName", "phone",
+			"numberComing",
+			"bringingFood",
+			"comingToBuildAndDecorate", "comingToBuildAndDecorateStart", "comingToBuildAndDecorateEnd",
+			"comingToUnBuild", "comingToUnBuildStart", "comingToUnBuildEnd"
+	};
 
 	private final HelperService helperService;
 
@@ -61,8 +68,11 @@ public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 		row.createCell(colNumber++).setCellValue(helper.getPhone());
 		row.createCell(colNumber++).setCellValue(helper.getNumberComing());
 		row.createCell(colNumber++).setCellValue(helper.isBringingFood());
-		row.createCell(colNumber++).setCellValue(helper.isComingToBuild());
+		row.createCell(colNumber++).setCellValue(helper.isComingToBuildAndDecorate());
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildAndDecorateStart()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildAndDecorateEnd()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(helper.isComingToUnBuild());
-		row.createCell(colNumber++).setCellValue(helper.isComingToDecorate());
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildStart()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildEnd()).map(val -> val.toString()).orElse("/"));
 	}
 }

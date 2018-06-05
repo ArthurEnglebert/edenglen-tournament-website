@@ -1,8 +1,11 @@
 package be.edenglen.tournament.ws.model.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import be.edenglen.tournament.ws.model.Helper;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "helpers")
@@ -15,10 +18,18 @@ public class HelperEntity implements Helper {
     private String name;
     private String firstName;
     private String phone;
+
     private boolean isBringingFood;
-    private boolean isComingToBuild;
+
+    private boolean isComingToBuildAndDecorate;
+    private Integer comingToBuildAndDecorateStart;
+    private Integer comingToBuildAndDecorateEnd;
+
     private boolean isComingToUnBuild;
-    private boolean isComingToDecorate;
+    private Integer comingToUnBuildStart;
+    private Integer comingToUnBuildEnd;
+
+
     private Integer numberComing;
 
     private HelperEntity() {
@@ -31,9 +42,12 @@ public class HelperEntity implements Helper {
         this.firstName = helper.getFirstName();
         this.phone = helper.getPhone();
         this.isBringingFood = helper.isBringingFood();
-        this.isComingToBuild = helper.isComingToBuild();
+        this.isComingToBuildAndDecorate = helper.isComingToBuildAndDecorate();
+        this.comingToBuildAndDecorateStart = helper.getComingToBuildAndDecorateStart();
+        this.comingToBuildAndDecorateEnd = helper.getComingToBuildAndDecorateEnd();
         this.isComingToUnBuild = helper.isComingToUnBuild();
-        this.isComingToDecorate = helper.isComingToDecorate();
+        this.comingToUnBuildStart = helper.getComingToUnBuildStart();
+        this.comingToUnBuildEnd = helper.getComingToUnBuildEnd();
         this.numberComing = helper.getNumberComing();
     }
 
@@ -63,8 +77,18 @@ public class HelperEntity implements Helper {
     }
 
     @Override
-    public boolean isComingToBuild() {
-        return this.isComingToBuild;
+    public boolean isComingToBuildAndDecorate() {
+        return this.isComingToBuildAndDecorate;
+    }
+
+    @Override
+    public Integer getComingToBuildAndDecorateStart() {
+        return this.comingToBuildAndDecorateStart;
+    }
+
+    @Override
+    public Integer getComingToBuildAndDecorateEnd() {
+        return this.comingToBuildAndDecorateEnd;
     }
 
     @Override
@@ -73,8 +97,13 @@ public class HelperEntity implements Helper {
     }
 
     @Override
-    public boolean isComingToDecorate() {
-        return this.isComingToDecorate;
+    public Integer getComingToUnBuildStart() {
+        return this.comingToUnBuildStart;
+    }
+
+    @Override
+    public Integer getComingToUnBuildEnd() {
+        return this.comingToUnBuildEnd;
     }
 
     @Override
