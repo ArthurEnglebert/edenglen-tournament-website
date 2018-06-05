@@ -73,7 +73,7 @@
                         </td>
                         <td>
                             <select v-model="tenn.skillLevel" class="category">
-                                <option value="none">----</option>
+                                <option value="NONE">----</option>
                                 <option value="C30_5">C30.5</option>
                                 <option value="C30_4">C30.4</option>
                                 <option value="C30_3">C30.3</option>
@@ -100,9 +100,9 @@
                         </td>
                         <td>
                             <select v-model="tenn.championshipLevel" class="category">
-                                <option value="debutant">Débutant</option>
-                                <option value="semi-pro">Semi pro</option>
-                                <option value="pro">Pro</option>
+                                <option value="DEBUTANT">Débutant</option>
+                                <option value="SEMI">Semi pro</option>
+                                <option value="PRO">Pro</option>
                             </select>
                         </td>
                         <td>
@@ -160,7 +160,7 @@
                         <label>
                             Niveau national
                             <select v-model="tenn.skillLevel" class="category">
-                                <option value="none">----</option>
+                                <option value="NONE">----</option>
                                 <option value="C30_5">C30.5</option>
                                 <option value="C30_4">C30.4</option>
                                 <option value="C30_3">C30.3</option>
@@ -189,9 +189,9 @@
                         <label>
                             Catégorie
                             <select v-model="tenn.championshipLevel" class="category">
-                                <option value="debutant">Débutant</option>
-                                <option value="semi-pro">Semi pro</option>
-                                <option value="pro">Pro</option>
+                                <option value="DEBUTANT">Débutant</option>
+                                <option value="SEMI">Semi pro</option>
+                                <option value="PRO">Pro</option>
                             </select>
                         </label>
 
@@ -342,8 +342,8 @@
                             name: '',
                             sex: false,
                             age: '',
-                            skillLevel: 'none',
-                            championshipLevel: 'debutant',
+                            skillLevel: 'NONE',
+                            championshipLevel: 'DEBUTANT',
                             email: '',
                             phone: '',
                             isDining: false,
@@ -409,8 +409,8 @@
                         name: '',
                         sex: '',
                         age: '',
-                        skillLevel: 'none',
-                        championshipLevel: 'debutant',
+                        skillLevel: 'NONE',
+                        championshipLevel: 'DEBUTANT',
                         email: '',
                         telephone: '',
                         diner: false,
@@ -501,10 +501,12 @@
 
 
                             HTTP.post(window.POST_REGISTER, {
-                                firstName: this.firstName,
-                                name: this.name,
-                                email: this.email,
-                                phone: this.phone,
+                                referent: {
+                                    name: this.name,
+                                    firstName: this.name,
+                                    email: this.email,
+                                    phone: this.phone
+                                },
                                 players: this.players,
                                 eaters: this.diner,
                             donation: this.donate
