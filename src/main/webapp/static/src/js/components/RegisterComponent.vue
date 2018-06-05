@@ -53,13 +53,13 @@
                 <tbody>
                     <tr v-for="(tenn, index) in tennis">
                         <td>
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
+                            <input v-validate="tenn.firstName !== '' ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </td>
                         <td>
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
                         </td>
                         <td>
-                            <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
                         </td>
                         <td>
                             <div class="switch large">
@@ -106,10 +106,10 @@
                             </select>
                         </td>
                         <td>
-                            <input  v-validate="'required|email'" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
+                            <input v-validate="tenn.name !== '' ? 'required|email' : ''" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
                         </td>
                         <td>
-                            <input type="text" v-model="tenn.phone" data-vv-as="Téléphone" :name="'tennis_' + index + '_phone'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_phone')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" v-model="tenn.phone" data-vv-as="Téléphone" :name="'tennis_' + index + '_phone'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_phone')}">
                         </td>
                         <td>
                             <div class="switch large">
@@ -132,17 +132,17 @@
                     <div :class="{'panel': true, 'is-open': tenn.open || tennis.length == 1}">
                         <label>
                             Nom
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
+                            <input v-validate="tenn.firstName !== '' ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </label>
 
                         <label>
                             Prénom
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
                         </label>
 
                         <label>
                             Âge
-                            <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
                         </label>
 
                         <label>
@@ -197,12 +197,12 @@
 
                         <label>
                             Email
-                            <input  v-validate="'required|email'" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
+                            <input  v-validate="tenn.name !== '' ? 'required|email' : ''" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
                         </label>
 
                         <label>
                             Téléphone
-                            <input type="text" v-model="tenn.phone" data-vv-as="Téléphone" :name="'tennis_' + index + '_phone'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_phone')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" v-model="tenn.phone" data-vv-as="Téléphone" :name="'tennis_' + index + '_phone'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_phone')}">
                         </label>
 
                         <label>
@@ -239,16 +239,16 @@
                 <tbody>
                 <tr v-for="(dinn, index) in diner">
                     <td>
-                        <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
+                        <input  type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                     </td>
                     <td>
-                        <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
+                        <input v-validate="dinn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
                     </td>
                     <td>
-                        <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
+                        <input v-validate="dinn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
                     </td>
                     <td>
-                        <input  v-validate="'required|email'" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
+                        <input v-validate="dinn.name !== '' ? 'required|email' : ''" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
                     </td>
                 </tr>
                 </tbody>
@@ -258,25 +258,25 @@
                 <div :class="{'collapse-item': true}" v-for="(dinn, index) in diner">
                     <a href="javascript:void(0);" v-on:click="openDiner(dinn)">{{ dinn.name ? dinn.firstName + ' ' + dinn.name : 'SANS NOM' }}</a>
 
-                    <div :class="{'panel': true, 'is-open': dinn.open || diner.length == 1}">
+                     <div :class="{'panel': true, 'is-open': dinn.open || diner.length == 1}">
                         <label>
                             Nom
-                            <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
+                            <input  type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                         </label>
 
                         <label>
                             Prénom
-                            <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
+                            <input v-validate="dinn.name !== '' ? 'required' : ''"  type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
                         </label>
 
                         <label>
                             Âge
-                            <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
+                            <input v-validate="dinn.name !== '' ? 'required' : ''"  type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
                         </label>
 
                         <label>
                             Email
-                            <input  v-validate="'required|email'" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
+                            <input v-validate="dinn.name !== '' ? 'required|email' : ''"  type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
                         </label>
                     </div>
                 </div>
@@ -290,7 +290,7 @@
                 <div class="columns small-12 medium-6">
                     <div class="input-group">
                         <span class="input-group-label">Faire un don</span>
-                        <input class="input-group-field" name="donate" type="number" v-model="donate">&nbsp;
+                        <input v-validate="'required'" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
                         <div class="input-group-euro">
                             €
                         </div>
@@ -310,7 +310,7 @@
                 </div>
             </div>
 
-            <button class="button button-secondary button-envoyer" type="submit">Envoyer</button>
+            <button class="button button-secondary button-envoyer" :disabled="waiting" type="submit">Envoyer</button>
         </form>
         <div v-else class="result">
             <h3>INSCRIPTION REUSSIE !</h3>
@@ -370,9 +370,10 @@
                         }
                     },
                     total: 0,
-                    donate: 0,
+                    donate: null,
                     error: false,
                     showMessage: false,
+                    waiting: false,
                     players: []
                 }
             },
@@ -483,6 +484,7 @@
 
                     this.$validator.validate().then(result => {
                         if (result) {
+                            this.waiting = true;
                             this.players = [];
 
                             this.tennis.forEach((item) => {
@@ -509,13 +511,15 @@
                                 },
                                 players: this.players,
                                 eaters: this.diner,
-                            donation: this.donate
+                                donation: this.donate
                             })
                             .then((response) => {
-                              this.showMessage = true;
+                                this.waiting = false;
+                                this.showMessage = true;
                             })
                             .catch(e => {
-                              this.error = true;
+                                this.waiting = false;
+                                this.error = true;
                             });
                         }
                   });

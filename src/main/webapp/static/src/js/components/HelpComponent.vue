@@ -75,7 +75,7 @@
             </div>
 
             <div class="row">
-                <div class="columns isComingToBuild" style="margin-left: 30%">
+                <div class="columns decoration" style="margin-left: 30%">
                     Nous serons <input type="number" v-model="numberComing" :required="name" :disabled="!name"> personnes.
                 </div>
             </div>

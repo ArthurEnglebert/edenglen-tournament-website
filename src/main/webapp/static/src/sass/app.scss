@@ -6,6 +6,7 @@
 // Foundation
 @import 'node_modules/foundation-sites/scss/foundation';
 @import "node_modules/foundation-sites/scss/util/util";
+@import 'node_modules/slick-carousel/slick/slick.scss';
 @import 'config/settings';
 
 @include foundation-global-styles;
