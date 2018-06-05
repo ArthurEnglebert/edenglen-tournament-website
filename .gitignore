@@ -2,8 +2,8 @@
 ### Example user template template
 ### Example user template
 
-src/main/webapp/dist/**
-src/main/webapp/package-lock.json
+src/main/webapp/static/dist/**
+src/main/webapp/static/package-lock.json
 
 target/**
 
