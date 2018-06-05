@@ -10,8 +10,8 @@
                         <th>Prénom</th>
                         <th>Âge</th>
                         <th>sex</th>
+                        <th>Niveau National</th>
                         <th>Catégorie</th>
-                        <th>championshipLevel</th>
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Participer au diner</th>
@@ -41,13 +41,37 @@
                         </td>
                         <td>
                             <select v-model="tenn.skillLevel" class="category">
+                                <option value="none">----</option>
+                                <option value="C30_5">C30.5</option>
+                                <option value="C30_4">C30.4</option>
+                                <option value="C30_3">C30.3</option>
+                                <option value="C30_2">C30.2</option>
+                                <option value="C30_1">C30.1</option>
+                                <option value="C30">C30</option>
+                                <option value="C15_5">C15.5</option>
+                                <option value="C15_4">C15.4</option>
+                                <option value="C15_3">C15.3</option>
+                                <option value="C15_2">C15.2</option>
+                                <option value="C15_1">C15.1</option>
+                                <option value="C15">C15</option>
+                                <option value="B_PLUS_4">B+4/6</option>
+                                <option value="B_PLUS_2">B+2/6</option>
+                                <option value="B0">B0</option>
+                                <option value="B_MINUS_2">B-2/6</option>
+                                <option value="B_MINUS_4">B-4/6</option>
+                                <option value="B_MINUS_15">B-15</option>
+                                <option value="B_MINUS_15_1">B-15.1</option>
+                                <option value="B_MINUS_15_2">B-15.2</option>
+                                <option value="B_MINUS_15_4">B-15.4</option>
+                                <option value="A">A</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select v-model="tenn.championshipLevel" class="category">
                                 <option value="debutant">Débutant</option>
                                 <option value="semi-pro">Semi pro</option>
                                 <option value="pro">Pro</option>
                             </select>
-                        </td>
-                        <td>
-                            <input v-validate="'required'" type="text" v-model="tenn.championshipLevel" data-vv-as="championshipLevel" :name="'tennis_' + index + '_championshipLevel'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_championshipLevel')}">
                         </td>
                         <td>
                             <input  v-validate="'required|email'" type="email" v-model="tenn.email" data-vv-as="Email" :name="'tennis_' + index + '_email'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_email')}">
@@ -102,17 +126,41 @@
                         </label>
 
                         <label>
-                            Catégorie
+                            Niveau national
                             <select v-model="tenn.skillLevel" class="category">
-                                <option value="debutant">Débutant</option>
-                                <option value="semi-pro">Semi pro</option>
-                                <option value="pro">Pro</option>
+                                <option value="none">----</option>
+                                <option value="C30_5">C30.5</option>
+                                <option value="C30_4">C30.4</option>
+                                <option value="C30_3">C30.3</option>
+                                <option value="C30_2">C30.2</option>
+                                <option value="C30_1">C30.1</option>
+                                <option value="C30">C30</option>
+                                <option value="C15_5">C15.5</option>
+                                <option value="C15_4">C15.4</option>
+                                <option value="C15_3">C15.3</option>
+                                <option value="C15_2">C15.2</option>
+                                <option value="C15_1">C15.1</option>
+                                <option value="C15">C15</option>
+                                <option value="B_PLUS_4">B+4/6</option>
+                                <option value="B_PLUS_2">B+2/6</option>
+                                <option value="B0">B0</option>
+                                <option value="B_MINUS_2">B-2/6</option>
+                                <option value="B_MINUS_4">B-4/6</option>
+                                <option value="B_MINUS_15">B-15</option>
+                                <option value="B_MINUS_15_1">B-15.1</option>
+                                <option value="B_MINUS_15_2">B-15.2</option>
+                                <option value="B_MINUS_15_4">B-15.4</option>
+                                <option value="A">A</option>
                             </select>
                         </label>
 
                         <label>
-                            championshipLevel
-                            <input v-validate="'required'" type="text" v-model="tenn.championshipLevel" data-vv-as="championshipLevel" :name="'tennis_' + index + '_championshipLevel'" :class="{'is-invalid-input': errors.has('tennis_' + index + '_championshipLevel')}">
+                            Catégorie
+                            <select v-model="tenn.championshipLevel" class="category">
+                                <option value="debutant">Débutant</option>
+                                <option value="semi-pro">Semi pro</option>
+                                <option value="pro">Pro</option>
+                            </select>
                         </label>
 
                         <label>
@@ -151,6 +199,7 @@
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
+                        <th>Âge</th>
                         <th>Email</th>
                     </tr>
                 </thead>
@@ -162,6 +211,9 @@
                     </td>
                     <td>
                         <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
+                    </td>
+                    <td>
+                        <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
                     </td>
                     <td>
                         <input  v-validate="'required|email'" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
@@ -183,6 +235,11 @@
                         <label>
                             Prénom
                             <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
+                        </label>
+
+                        <label>
+                            Âge
+                            <input v-validate="'required'" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
                         </label>
 
                         <label>
@@ -249,8 +306,8 @@
                             name: '',
                             sex: false,
                             age: '',
-                            skillLevel: 'debutant',
-                            championshipLevel: '',
+                            skillLevel: 'none',
+                            championshipLevel: 'debutant',
                             email: '',
                             phone: '',
                             isDining: false,
@@ -262,12 +319,19 @@
                             firstName: '',
                             name: '',
                             email: '',
+                            age: '',
                             open: false
                         }
                     ],
                     prices: {
-                        tennis: 80,
-                        diner: 30
+                        tennis: {
+                            sup25: 35,
+                            sub25: 25
+                        },
+                        diner: {
+                            sup25: 30,
+                            sub25: 20
+                        }
                     },
                     total: 0,
                     donate: 0,
@@ -309,8 +373,8 @@
                         name: '',
                         sex: '',
                         age: '',
-                        skillLevel: 'debutant',
-                        championshipLevel: '',
+                        skillLevel: 'none',
+                        championshipLevel: 'debutant',
                         email: '',
                         telephone: '',
                         diner: false,
@@ -325,6 +389,7 @@
                     this.diner.push({
                         firstName: '',
                         name: '',
+                        age: '',
                         email: '',
                         open: false
                     });
@@ -333,18 +398,28 @@
                 },
                 calculateTotal() {
                     let total = 0;
-                    let dinnerPrice = this.prices.diner;
-                    let tennisPrice = this.prices.tennis;
+                    let tennisSup25 = this.prices.tennis.sup25;
+                    let tennisSub25 = this.prices.tennis.sub25;
+                    let dinnerSup25 = this.prices.diner.sup25;
+                    let dinnerSub25 = this.prices.diner.sub25;
 
                     this.tennis.forEach((tenn) => {
                         if (tenn.name !== '') {
-                            total += tennisPrice;
+                            if (tenn.age > 25) {
+                                total += tennisSup25;
+                            } else {
+                                total += tennisSub25;
+                            }
                         }
                     });
 
                     this.diner.forEach((dinn) => {
                         if (dinn.name !== '') {
-                            total += dinnerPrice;
+                            if (dinn.age > 25) {
+                                total += dinnerSup25;
+                            } else {
+                                total += dinnerSub25;
+                            }
                         }
                     });
 
@@ -384,7 +459,7 @@
                                     championshipLevel: item.championshipLevel,
                                     email: item.email,
                                     phone: item.phone,
-                                    isDining: item.sex == true ? 1 : 0,
+                                    isDining: item.isDining == true ? 1 : 0,
                                 })
                             });
 

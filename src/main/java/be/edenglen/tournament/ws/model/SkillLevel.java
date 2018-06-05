@@ -1,10 +1,10 @@
 package be.edenglen.tournament.ws.model;
 
+import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import java.util.Arrays;
-
 public enum SkillLevel {
+    NONE("NONE"),
     C30_5("C30.5"),
     C30_4("C30.4"),
     C30_3("C30.3"),

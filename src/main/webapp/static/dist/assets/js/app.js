@@ -41497,6 +41497,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -41511,8 +41568,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 sex: false,
                 age: '',
-                skillLevel: 'debutant',
-                championshipLevel: '',
+                skillLevel: 'none',
+                championshipLevel: 'debutant',
                 email: '',
                 phone: '',
                 isDining: false,
@@ -41522,11 +41579,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 firstName: '',
                 name: '',
                 email: '',
+                age: '',
                 open: false
             }],
             prices: {
-                tennis: 80,
-                diner: 30
+                tennis: {
+                    sup25: 35,
+                    sub25: 25
+                },
+                diner: {
+                    sup25: 30,
+                    sub25: 20
+                }
             },
             total: 0,
             donate: 0,
@@ -41569,8 +41633,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 sex: '',
                 age: '',
-                skillLevel: 'debutant',
-                championshipLevel: '',
+                skillLevel: 'none',
+                championshipLevel: 'debutant',
                 email: '',
                 telephone: '',
                 diner: false,
@@ -41585,6 +41649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.diner.push({
                 firstName: '',
                 name: '',
+                age: '',
                 email: '',
                 open: false
             });
@@ -41593,18 +41658,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         calculateTotal: function calculateTotal() {
             var total = 0;
-            var dinnerPrice = this.prices.diner;
-            var tennisPrice = this.prices.tennis;
+            var tennisSup25 = this.prices.tennis.sup25;
+            var tennisSub25 = this.prices.tennis.sub25;
+            var dinnerSup25 = this.prices.diner.sup25;
+            var dinnerSub25 = this.prices.diner.sub25;
 
             this.tennis.forEach(function (tenn) {
                 if (tenn.name !== '') {
-                    total += tennisPrice;
+                    if (tenn.age > 25) {
+                        total += tennisSup25;
+                    } else {
+                        total += tennisSub25;
+                    }
                 }
             });
 
             this.diner.forEach(function (dinn) {
                 if (dinn.name !== '') {
-                    total += dinnerPrice;
+                    if (dinn.age > 25) {
+                        total += dinnerSup25;
+                    } else {
+                        total += dinnerSub25;
+                    }
                 }
             });
 
@@ -41646,7 +41721,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                             championshipLevel: item.championshipLevel,
                             email: item.email,
                             phone: item.phone,
-                            isDining: item.sex == true ? 1 : 0
+                            isDining: item.isDining == true ? 1 : 0
                         });
                     });
 
@@ -41938,6 +42013,133 @@ var render = function() {
                         }
                       },
                       [
+                        _c("option", { attrs: { value: "none" } }, [
+                          _vm._v("----")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30_5" } }, [
+                          _vm._v("C30.5")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30_4" } }, [
+                          _vm._v("C30.4")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30_3" } }, [
+                          _vm._v("C30.3")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30_2" } }, [
+                          _vm._v("C30.2")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30_1" } }, [
+                          _vm._v("C30.1")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C30" } }, [
+                          _vm._v("C30")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15_5" } }, [
+                          _vm._v("C15.5")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15_4" } }, [
+                          _vm._v("C15.4")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15_3" } }, [
+                          _vm._v("C15.3")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15_2" } }, [
+                          _vm._v("C15.2")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15_1" } }, [
+                          _vm._v("C15.1")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "C15" } }, [
+                          _vm._v("C15")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_PLUS_4" } }, [
+                          _vm._v("B+4/6")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_PLUS_2" } }, [
+                          _vm._v("B+2/6")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B0" } }, [
+                          _vm._v("B0")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_2" } }, [
+                          _vm._v("B-2/6")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_4" } }, [
+                          _vm._v("B-4/6")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_15" } }, [
+                          _vm._v("B-15")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_15_1" } }, [
+                          _vm._v("B-15.1")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_15_2" } }, [
+                          _vm._v("B-15.2")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "B_MINUS_15_4" } }, [
+                          _vm._v("B-15.4")
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "A" } }, [_vm._v("A")])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: tenn.championshipLevel,
+                            expression: "tenn.championshipLevel"
+                          }
+                        ],
+                        staticClass: "category",
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              tenn,
+                              "championshipLevel",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
                         _c("option", { attrs: { value: "debutant" } }, [
                           _vm._v("Débutant")
                         ]),
@@ -41951,48 +42153,6 @@ var render = function() {
                         ])
                       ]
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "validate",
-                          rawName: "v-validate",
-                          value: "required",
-                          expression: "'required'"
-                        },
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: tenn.championshipLevel,
-                          expression: "tenn.championshipLevel"
-                        }
-                      ],
-                      class: {
-                        "is-invalid-input": _vm.errors.has(
-                          "tennis_" + index + "_championshipLevel"
-                        )
-                      },
-                      attrs: {
-                        type: "text",
-                        "data-vv-as": "championshipLevel",
-                        name: "tennis_" + index + "_championshipLevel"
-                      },
-                      domProps: { value: tenn.championshipLevel },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            tenn,
-                            "championshipLevel",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
                   ]),
                   _vm._v(" "),
                   _c("td", [
@@ -42394,7 +42554,7 @@ var render = function() {
                     _vm._v(" "),
                     _c("label", [
                       _vm._v(
-                        "\n                        Catégorie\n                        "
+                        "\n                        Niveau national\n                        "
                       ),
                       _c(
                         "select",
@@ -42429,6 +42589,136 @@ var render = function() {
                           }
                         },
                         [
+                          _c("option", { attrs: { value: "none" } }, [
+                            _vm._v("----")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30_5" } }, [
+                            _vm._v("C30.5")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30_4" } }, [
+                            _vm._v("C30.4")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30_3" } }, [
+                            _vm._v("C30.3")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30_2" } }, [
+                            _vm._v("C30.2")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30_1" } }, [
+                            _vm._v("C30.1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C30" } }, [
+                            _vm._v("C30")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15_5" } }, [
+                            _vm._v("C15.5")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15_4" } }, [
+                            _vm._v("C15.4")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15_3" } }, [
+                            _vm._v("C15.3")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15_2" } }, [
+                            _vm._v("C15.2")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15_1" } }, [
+                            _vm._v("C15.1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "C15" } }, [
+                            _vm._v("C15")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_PLUS_4" } }, [
+                            _vm._v("B+4/6")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_PLUS_2" } }, [
+                            _vm._v("B+2/6")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B0" } }, [
+                            _vm._v("B0")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_2" } }, [
+                            _vm._v("B-2/6")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_4" } }, [
+                            _vm._v("B-4/6")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_15" } }, [
+                            _vm._v("B-15")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_15_1" } }, [
+                            _vm._v("B-15.1")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_15_2" } }, [
+                            _vm._v("B-15.2")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "B_MINUS_15_4" } }, [
+                            _vm._v("B-15.4")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "A" } }, [_vm._v("A")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("label", [
+                      _vm._v(
+                        "\n                        Catégorie\n                        "
+                      ),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: tenn.championshipLevel,
+                              expression: "tenn.championshipLevel"
+                            }
+                          ],
+                          staticClass: "category",
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                tenn,
+                                "championshipLevel",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
                           _c("option", { attrs: { value: "debutant" } }, [
                             _vm._v("Débutant")
                           ]),
@@ -42442,51 +42732,6 @@ var render = function() {
                           ])
                         ]
                       )
-                    ]),
-                    _vm._v(" "),
-                    _c("label", [
-                      _vm._v(
-                        "\n                        championshipLevel\n                        "
-                      ),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "validate",
-                            rawName: "v-validate",
-                            value: "required",
-                            expression: "'required'"
-                          },
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: tenn.championshipLevel,
-                            expression: "tenn.championshipLevel"
-                          }
-                        ],
-                        class: {
-                          "is-invalid-input": _vm.errors.has(
-                            "tennis_" + index + "_championshipLevel"
-                          )
-                        },
-                        attrs: {
-                          type: "text",
-                          "data-vv-as": "championshipLevel",
-                          name: "tennis_" + index + "_championshipLevel"
-                        },
-                        domProps: { value: tenn.championshipLevel },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              tenn,
-                              "championshipLevel",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
                     ]),
                     _vm._v(" "),
                     _c("label", [
@@ -42761,6 +43006,44 @@ var render = function() {
                         {
                           name: "validate",
                           rawName: "v-validate",
+                          value: "required",
+                          expression: "'required'"
+                        },
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: dinn.age,
+                          expression: "dinn.age"
+                        }
+                      ],
+                      class: {
+                        "is-invalid-input": _vm.errors.has(
+                          "diner_" + index + "_age"
+                        )
+                      },
+                      attrs: {
+                        type: "number",
+                        "data-vv-as": "Âge",
+                        name: "diner_" + index + "_age"
+                      },
+                      domProps: { value: dinn.age },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(dinn, "age", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
                           value: "required|email",
                           expression: "'required|email'"
                         },
@@ -42909,6 +43192,47 @@ var render = function() {
                               return
                             }
                             _vm.$set(dinn, "firstName", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("label", [
+                      _vm._v(
+                        "\n                        Âge\n                        "
+                      ),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "validate",
+                            rawName: "v-validate",
+                            value: "required",
+                            expression: "'required'"
+                          },
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: dinn.age,
+                            expression: "dinn.age"
+                          }
+                        ],
+                        class: {
+                          "is-invalid-input": _vm.errors.has(
+                            "diner_" + index + "_age"
+                          )
+                        },
+                        attrs: {
+                          type: "number",
+                          "data-vv-as": "Âge",
+                          name: "diner_" + index + "_age"
+                        },
+                        domProps: { value: dinn.age },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(dinn, "age", $event.target.value)
                           }
                         }
                       })
@@ -43069,9 +43393,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("sex")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Catégorie")]),
+        _c("th", [_vm._v("Niveau National")]),
         _vm._v(" "),
-        _c("th", [_vm._v("championshipLevel")]),
+        _c("th", [_vm._v("Catégorie")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
         _vm._v(" "),
@@ -43090,6 +43414,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Nom")]),
         _vm._v(" "),
         _c("th", [_vm._v("Prénom")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Âge")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")])
       ])
@@ -43558,7 +43884,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
           _vm._v(
-            "\n                Je peux faire une isBringingFood pour 10 personnes.\n            "
+            "\n                Je peux faire une salade pour 10 personnes.\n            "
           )
         ])
       ]),
@@ -43611,7 +43937,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "columns decoration" }, [
           _vm._v(
-            "\n                Je viens aider à isComingToUnBuild le 16 septembre de\n                "
+            "\n                Je viens aider à démonter le 16 septembre de\n                "
           ),
           _c("input", {
             directives: [

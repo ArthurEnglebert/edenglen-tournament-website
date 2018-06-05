@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="columns">
-                    Je peux faire une isBringingFood pour 10 personnes.
+                    Je peux faire une salade pour 10 personnes.
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="columns decoration">
-                    Je viens aider à isComingToUnBuild le 16 septembre de
+                    Je viens aider à démonter le 16 septembre de
                     <input type="number" v-model="isComingToUnBuildStart" :required="isComingToUnBuild" :disabled="!isComingToUnBuild"> H à <input type="number" v-model="isComingToUnBuildEnd" :required="isComingToUnBuild" :disabled="!isComingToUnBuild"> H.
                 </div>
             </div>
