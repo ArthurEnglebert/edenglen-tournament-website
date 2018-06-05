@@ -1,6 +1,38 @@
 <template>
     <div class="block columns small-12">
         <form action="#" v-on:submit="sendForm" v-if="!showMessage">
+            <h2>Personne de référence</h2>
+
+            <div class="row">
+                <div class="columns medium-3 small-12">
+                     <label>
+                        Nom
+                        <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'name'" v-model="name" :class="{'is-invalid-input': errors.has('name')}">
+                    </label>
+                </div>
+
+                <div class="columns medium-3 small-12">
+                     <label>
+                        Prénom
+                        <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'firstName'" v-model="firstName" :class="{'is-invalid-input': errors.has('firstName')}">
+                    </label>
+                </div>
+
+                <div class="columns medium-3 small-12">
+                     <label>
+                        Email
+                        <input v-validate="'required|email'" type="email" data-vv-as="Email" :name="'email'" v-model="email" :class="{'is-invalid-input': errors.has('email')}">
+                    </label>
+                </div>
+
+                <div class="columns medium-3 small-12">
+                     <label>
+                        Téléphone
+                        <input v-validate="'required'" type="text" data-vv-as="Téléphone" :name="'phone'" v-model="phone" :class="{'is-invalid-input': errors.has('phone')}">
+                    </label>
+                </div>
+            </div>
+
             <h2>Tennis</h2>
 
             <table class="show-for-large table">
@@ -300,6 +332,10 @@
             props: [],
             data: function () {
                 return {
+                    firstName: '',
+                    name: '',
+                    email: '',
+                    phone: '',
                     tennis: [
                         {
                             firstName: '',
@@ -465,6 +501,10 @@
 
 
                             HTTP.post(window.POST_REGISTER, {
+                                firstName: this.firstName,
+                                name: this.name,
+                                email: this.email,
+                                phone: this.phone,
                                 players: this.players,
                                 eaters: this.diner,
                             donation: this.donate
