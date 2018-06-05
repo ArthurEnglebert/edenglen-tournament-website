@@ -13,6 +13,15 @@
     position: relative;
   }
 
+  &__slider {
+    height: 80px;
+
+  }
+
+  &__slide {
+    vertical-align:middle;
+  }
+
   &__sponsors {
     img {
       padding: 10px;
