@@ -14,6 +14,7 @@ public class AmountCalculatorServiceImpl implements AmountCalculatorService {
     private static final int PRICE_PER_PLAYER_SUB_25 = 25;
     private static final int PRICE_PER_EATER_SUP_25 = 30;
     private static final int PRICE_PER_EATER_SUB_25 = 20;
+    private static final int PRICE_PER_EATER_SUB_8 = 0;
 
     @Override
     public int calculateDue(Inscription inscription) {
@@ -36,7 +37,7 @@ public class AmountCalculatorServiceImpl implements AmountCalculatorService {
     @Override
     public int calculateDueDinner(List<Eater> eaters) {
         return eaters.stream()
-                .mapToInt(eater -> eater.getAge() > 25 ? PRICE_PER_EATER_SUP_25 : PRICE_PER_EATER_SUB_25)
+                .mapToInt(eater -> eater.getAge() > 25 ? PRICE_PER_EATER_SUP_25 : (eater.getAge() > 8 ? PRICE_PER_EATER_SUB_25 : PRICE_PER_EATER_SUB_8))
                 .sum();
     }
 

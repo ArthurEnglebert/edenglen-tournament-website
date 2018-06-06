@@ -14,7 +14,7 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportInscriptionGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"id", "name", "firstName", "email", "phone", "donation", "totalAmount", "isPaid"};
+	private static final String[] HEADERS = {"REF ID", "REF NOM", "REF PRENOM", "REF EMAIL", "REF PHONE", "DONATION", "TOTAL PAYEMENT", "PAYE"};
 
 	private final InscriptionService inscriptionService;
 
@@ -62,6 +62,6 @@ public class ExportInscriptionGeneratorImpl implements ExportTypeGenerator {
 		row.createCell(colNumber++).setCellValue(inscription.getPhone());
 		row.createCell(colNumber++).setCellValue(inscription.getDonation());
 		row.createCell(colNumber++).setCellValue(inscription.getAmount());
-		row.createCell(colNumber++).setCellValue(inscription.isPaid());
+		row.createCell(colNumber++).setCellValue(inscription.isPaid() ? "OUI" : "NON");
 	}
 }

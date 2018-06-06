@@ -14,7 +14,7 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportPlayersGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"id", "inscriptionId", "name", "firstName", "email", "age", "sex", "phone", "skillLevel", "championshipLevel", "isDining"};
+	private static final String[] HEADERS = {"REF ID", "NOM", "PRENOM", "EMAIL", "AGE", "SEXE", "TELEPHONE", "NIVEAU NATIONAL", "CATEGORIE", "DINER ?"};
 
 	private final PlayerService playerService;
 
@@ -55,7 +55,6 @@ public class ExportPlayersGeneratorImpl implements ExportTypeGenerator {
 		Row row = sheet.createRow(rowNumber);
 		int colNumber = 0;
 
-		row.createCell(colNumber++).setCellValue(player.getId());
 		row.createCell(colNumber++).setCellValue(player.getInscription().getId());
 		row.createCell(colNumber++).setCellValue(player.getName());
 		row.createCell(colNumber++).setCellValue(player.getFirstName());
@@ -65,6 +64,6 @@ public class ExportPlayersGeneratorImpl implements ExportTypeGenerator {
 		row.createCell(colNumber++).setCellValue(player.getPhone());
 		row.createCell(colNumber++).setCellValue(player.getSkillLevel().toString());
 		row.createCell(colNumber++).setCellValue(player.getChampionshipLevel().toString());
-		row.createCell(colNumber++).setCellValue(player.isDining());
+		row.createCell(colNumber++).setCellValue(player.isDining() ? "OUI" : "NON");
 	}
 }

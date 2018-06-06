@@ -41,7 +41,7 @@
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Âge</th>
-                        <th>sex</th>
+                        <th>Sexe</th>
                         <th>Niveau National</th>
                         <th>Catégorie</th>
                         <th>Email</th>
@@ -146,7 +146,7 @@
                         </label>
 
                         <label>
-                            sex
+                            Sexe
                             <div class="switch large">
                                 <input class="switch-input" :id="'tennis-sex-' + index" type="checkbox" v-model="tenn.sex" >
                                 <label class="switch-paddle" :for="'tennis-sex-' + index">
@@ -315,9 +315,9 @@
         <div v-else class="result">
             <h3>INSCRIPTION REUSSIE !</h3>
             <p>
-                N’OUBLIEZ PAS DE PAYER LE MONTANT TOTAL DE <b>{{ total }} €</b> SUR LE COMPTE SUIVANT : <b>BEXXXXX</b><br>
+                N’OUBLIEZ PAS DE PAYER LE MONTANT TOTAL DE <b>{{ total }} €</b> SUR LE COMPTE SUIVANT : <b>BE30340150686811</b><br>
                 COMMUNICATION : <b>« TOURNOI DE TENNIS + {{ donate }} € dons »</b><br><br>
-                AU 15 !
+                AU 15 Septembre !
             </p>
         </div>
     </div>
@@ -366,7 +366,8 @@
                         },
                         diner: {
                             sup25: 30,
-                            sub25: 20
+                            sub25: 20,
+                            sub8: 0
                         }
                     },
                     total: 0,
@@ -439,6 +440,7 @@
                     let tennisSub25 = this.prices.tennis.sub25;
                     let dinnerSup25 = this.prices.diner.sup25;
                     let dinnerSub25 = this.prices.diner.sub25;
+                    let dinnerSub8 = this.prices.diner.sub8;
 
                     this.tennis.forEach((tenn) => {
                         if (tenn.name !== '') {
@@ -454,8 +456,10 @@
                         if (dinn.name !== '') {
                             if (dinn.age > 25) {
                                 total += dinnerSup25;
-                            } else {
+                            } else if (dinn.age > 8) {
                                 total += dinnerSub25;
+                            } else {
+                                total += dinnerSub8;
                             }
                         }
                     });

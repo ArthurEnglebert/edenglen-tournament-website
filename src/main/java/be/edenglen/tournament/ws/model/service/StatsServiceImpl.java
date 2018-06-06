@@ -23,6 +23,7 @@ public class StatsServiceImpl implements StatsService {
         this.playerService = playerService;
     }
 
+    // fixme faire des requetes specifiques sur le cube, et pas des calculs java.
     @Override
     public StatsDTOOut getStats() {
         ImmutableStatsDTOOut.Builder builder = ImmutableStatsDTOOut.builder();

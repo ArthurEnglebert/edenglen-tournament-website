@@ -1,6 +1,9 @@
 package be.edenglen.tournament.ws.model.service;
 
 import java.util.stream.Collectors;
+
+import be.edenglen.tournament.ws.www.dto.out.ImmutableInscriptionOutDTO;
+import be.edenglen.tournament.ws.www.dto.out.InscriptionOutDTO;
 import org.springframework.stereotype.Component;
 import be.edenglen.tournament.ws.model.Eater;
 import be.edenglen.tournament.ws.model.Helper;
@@ -14,8 +17,6 @@ import be.edenglen.tournament.ws.www.dto.in.EaterInDTO;
 import be.edenglen.tournament.ws.www.dto.in.HelperInDTO;
 import be.edenglen.tournament.ws.www.dto.in.InscriptionInDTO;
 import be.edenglen.tournament.ws.www.dto.in.PlayerInDTO;
-import be.edenglen.tournament.ws.www.dto.out.ImmutableInscriptionOutDTO;
-import be.edenglen.tournament.ws.www.dto.out.InscriptionOutDTO;
 
 @Component
 public class ClientConverterImpl implements ClientConverter {

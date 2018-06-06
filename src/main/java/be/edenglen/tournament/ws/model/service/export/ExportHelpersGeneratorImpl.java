@@ -15,12 +15,12 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"id",
-			"name", "firstName", "phone",
-			"numberComing",
-			"bringingFood",
-			"comingToBuildAndDecorate", "comingToBuildAndDecorateStart", "comingToBuildAndDecorateEnd",
-			"comingToUnBuild", "comingToUnBuildStart", "comingToUnBuildEnd"
+	private static final String[] HEADERS = {
+			"NOM", "PRENOM", "TELEPHONE",
+			"NBR PERSONNES",
+			"SALADE",
+			"CONSTRUCTION & DECORATION", "CONSTRUCTION & DECORATION START HOUR", "CONSTRUCTION & DECORATION END HOUR",
+			"DESTRUCTION", "DESTRUCTION START HOUR", "DESTRUCTION END HOUR"
 	};
 
 	private final HelperService helperService;
@@ -62,7 +62,6 @@ public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 		Row row = sheet.createRow(rowNumber);
 		int colNumber = 0;
 
-		row.createCell(colNumber++).setCellValue(helper.getId());
 		row.createCell(colNumber++).setCellValue(helper.getName());
 		row.createCell(colNumber++).setCellValue(helper.getFirstName());
 		row.createCell(colNumber++).setCellValue(helper.getPhone());

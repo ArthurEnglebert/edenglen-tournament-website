@@ -65,7 +65,7 @@
                             <li>
                                 <span>Sexe :</span>
                                 <span>
-                                    #if($player.sex.name == "MALE")
+                                    #if(${player.sex.name()} == "MALE")
                                         Homme
                                     #else
                                         Femme
@@ -74,16 +74,16 @@
                             </li>
                             <li>
                                 <span>Niveau :</span>
-                                <span>$player.championshipLevel.name</span>
+                                <span>${player.championshipLevel.name()}</span>
                             </li>
                             <li>
                                 <span>Classement :</span>
-                                <span>$player.skillLevel.name</span>
+                                <span>${player.skillLevel.name()}</span>
                             </li>
                             <li>
                                 <span>Reste manger le soir :</span>
                                 <span>
-                                    #if($player.isDining)
+                                    #if(${player.isDining})
                                         Oui
                                     #else
                                         Non

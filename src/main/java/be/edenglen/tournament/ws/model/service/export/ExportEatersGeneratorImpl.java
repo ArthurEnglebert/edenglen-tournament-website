@@ -14,7 +14,7 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportEatersGeneratorImpl implements ExportTypeGenerator {
 
-	private final static String[] HEADERS = {"id", "inscriptionId", "name", "firstName", "age", "email"};
+	private final static String[] HEADERS = {"REF ID", "NOM", "PRENOM", "AGE", "EMAIL"};
 
 	private final EaterService eaterService;
 
@@ -55,7 +55,6 @@ public class ExportEatersGeneratorImpl implements ExportTypeGenerator {
 		Row row = sheet.createRow(rowNumber);
 		int colNumber = 0;
 
-		row.createCell(colNumber++).setCellValue(eater.getId());
 		row.createCell(colNumber++).setCellValue(eater.getInscription().getId());
 		row.createCell(colNumber++).setCellValue(eater.getName());
 		row.createCell(colNumber++).setCellValue(eater.getFirstName());
