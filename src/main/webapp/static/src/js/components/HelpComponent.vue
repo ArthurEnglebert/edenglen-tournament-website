@@ -30,16 +30,32 @@
             <div class="row">
                 <div class="columns shrink">
                     <div class="switch small">
-                        <input class="switch-input" id="isComingToBuild" type="checkbox" v-model="isComingToBuildAndDecorate">
-                        <label class="switch-paddle" for="isComingToBuild">
+                        <input class="switch-input" id="isComingToDecorate" type="checkbox" v-model="isComingToDecorate">
+                        <label class="switch-paddle" for="isComingToDecorate">
                             <span class="show-for-sr">Décoration</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="columns decoration">
-                    Je viens aider le 14 septembre à la décoration de la tente et la mise en place des tables de
-                    <input type="number" v-model="isComingToBuildAndDecorateStart" :required="isComingToBuildAndDecorate" :disabled="!isComingToBuildAndDecorate"> H à <input type="number" v-model="isComingToBuildAndDecorateEnd" :required="isComingToBuildAndDecorate" :disabled="!isComingToBuildAndDecorate"> H.
+                    Je viens aider le 14 septembre à la décoration de la tente de
+                    <input type="number" v-model="isComingToDecorateStart" :required="isComingToDecorate" :disabled="!isComingToDecorate"> H à <input type="number" v-model="isComingToDecorateEnd" :required="isComingToDecorate" :disabled="!isComingToDecorate"> H.
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="columns shrink">
+                    <div class="switch small">
+                        <input class="switch-input" id="isComingToBuild" type="checkbox" v-model="isComingToBuild">
+                        <label class="switch-paddle" for="isComingToBuild">
+                            <span class="show-for-sr">Montage</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="columns decoration">
+                    Je viens aider le 14 septembre à la mise en place des tables de
+                    <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H à <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H.
                 </div>
             </div>
 
@@ -48,7 +64,7 @@
                     <div class="switch small">
                         <input class="switch-input" id="isBringingFood" type="checkbox" v-model="isBringingFood">
                         <label class="switch-paddle" for="isBringingFood">
-                            <span class="show-for-sr">isBringingFood</span>
+                            <span class="show-for-sr">Salade</span>
                         </label>
                     </div>
                 </div>
@@ -63,7 +79,7 @@
                     <div class="switch small">
                         <input class="switch-input" id="isComingToUnBuild" type="checkbox" v-model="isComingToUnBuild">
                         <label class="switch-paddle" for="isComingToUnBuild">
-                            <span class="show-for-sr">isComingToUnBuild</span>
+                            <span class="show-for-sr">Démontage</span>
                         </label>
                     </div>
                 </div>
@@ -98,9 +114,12 @@
                     name: null,
                     phone: null,
                     isBringingFood: false,
-                    isComingToBuildAndDecorate: false,
-                    isComingToBuildAndDecorateStart: null,
-                    isComingToBuildAndDecorateEnd: null,
+                    isComingToBuild: false,
+                    isComingToBuildStart: null,
+                    isComingToBuildEnd: null,
+                    isComingToDecorate: false,
+                    isComingToDecorateStart: null,
+                    isComingToDecorateEnd: null,
                     isComingToUnBuild: false,
                     isComingToUnBuildStart: null,
                     isComingToUnBuildEnd: null,
@@ -127,9 +146,12 @@
                                 name: this.name,
                                 phone: this.phone,
                                 isBringingFood: this.isBringingFood,
-                                isComingToBuildAndDecorate: this.isComingToBuildAndDecorate,
-                                comingToBuildAndDecorateStart: this.isComingToBuildAndDecorateStart,
-                                comingToBuildAndDecorateEnd: this.isComingToBuildAndDecorateEnd,
+                                isComingToBuild: this.isComingToBuild,
+                                comingToBuildStart: this.isComingToBuildStart,
+                                comingToBuildEnd: this.isComingToBuildEnd,
+                                isComingToDecorate: this.isComingToDecorate,
+                                comingToDecorateStart: this.isComingToDecorateStart,
+                                comingToDecorateEnd: this.isComingToDecorateEnd,
                                 isComingToUnBuild: this.isComingToUnBuild,
                                 comingToUnBuildStart: this.isComingToUnBuildStart,
                                 comingToUnBuildEnd: this.isComingToUnBuildEnd,

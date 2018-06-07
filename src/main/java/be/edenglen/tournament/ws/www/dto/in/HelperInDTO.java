@@ -13,11 +13,18 @@ public interface HelperInDTO {
 
     boolean isBringingFood();
 
-    boolean isComingToBuildAndDecorate();
+    boolean isComingToBuild();
     @Nullable
-    Integer getComingToBuildAndDecorateStart();
+    Integer getComingToBuildStart();
     @Nullable
-    Integer getComingToBuildAndDecorateEnd();
+    Integer getComingToBuildEnd();
+
+
+    boolean isComingToDecorate();
+    @Nullable
+    Integer getComingToDecorateStart();
+    @Nullable
+    Integer getComingToDecorateEnd();
 
     boolean isComingToUnBuild();
     @Nullable

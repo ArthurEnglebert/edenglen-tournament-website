@@ -19,7 +19,8 @@ public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 			"name", "firstName", "phone",
 			"numberComing",
 			"bringingFood",
-			"comingToBuildAndDecorate", "comingToBuildAndDecorateStart", "comingToBuildAndDecorateEnd",
+			"is building", "build start hour", "build end hour",
+			"is decorating", "decorate start hour", "decorate end hour",
 			"comingToUnBuild", "comingToUnBuildStart", "comingToUnBuildEnd"
 	};
 
@@ -68,9 +69,12 @@ public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 		row.createCell(colNumber++).setCellValue(helper.getPhone());
 		row.createCell(colNumber++).setCellValue(helper.getNumberComing());
 		row.createCell(colNumber++).setCellValue(helper.isBringingFood());
-		row.createCell(colNumber++).setCellValue(helper.isComingToBuildAndDecorate());
-		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildAndDecorateStart()).map(val -> val.toString()).orElse("/"));
-		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildAndDecorateEnd()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(helper.isComingToBuild());
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildStart()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildEnd()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(helper.isComingToDecorate());
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToDecorateStart()).map(val -> val.toString()).orElse("/"));
+		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToDecorateEnd()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(helper.isComingToUnBuild());
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildStart()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildEnd()).map(val -> val.toString()).orElse("/"));

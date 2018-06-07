@@ -21,9 +21,13 @@ public class HelperEntity implements Helper {
 
     private boolean isBringingFood;
 
-    private boolean isComingToBuildAndDecorate;
-    private Integer comingToBuildAndDecorateStart;
-    private Integer comingToBuildAndDecorateEnd;
+    private boolean isComingToBuild;
+    private Integer comingToBuildStart;
+    private Integer comingToBuildEnd;
+
+    private boolean isComingToDecorate;
+    private Integer comingToDecorateStart;
+    private Integer comingToDecorateEnd;
 
     private boolean isComingToUnBuild;
     private Integer comingToUnBuildStart;
@@ -42,9 +46,12 @@ public class HelperEntity implements Helper {
         this.firstName = helper.getFirstName();
         this.phone = helper.getPhone();
         this.isBringingFood = helper.isBringingFood();
-        this.isComingToBuildAndDecorate = helper.isComingToBuildAndDecorate();
-        this.comingToBuildAndDecorateStart = helper.getComingToBuildAndDecorateStart();
-        this.comingToBuildAndDecorateEnd = helper.getComingToBuildAndDecorateEnd();
+        this.isComingToBuild = helper.isComingToBuild();
+        this.comingToBuildStart = helper.getComingToBuildStart();
+        this.comingToBuildEnd = helper.getComingToBuildEnd();
+        this.isComingToDecorate = helper.isComingToDecorate();
+        this.comingToDecorateStart = helper.getComingToDecorateStart();
+        this.comingToDecorateEnd = helper.getComingToDecorateEnd();
         this.isComingToUnBuild = helper.isComingToUnBuild();
         this.comingToUnBuildStart = helper.getComingToUnBuildStart();
         this.comingToUnBuildEnd = helper.getComingToUnBuildEnd();
@@ -77,18 +84,33 @@ public class HelperEntity implements Helper {
     }
 
     @Override
-    public boolean isComingToBuildAndDecorate() {
-        return this.isComingToBuildAndDecorate;
+    public boolean isComingToBuild() {
+        return this.isComingToBuild;
     }
 
     @Override
-    public Integer getComingToBuildAndDecorateStart() {
-        return this.comingToBuildAndDecorateStart;
+    public Integer getComingToBuildStart() {
+        return this.comingToBuildStart;
     }
 
     @Override
-    public Integer getComingToBuildAndDecorateEnd() {
-        return this.comingToBuildAndDecorateEnd;
+    public Integer getComingToBuildEnd() {
+        return this.comingToBuildEnd;
+    }
+
+    @Override
+    public boolean isComingToDecorate() {
+        return this.isComingToDecorate;
+    }
+
+    @Override
+    public Integer getComingToDecorateStart() {
+        return this.comingToDecorateStart;
+    }
+
+    @Override
+    public Integer getComingToDecorateEnd() {
+        return this.comingToDecorateEnd;
     }
 
     @Override
