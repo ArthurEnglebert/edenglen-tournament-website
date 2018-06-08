@@ -1,7 +1,7 @@
 # edenglen-tournament-website
 
 ## todo
-- Version mobile n'irai pas bien du tout, probleme de largeur, etc. ?
+- Version mobile n'irait pas bien du tout, probleme de largeur, etc. ?
 ### Inscription
 - Validation + btn envoyer pas assez explicite (on ne comprend pas quand ca "envoye" ni quand c'est tombé en erreur (de validation ou autre))
 - Bouton Homme/Femme pas assez clair
