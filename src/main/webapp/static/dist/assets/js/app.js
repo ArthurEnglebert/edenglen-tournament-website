@@ -52006,6 +52006,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             total: 0,
             donate: null,
+            refId: null,
             error: false,
             showMessage: false,
             waiting: false,
@@ -52153,6 +52154,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         eaters: _this.diner,
                         donation: _this.donate
                     }).then(function (response) {
+                        _this.refId = response.data;
                         _this.waiting = false;
                         _this.showMessage = true;
                     }).catch(function (e) {
@@ -53956,17 +53958,23 @@ var render = function() {
             _vm._v("\n            N’OUBLIEZ PAS DE PAYER LE MONTANT TOTAL DE "),
             _c("b", [_vm._v(_vm._s(_vm.total) + " €")]),
             _vm._v(" SUR LE COMPTE SUIVANT : "),
-            _c("b", [_vm._v("BE30340150686811")]),
+            _c("b", [_vm._v("BE30 3401 5068 6811")]),
             _c("br"),
             _vm._v("\n            COMMUNICATION : "),
             _c("b", [
               _vm._v(
-                "« TOURNOI DE TENNIS + " + _vm._s(_vm.donate) + " € dons »"
-              )
+                "« TOURNOI 2018 REFERENCE INSCRIPTION : " +
+                  _vm._s(_vm.refId) +
+                  " "
+              ),
+              _vm.donate >= 40
+                ? _c("span", [_vm._v("& " + _vm._s(_vm.donate) + " € dons ")])
+                : _vm._e(),
+              _vm._v("»")
             ]),
             _c("br"),
             _c("br"),
-            _vm._v("\n            AU 15 Septembre !\n        ")
+            _vm._v("\n            Au 15 Septembre !\n        ")
           ])
         ])
   ])

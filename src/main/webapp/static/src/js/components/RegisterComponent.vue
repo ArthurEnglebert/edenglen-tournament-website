@@ -315,9 +315,9 @@
         <div v-else class="result">
             <h3>INSCRIPTION REUSSIE !</h3>
             <p>
-                N’OUBLIEZ PAS DE PAYER LE MONTANT TOTAL DE <b>{{ total }} €</b> SUR LE COMPTE SUIVANT : <b>BE30340150686811</b><br>
-                COMMUNICATION : <b>« TOURNOI DE TENNIS + {{ donate }} € dons »</b><br><br>
-                AU 15 Septembre !
+                N’OUBLIEZ PAS DE PAYER LE MONTANT TOTAL DE <b>{{ total }} €</b> SUR LE COMPTE SUIVANT : <b>BE30 3401 5068 6811</b><br>
+                COMMUNICATION : <b>« TOURNOI 2018 REFERENCE INSCRIPTION : {{refId}} <span v-if="donate >= 40">& {{ donate }} € dons </span>»</b><br><br>
+                Au 15 Septembre !
             </p>
         </div>
     </div>
@@ -372,6 +372,7 @@
                     },
                     total: 0,
                     donate: null,
+                    refId: null,
                     error: false,
                     showMessage: false,
                     waiting: false,
@@ -518,6 +519,7 @@
                                 donation: this.donate
                             })
                             .then((response) => {
+                                this.refId = response.data;
                                 this.waiting = false;
                                 this.showMessage = true;
                             })
