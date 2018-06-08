@@ -31,7 +31,7 @@
                 slides: [
                     {img: '/static/dist/assets/img/sponsors/familyhouse.jpg', link: null},
                     {img: '/static/dist/assets/img/sponsors/tstbat.jpg', link: null},
-                    {img: '/static/dist/assets/img/sponsors/consilium.png', link: null},
+                    {img: '/static/dist/assets/img/sponsors/consilium.png', link: "https://www.consilium-gst.be/"},
                     {img: '/static/dist/assets/img/sponsors/puilaetcodewaay.jpg', link: 'https://www.puilaetcodewaay.be/fr'},
                     {img: '/static/dist/assets/img/sponsors/cossup.png', link: 'http://cossup.be/'},
                     {img: '/static/dist/assets/img/sponsors/rodolphecruysmans.png', link: null},

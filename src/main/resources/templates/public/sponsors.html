@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content="CSRF_TOKEN" />
-    <title>Template HTML</title>
+    <title>Edenglen Championship</title>
     <link rel="stylesheet"  th:href="@{/static/dist/assets/css/app.css}" />
 
     <script>
@@ -70,11 +70,14 @@
 
             <div class="row align-middle sponsor">
                 <div class="columns small-12 medium-6 sponsor__logo" >
-                    <img th:src="@{/static/dist/assets/img/sponsors/consilium.png}" alt="consilium">
+                    <a href="https://www.consilium-gst.be/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/consilium.png}" alt="consilium">
+                    </a>
                     Consilium
                 </div>
 
                 <div class="columns small-12 medium-6">
+                    L’activité de Consilium porte sur l'optimisation du contrat d’assurance-vie luxembourgeois – souvent méconnu – à des fins de gestion de valeurs mobilières et de transmission patrimoniale. Ce contrat répond au plus près des besoins de nos clients, en respectant les règles en vigueur dans leur pays de résidence.
                 </div>
             </div>
 
@@ -215,7 +218,8 @@
             <div class="row align-middle sponsor">
                 <div class="columns small-12 medium-6 sponsor__logo" >
                     <img th:src="@{/static/dist/assets/img/sponsors/dbo.jpeg}" alt="dbo">
-                    dBo
+                    de Behault, Boulanger, de Briey<br>
+                    Courtiers en assurances
                 </div>
 
                 <div class="columns small-12 medium-6">
@@ -274,11 +278,11 @@
 
     <footer class="footer">
         <div class="row align-middle">
-            <div class="columns small-12 large-4 medium-6 footer__sponsors">
-                <sponsors-component></sponsors-component>
+            <div class="columns small-12 large-4 medium-3">
+                Made with ♥ by Tim Mercier & Arthur Englebert
             </div>
 
-            <div class="columns small-12 medium-3 large-4">
+            <div class="columns small-12 large-4 medium-3">
                 <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
                     www.vivresondeuil.be
                 </a>
@@ -286,7 +290,8 @@
 
             <div class="columns small-12 large-4 medium-3">
                 <b>Nous contacter :</b><br>
-                <a href="mailto:info@edenglen-championship.com">info@edenglen-championship.com</a> | <a href="tel:0474 63 02 08">0474 63 02 08</a>
+                <a href="mailto:info@edenglen-championship.com">info@edenglen-championship.com</a><br>
+                <a href="tel:0474 63 02 08">0474 63 02 08</a>
             </div>
         </div>
     </footer>

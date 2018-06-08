@@ -1,5 +1,4 @@
-.container-center {
-  .home-message {
+.home-message {
     background-color: $white;
     display: flex;
     padding: 40px;
@@ -13,8 +12,10 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-  }
 }
+//.container-center {
+//
+//}
 
 .previous-edition {
   width: 100%;

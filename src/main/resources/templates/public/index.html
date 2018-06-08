@@ -39,37 +39,44 @@
 </header>
 
 <div id="app" class="app grid-container">
-    <div class="container-center row">
-        <div class="home-message">
-            <p>Bienvenue sur le site du tournoi “Edenglen Championship”. Si tu es sur ce site aujourd’hui, c’est parce que tu as reçu une lettre dans ta boîte mail.
-                Ne manque cette occasion de jouer et de participer au repas chandelles et quelques pas de danse. C’est donc avec plaisir que nous t’invitons à cliquer sur l’onglet
-                <a href="/inscription">Inscription</a> pour finaliser ta démarche.
-                Tu peux également parcourir l’onglet <a href="/sponsors">Sponsors</a>, tu y visualiseras tous ceux qui nous soutiennent ou encore l’onglet <a href="/editions">Editions précédentes</a>  pour quelques photos souvenirs des tournois passés.
+    <div class="home-message">
+        <div class="container-center row">
+            <p>
+                Bienvenue sur le site du tournoi “Edenglen Championship”. Si vous êtes sur ce site aujourd’hui, c’est parce que vous avez reçu une lettre dans votre boîte mail .
+                Voici une nouvelle occasion pour vous de jouer et de participer au Cheese & Wine et terminer par quelques pas de danse.
             </p>
-
-            <p>Tout ceci étant dit, l’activité du 15 septembre est organisé au profit de : Vivre Son Deuil-Belgique.
-                C’est une équipe de 10 bénévoles qui propose différents services pour accompagner
-                les personnes endeuillées à traverser cette épreuve. Parmi ces services, nous retrouvons : les écoutes téléphoniques,
-                des groupes d’entraides d’adultes – un suivi individuel, des groupes d’entraides pour des enfants de 5-12 ans dit “groupe tournesol”, accompagnement dans les écoles, …
+            <p>
+                C’est donc avec plaisir que nous vous invitons à cliquer sur l’onglet <a href="/inscription">Inscription</a> pour finaliser votre démarche.
+                Vous pouvez également parcourir l’onglet <a href="/sponsors">Sponsors</a>  pour y visualiser tous ceux qui nous soutiennent ou encore l’onglet <a href="/editions">Editions précédentes</a> pour quelques photos souvenirs des tournois passés.
+                N’oubliez pas non plus de jeter un oeil à l’onglet <a href="/help">Aide & Assistance</a> si vous désirez venir aider au montage, démontage, ...
             </p>
-            <br>
-
+            <p>
+                Tout ceci étant dit, l’activité du 15 septembre est organisé au profit de : Vivre Son Deuil-Belgique.
+                C’est une équipe de 10 bénévoles qui propose différents services pour accompagner les personnes endeuillées à traverser cette épreuve.
+                Parmi ces services, nous retrouvons : les écoutes téléphoniques, des groupes d’entraides d’adultes – un suivi individuel,
+                des groupes d’entraides pour des enfants de 5-12 ans dit “groupe tournesol”, accompagnement dans les écoles, …
+            </p>
+        </div>
+        <div class="container-center row">
             <p style="text-align: center">
                 <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
                     Vivre son Deuil <br><br>
-                    <img style="width: 110px" src="http://www.vivresondeuil.be/Vivre_son_Deuil/Qui_sommes-nous_files/shapeimage_4.png" alt="vivre-son-deuil">
+                    <img style="width: 110px" src="http://www.vivresondeuil.be/Vivre_son_Deuil/Qui_sommes-nous_files/shapeimage_4.png" th:src="@{/static/dist/assets/img/logo-vsd.png}" alt="vivre-son-deuil">
                 </a>
             </p>
+        </div>
+        <div class="columns small-12 large-12 medium-12 footer__sponsors">
+            <sponsors-component></sponsors-component>
         </div>
     </div>
 
     <footer class="footer">
         <div class="row align-middle">
-            <div class="columns small-12 large-4 medium-6 footer__sponsors">
-                <sponsors-component></sponsors-component>
+            <div class="columns small-12 large-4 medium-3">
+                Made with ♥ by Tim Mercier & Arthur Englebert
             </div>
 
-            <div class="columns small-12 medium-3 large-4">
+            <div class="columns small-12 large-4 medium-3">
                 <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
                     www.vivresondeuil.be
                 </a>
@@ -77,7 +84,8 @@
 
             <div class="columns small-12 large-4 medium-3">
                 <b>Nous contacter :</b><br>
-                <a href="mailto:info@edenglen-championship.com">info@edenglen-championship.com</a> | <a href="tel:0474 63 02 08">0474 63 02 08</a>
+                <a href="mailto:info@edenglen-championship.com">info@edenglen-championship.com</a><br>
+                <a href="tel:0474 63 02 08">0474 63 02 08</a>
             </div>
         </div>
     </footer>
