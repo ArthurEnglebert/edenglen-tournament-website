@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import be.edenglen.tournament.ws.model.Inscription;
 import be.edenglen.tournament.ws.model.service.ClientConverter;
 import be.edenglen.tournament.ws.model.service.ImmutableInscriptionUpdateRequest;
 import be.edenglen.tournament.ws.model.service.InscriptionService;
@@ -32,8 +33,9 @@ public class InscriptionController {
 
     @RequestMapping(value = "/submit", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public void register(@RequestBody ImmutableInscriptionInDTO inscription) {
-        inscriptionService.create(clientConverter.fromDTO(inscription));
+    public Long register(@RequestBody ImmutableInscriptionInDTO inscription) {
+        Inscription created = inscriptionService.create(clientConverter.fromDTO(inscription));
+        return created.getId();
     }
 
     @RequestMapping(value = "/switchStatus")

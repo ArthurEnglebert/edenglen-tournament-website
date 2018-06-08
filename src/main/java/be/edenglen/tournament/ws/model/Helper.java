@@ -6,7 +6,8 @@ import org.springframework.lang.Nullable;
 @Value.Immutable
 public interface Helper {
     boolean DEFAULT_BRINGING_FOOD = false;
-    boolean DEFAULT_COMING_BUILD_AND_DECORATE = false;
+    boolean DEFAULT_COMING_BUILD = false;
+    boolean DEFAULT_COMING_DECORATE = false;
     boolean DEFAULT_COMING_UNBUILD = false;
 
     @Nullable
@@ -21,13 +22,22 @@ public interface Helper {
     }
 
     @Value.Default
-    default boolean isComingToBuildAndDecorate() {
-        return DEFAULT_COMING_BUILD_AND_DECORATE;
+    default boolean isComingToBuild() {
+        return DEFAULT_COMING_BUILD;
     }
     @Nullable
-    Integer getComingToBuildAndDecorateStart();
+    Integer getComingToBuildStart();
     @Nullable
-    Integer getComingToBuildAndDecorateEnd();
+    Integer getComingToBuildEnd();
+
+    @Value.Default
+    default boolean isComingToDecorate() {
+        return DEFAULT_COMING_DECORATE;
+    }
+    @Nullable
+    Integer getComingToDecorateStart();
+    @Nullable
+    Integer getComingToDecorateEnd();
 
     @Value.Default
     default boolean isComingToUnBuild() {
