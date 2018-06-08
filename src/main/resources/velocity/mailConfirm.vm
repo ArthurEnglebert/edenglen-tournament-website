@@ -83,7 +83,7 @@
                             <li>
                                 <span>Reste manger le soir :</span>
                                 <span>
-                                    #if(${player.isDining})
+                                    #if(${player.dining})
                                         Oui
                                     #else
                                         Non
