@@ -15,13 +15,13 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"id",
-			"name", "firstName", "phone",
-			"numberComing",
-			"bringingFood",
-			"is building", "build start hour", "build end hour",
-			"is decorating", "decorate start hour", "decorate end hour",
-			"comingToUnBuild", "comingToUnBuildStart", "comingToUnBuildEnd"
+	private static final String[] HEADERS = {
+			"NOM", "PRENOM", "TELEPHONE",
+			"NBR PERSONNES",
+			"SALADE",
+			"CONSTRUCTION", "CONSTRUCTION START HOUR", "CONSTRUCTION END HOUR",
+			"DECORATION", "DECORATION START HOUR", "DECORATION END HOUR",
+			"DESTRUCTION", "DESTRUCTION START HOUR", "DESTRUCTION START HOUR"
 	};
 
 	private final HelperService helperService;
@@ -63,19 +63,18 @@ public class ExportHelpersGeneratorImpl implements ExportTypeGenerator {
 		Row row = sheet.createRow(rowNumber);
 		int colNumber = 0;
 
-		row.createCell(colNumber++).setCellValue(helper.getId());
 		row.createCell(colNumber++).setCellValue(helper.getName());
 		row.createCell(colNumber++).setCellValue(helper.getFirstName());
 		row.createCell(colNumber++).setCellValue(helper.getPhone());
 		row.createCell(colNumber++).setCellValue(helper.getNumberComing());
-		row.createCell(colNumber++).setCellValue(helper.isBringingFood());
-		row.createCell(colNumber++).setCellValue(helper.isComingToBuild());
+		row.createCell(colNumber++).setCellValue(helper.isBringingFood() ? "OUI" : "NON");
+		row.createCell(colNumber++).setCellValue(helper.isComingToBuild() ? "OUI" : "NON");
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildStart()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToBuildEnd()).map(val -> val.toString()).orElse("/"));
-		row.createCell(colNumber++).setCellValue(helper.isComingToDecorate());
+		row.createCell(colNumber++).setCellValue(helper.isComingToDecorate() ? "OUI" : "NON");
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToDecorateStart()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToDecorateEnd()).map(val -> val.toString()).orElse("/"));
-		row.createCell(colNumber++).setCellValue(helper.isComingToUnBuild());
+		row.createCell(colNumber++).setCellValue(helper.isComingToUnBuild() ? "OUI" : "NON");
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildStart()).map(val -> val.toString()).orElse("/"));
 		row.createCell(colNumber++).setCellValue(Optional.ofNullable(helper.getComingToUnBuildEnd()).map(val -> val.toString()).orElse("/"));
 	}

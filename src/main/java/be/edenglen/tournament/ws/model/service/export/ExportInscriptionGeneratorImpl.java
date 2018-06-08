@@ -14,7 +14,7 @@ import be.edenglen.tournament.ws.www.dto.in.ExportTypeDTO;
 @Component
 public class ExportInscriptionGeneratorImpl implements ExportTypeGenerator {
 
-	private static final String[] HEADERS = {"REF ID", "REF NOM", "REF PRENOM", "REF EMAIL", "REF PHONE", "DONATION", "TOTAL PAYEMENT", "PAYE"};
+	private static final String[] HEADERS = {"REF ID", "REF NOM", "REF PRENOM", "REF EMAIL", "REF TELEPHONE", "DONATION", "TOTAL PAYEMENT", "PAYE"};
 
 	private final InscriptionService inscriptionService;
 
