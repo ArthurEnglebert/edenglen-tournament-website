@@ -55,7 +55,7 @@
 
                 <div class="columns decoration">
                     Je viens aider le 14 septembre à la mise en place des tables de
-                    <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H à <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H.
+                    <input type="number" v-model="isComingToBuildStart" :required="isComingToBuild" :disabled="!isComingToBuild"> H à <input type="number" v-model="isComingToBuildEnd" :required="isComingToBuild" :disabled="!isComingToBuild"> H.
                 </div>
             </div>
 
