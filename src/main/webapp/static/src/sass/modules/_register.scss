@@ -38,6 +38,14 @@
     }
   }
 
+  .button.remove {
+      float: right;
+      margin-bottom: 0;
+      font-weight: 600;
+      border-radius: 5px;
+      background-color: #d45e5e;
+  }
+
   .button-envoyer {
     width: 100%;
     margin-top: 30px;
@@ -95,6 +103,31 @@
     font-size: 25px;
     text-align: right;
   }
+
+  .loading {
+    position: relative;
+
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba($white, 0.8);
+        content: '';
+        cursor: waiting;
+    }
+  }
+
+  .sex {
+    .switch-paddle {
+        width: 100%;
+    }
+
+    input:checked ~ .switch-paddle::after {
+       left: calc(100% - 2.3rem);
+    }
+  }
 }
 
 .sponsors {
@@ -118,4 +151,16 @@
         margin: 10px auto;
     }
   }
+}
+
+.total-details {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+        b {
+            float:right;
+        }
+    }
 }

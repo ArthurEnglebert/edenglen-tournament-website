@@ -1,33 +1,35 @@
 <template>
     <div class="block columns small-12">
-        <form action="#" v-on:submit="sendForm" v-if="!showMessage">
+        <form action="#" v-on:submit="sendForm" v-if="!showMessage" :class="{loading: waiting}">
+            <div v-if="error" class="callout alert">Il y a des erreurs dans le formulaire, veuillez compléter les champs en rouge</div>
+
             <h2>Personne de référence</h2>
 
             <div class="row">
                 <div class="columns medium-3 small-12">
                      <label>
-                        Nom
+                        Nom *
                         <input v-validate="'required'" type="text" data-vv-as="Nom" :name="'name'" v-model="name" :class="{'is-invalid-input': errors.has('name')}">
                     </label>
                 </div>
 
                 <div class="columns medium-3 small-12">
                      <label>
-                        Prénom
+                        Prénom *
                         <input v-validate="'required'" type="text" data-vv-as="Prénom" :name="'firstName'" v-model="firstName" :class="{'is-invalid-input': errors.has('firstName')}">
                     </label>
                 </div>
 
                 <div class="columns medium-3 small-12">
                      <label>
-                        Email
+                        Email *
                         <input v-validate="'required|email'" type="email" data-vv-as="Email" :name="'email'" v-model="email" :class="{'is-invalid-input': errors.has('email')}">
                     </label>
                 </div>
 
                 <div class="columns medium-3 small-12">
                      <label>
-                        Téléphone
+                        Téléphone *
                         <input v-validate="'required'" type="text" data-vv-as="Téléphone" :name="'phone'" v-model="phone" :class="{'is-invalid-input': errors.has('phone')}">
                     </label>
                 </div>
@@ -35,25 +37,26 @@
 
             <h2>Tennis</h2>
 
-            <table class="show-for-large table">
+            <table class="show-for-large table" v-if="tennis.length > 0">
                 <thead>
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
-                        <th>Âge</th>
-                        <th>Sexe</th>
+                        <th width="60">Âge</th>
+                        <th width="130">Sexe</th>
                         <th>Niveau National</th>
                         <th>Catégorie</th>
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Participer au diner</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr v-for="(tenn, index) in tennis">
                         <td>
-                            <input v-validate="tenn.firstName !== '' ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
+                            <input v-validate="tenn.firstName !== '' || globalRequired() ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </td>
                         <td>
                             <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
@@ -62,12 +65,12 @@
                             <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
                         </td>
                         <td>
-                            <div class="switch large">
+                            <div class="switch large sex">
                                 <input class="switch-input" :id="'tennis-sex-' + index" type="checkbox" v-model="tenn.sex" >
                                 <label class="switch-paddle" :for="'tennis-sex-' + index">
                                     <span class="show-for-sr">sex</span>
-                                    <span class="switch-active" aria-hidden="true">F</span>
-                                    <span class="switch-inactive" aria-hidden="true">H</span>
+                                    <span class="switch-active" aria-hidden="true">Femme</span>
+                                    <span class="switch-inactive" aria-hidden="true">Homme</span>
                                 </label>
                             </div>
                         </td>
@@ -121,18 +124,22 @@
                                 </label>
                             </div>
                         </td>
+
+                        <td>
+                            <a href="javascript:void(0);" v-on:click="removeTennis(index)" class="button button-danger remove">x</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="collapse-mobile hide-for-large" >
+            <div class="collapse-mobile hide-for-large" v-if="tennis.length > 0">
                 <div :class="{'collapse-item': true}" v-for="(tenn, index) in tennis">
-                    <a href="javascript:void(0);" v-on:click="openTennis(tenn)">{{ tenn.name ? tenn.firstName + ' ' + tenn.name : 'SANS NOM' }}</a>
+                    <a href="javascript:void(0);" v-on:click="openTennis(tenn)" v-if="tennis.length > 0">{{ tenn.name ? tenn.firstName + ' ' + tenn.name : 'SANS NOM' }}</a> <a href="javascript:void(0);" v-on:click="removeTennis(index)" class="button button-danger remove">x</a>
 
                     <div :class="{'panel': true, 'is-open': tenn.open || tennis.length == 1}">
                         <label>
                             Nom
-                            <input v-validate="tenn.firstName !== '' ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
+                            <input v-validate="tenn.firstName !== '' || globalRequired() ? 'required' : ''" type="text" data-vv-as="Nom" :name="'tennis_' + index + '_name'" v-model="tenn.name" :class="{'is-invalid-input': errors.has('tennis_' + index + '_name')}">
                         </label>
 
                         <label>
@@ -220,26 +227,27 @@
                 </div>
             </div>
 
-            <a class="button button-primary" v-on:click="addTennis">Ajouter</a>
+            <a class="button button-primary" v-on:click="addTennis">+ Ajouter</a>
 
             <hr>
 
             <h2>Diner uniquement</h2>
 
-            <table class="show-for-large table">
+            <table class="show-for-large table" v-if="diner.length > 0">
                 <thead>
                     <tr>
                         <th>Nom</th>
                         <th>Prénom</th>
                         <th>Âge</th>
                         <th>Email</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
 
                 <tbody>
                 <tr v-for="(dinn, index) in diner">
                     <td>
-                        <input  type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
+                        <input v-validate="dinn.firstName !== '' || globalRequired() ? 'required' : ''" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                     </td>
                     <td>
                         <input v-validate="dinn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
@@ -250,18 +258,21 @@
                     <td>
                         <input v-validate="dinn.name !== '' ? 'required|email' : ''" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
                     </td>
+                    <td>
+                        <a href="javascript:void(0);" v-on:click="removeDiner(index)" class="button button-danger remove">x</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
 
-            <div class="collapse-mobile hide-for-large" >
+            <div class="collapse-mobile hide-for-large" v-if="diner.length > 0">
                 <div :class="{'collapse-item': true}" v-for="(dinn, index) in diner">
-                    <a href="javascript:void(0);" v-on:click="openDiner(dinn)">{{ dinn.name ? dinn.firstName + ' ' + dinn.name : 'SANS NOM' }}</a>
+                    <a href="javascript:void(0);" v-on:click="openDiner(dinn)">{{ dinn.name ? dinn.firstName + ' ' + dinn.name : 'SANS NOM' }}</a> <a href="javascript:void(0);" v-on:click="removeDiner(index)" class="button button-danger remove">x</a>
 
                      <div :class="{'panel': true, 'is-open': dinn.open || diner.length == 1}">
                         <label>
                             Nom
-                            <input  type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
+                            <input v-validate="dinn.firstName !== '' || globalRequired() ? 'required' : ''" type="text" data-vv-as="Nom" :name="'diner_' + index + '_name'" v-model="dinn.name" :class="{'is-invalid-input': errors.has('diner_' + index + '_name')}">
                         </label>
 
                         <label>
@@ -282,21 +293,33 @@
                 </div>
             </div>
 
-            <a class="button button-primary"v-on:click="addDinner">Ajouter</a>
+            <a class="button button-primary"v-on:click="addDinner">+ Ajouter</a>
 
             <hr>
 
             <div class="row">
                 <div class="columns small-12 medium-6">
+                    <p class="donate-description">Une exoneration fiscale est possible<br> à partir d'un de 40,- € compris</p>
                     <div class="input-group">
                         <span class="input-group-label">Faire un don</span>
-                        <input v-validate="diner[0].name == '' && tennis[0].name == '' ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
+                        <input v-validate="globalRequired() ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
                         <div class="input-group-euro">
                             €
                         </div>
                     </div>
                 </div>
                 <div class="columns small-12 medium-6">
+                    <ul class="total-details">
+                        <li>Joueurs > 25 ans : {{ count.tennis.sup25 }} * 35,- €       <b>{{ (count.tennis.sup25 * prices.tennis.sup25) }} €</b></li>
+                        <li>Joueurs <= 25 ans : {{ count.tennis.sub25 }} * 25,- €      <b>{{ (count.tennis.sub25 * prices.tennis.sub25) }} €</b></li>
+                        <li>Soupeurs > 25 ans : {{ count.diner.sup25 }} * 30,- €      <b>{{ count.diner.sup25 * prices.diner.sup25 }} €</b></li>
+                        <li>Soupeurs > 8 ans : {{ count.diner.sub25 }} * 20,- €       <b>{{ count.diner.sub25 * prices.diner.sub25 }} €</b></li>
+                        <li>Soupeurs <= 8 ans : {{ count.diner.sub8 }} * 0,- €       <b>{{ count.diner.sub8 * prices.diner.sub8 }} €</b></li>
+                        <li>Donation :                          <b>{{ donate == '' ? 0 : donate }} €</b></li>
+                    </ul>
+
+                    <hr>
+
                     <div class="total">
                         <div class="row">
                             <div class="columns">
@@ -338,6 +361,7 @@
                     phone: '',
                     tennis: [
                         {
+                            itemId: 1,
                             firstName: '',
                             name: '',
                             sex: false,
@@ -346,7 +370,7 @@
                             championshipLevel: 'DEBUTANT',
                             email: '',
                             phone: '',
-                            isDining: false,
+                            isDining: true,
                             open: false
                         }
                     ],
@@ -370,8 +394,19 @@
                             sub8: 0
                         }
                     },
+                    count: {
+                        tennis: {
+                            sup25: 0,
+                            sub25: 0
+                        },
+                        diner: {
+                            sup25: 0,
+                            sub25: 0,
+                            sup0: 0,
+                        }
+                    },
                     total: 0,
-                    donate: null,
+                    donate: '',
                     refId: null,
                     error: false,
                     showMessage: false,
@@ -408,16 +443,17 @@
                     e.preventDefault();
 
                     this.tennis.push({
+                        itemId: this.tennis.length + 1,
                         firstName: '',
                         name: '',
-                        sex: '',
+                        sex: false,
                         age: '',
                         skillLevel: 'NONE',
                         championshipLevel: 'DEBUTANT',
                         email: '',
-                        telephone: '',
-                        diner: false,
-                        open: false,
+                        phone: '',
+                        isDining: true,
+                        open: false
                     });
 
                     this.openTennis(this.tennis[this.tennis.length - 1]);
@@ -435,6 +471,16 @@
 
                     this.openDiner(this.diner[this.diner.length - 1]);
                 },
+                removeTennis(index) {
+                    this.tennis = _.remove(this.tennis, (item, idx) => {
+                        return index !== idx;
+                    })
+                },
+                removeDiner(index) {
+                    this.diner = _.remove(this.diner, (item, idx) => {
+                        return index !== idx;
+                    })
+                },
                 calculateTotal() {
                     let total = 0;
                     let tennisSup25 = this.prices.tennis.sup25;
@@ -443,27 +489,49 @@
                     let dinnerSub25 = this.prices.diner.sub25;
                     let dinnerSub8 = this.prices.diner.sub8;
 
-                    this.tennis.forEach((tenn) => {
-                        if (tenn.name !== '') {
-                            if (tenn.age > 25) {
-                                total += tennisSup25;
-                            } else {
-                                total += tennisSub25;
-                            }
+                    this.count = {
+                        tennis: {
+                            sup25: 0,
+                            sub25: 0
+                        },
+                        diner: {
+                            sup25: 0,
+                            sub25: 0,
+                            sub8: 0
                         }
-                    });
+                    };
 
-                    this.diner.forEach((dinn) => {
-                        if (dinn.name !== '') {
-                            if (dinn.age > 25) {
-                                total += dinnerSup25;
-                            } else if (dinn.age > 8) {
-                                total += dinnerSub25;
-                            } else {
-                                total += dinnerSub8;
+                    if (this.tennis.length > 0) {
+                        this.tennis.forEach((tenn) => {
+                            if (tenn.name !== '') {
+                                if (tenn.age > 25) {
+                                    total += tennisSup25;
+                                    this.count.tennis.sup25 ++;
+                                } else {
+                                    total += tennisSub25;
+                                    this.count.tennis.sub25 ++;
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+
+
+                    if (this.diner.length > 0) {
+                        this.diner.forEach((dinn) => {
+                            if (dinn.name !== '') {
+                                if (dinn.age > 25) {
+                                    total += dinnerSup25;
+                                    this.count.diner.sup25 ++;
+                                } else if (dinn.age > 8) {
+                                    total += dinnerSub25;
+                                    this.count.diner.sub25 ++;
+                                } else {
+                                    total += dinnerSub8;
+                                    this.count.diner.sub8 ++;
+                                }
+                            }
+                        });
+                    }
 
                     let donate = parseFloat(this.donate);
 
@@ -486,6 +554,7 @@
                 },
                 sendForm(e) {
                     e.preventDefault();
+                    this.error = false;
 
                     this.$validator.validate().then(result => {
                         if (result) {
@@ -524,11 +593,31 @@
                                 this.showMessage = true;
                             })
                             .catch(e => {
+                                console.log(e);
                                 this.waiting = false;
                                 this.error = true;
                             });
+                        } else {
+                            this.error = true;
                         }
                   });
+
+                },
+                globalRequired() {
+                    let tennisValid = this.tennis.length == 1 ? this.tennis[0].name !== '' : false;
+                    let dinerValid = this.diner.length == 1 ? this.diner[0].name !== '' : false;
+
+
+                    if (tennisValid) {
+                        return false;
+                    }
+
+                    if (dinerValid) {
+                        return false;
+                    }
+
+
+                    return this.donate == '';
 
                 }
             }
