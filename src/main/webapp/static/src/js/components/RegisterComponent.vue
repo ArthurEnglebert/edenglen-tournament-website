@@ -299,7 +299,7 @@
 
             <div class="row">
                 <div class="columns small-12 medium-6">
-                    <p class="donate-description">Une exoneration fiscale est possible<br> à partir d'un de 40,- € compris</p>
+                    <p class="donate-description">Une exoneration fiscale est possible<br> à partir d'un don de 40,- € compris</p>
                     <div class="input-group">
                         <span class="input-group-label">Faire un don</span>
                         <input v-validate="globalRequired() ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
