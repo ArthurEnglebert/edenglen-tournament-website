@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="CSRF_TOKEN" />
+    <title>Edenglen Championship</title>
+    <link rel="stylesheet"  th:href="@{/static/dist/assets/css/app.css}" />
+
+    <script>
+        window.POST_REGISTER = '/inscription/submit';
+        window.POST_HELP = '/help/submit';
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header__logo">
+        <div class="row align-middle">
+            <div class="columns shrink">
+                <a href="/"><img class="header__logo__img" th:src="@{/static/dist/assets/img/logo-edenglen.png}" /></a>
+            </div>
+            <div class="columns">
+
+                <h1 class="header__logo__title">Edenglen <br>Championship</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="header__menu">
+        <ul>
+            <li><a href="/inscription">Inscription</a></li>
+            <li><a href="/help">Aide & Assistance</a></li>
+            <li><a class="active" href="/sponsors">Sponsors</a></li>
+            <li><a href="/editions">Editions précédentes</a></li>
+        </ul>
+    </div>
+</header>
+
+<div id="app" class="app grid-container">
+    <div class="container-center row">
+        <div class="block sponsors">
+            <p class="sponsors__intro">
+                Nous tenons à remercier chaleureusement tous nos différents partenaires qu’ils soient visibles ou non, matériel ou en nature pour cette 6ème édition “Edenglen Championship”.
+            </p>
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo">
+                    <img th:src="@{/static/dist/assets/img/sponsors/familyhouse.jpg}" alt="familyhouse">
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        FAMILY HOUSE vous accompagne dans le développement et la transmission de vos Valeurs
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.tstbat.be" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/tstbat.jpg}" alt="tstbat">
+                        TST Bat
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    Entreprise de construction et rénovation gérée par Xavier et Victor Ancion. C’est fort de 30 ans d’expériences que père et fils sont maintenant une référence dans le milieu.
+
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.consilium-gst.be/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/consilium.png}" alt="consilium">
+                        Consilium
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    L’activité de Consilium porte sur l'optimisation du contrat d’assurance-vie luxembourgeois – souvent méconnu – à des fins de gestion de valeurs mobilières et de transmission patrimoniale. Ce contrat répond au plus près des besoins de nos clients, en respectant les règles en vigueur dans leur pays de résidence.
+                </div>
+            </div>
+
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.puilaetcodewaay.be/fr" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/puilaetcodewaay.jpg}" alt="puilaetcodewaay">
+                        Puilaetco Dewaay
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Partenaire de confiance, une banque qui propose depuis 5 générations des solutions performantes, personnalisées et responsables à leurs clients. Leur vision est d’être la banque privée belge la plus reconnue, proche de leurs clients grâce à une technologie pertinente maximisée par des personnes passionnées.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://cossup.be/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/cossup.png}" alt="cossup">
+                        Cossup
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Une loi semble universelle dans les entreprises; les employés ont besoin de se plaindre du café. Cossup souhaite mettre un terme au fameux “ jus de chaussette “ ; comment ? En offrant des solutions aux entreprises qui souhaitent du café qualitatif et responsable ...
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <img th:src="@{/static/dist/assets/img/sponsors/rodolphecruysmans.png}" alt="rodolphecruysmans">
+                    Rodolphe Cruysmans
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Voilà maintenant plus de 6 ans que Rodolphe s’est lancé en tant qu’entrepreneur dans l’aménagement de Parc et Jardins, l’abattage, grimpeur élagueur et travaux d'accès difficile.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.puttinggolfstudio.com/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/puttinggolfstudio.jpg}" alt="puttinggolfstudio">
+                        Putting Golf Studio
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Putting Golf Studio, c'est Le centre d'enseignement, d'entraînement, et de perfectionnement en putting. Vous y optimisez votre putting dans des conditions idéales, en bénéficiant d'installations et de technologies uniques en Belgique.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.bedimo.com/accueil/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/bedimo.jpg}" alt="bedimo">
+                        Bedimo
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Bedimo vous propose une solution intégrée regroupant la conception, le parachèvement et l’aménagement complet de vos bureaux. Vous créez votre entreprise, vous déménagez, vous développez votre activité et avez besoin d’espace ou simplement vous souhaitez re-dynamiser votre entreprise.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://maxelassurance.be/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/maxelassurance.jpg}" alt="maxelassurance">
+                        Maxel
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Grâce à l’interaction de ses multiples compétences en services et produits d’assurance, bancaires, financiers et fiscaux, l’équipe d’experts de Maxel vous conseille et vous propose des solutions globales qui tiennent compte de vos projets professionnels et privés.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.pro1golf.com/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/pro1gold.png}" alt="pro1golf">
+                        Pro1Golf
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Situé sur le site du Golf de LLN, le centre de golf Pro1Golf est le lieu rêvé pour découvrir, apprendre et s’entraîner au golf… Plus que jamais, la meilleure structure dédiée au golf en Belgique.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.mr-bricolage.be/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/mrbricolage.png}" alt="mrbricolage">
+                        Mr Bricolage
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Avec plus de 30 ans d’expérience, Mr.Bricolage est votre partenaire pour vos projets de construction, rénovation et aménagement intérieur et extérieur en Wallonie. Nos collaborateurs vous accompagnent et vous conseillent dans vos choix.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.madeinlouise.com/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/madeinlouise.gif}" alt="madeinlouise">
+                        Made In Louise
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Le temps d’une nuit, d’un séjour entre amis ou en famille, goûtez au charme de vivre dans un hôtel particulier bruxellois du 20e siècle. Une ambiance chaleureuse qui vous fera presque oublier que vous êtes à l’hôtel ! Tout l’art de vivre à la belge via un service de qualité supérieur
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <img th:src="@{/static/dist/assets/img/sponsors/dbo.jpeg}" alt="dbo">
+                    de Behault, Boulanger, de Briey<br>
+                    Courtiers en assurances
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Courtiers en assurances depuis plusieurs générations, ils proposent des solutions exclusives et des couvertures de haut niveau à budgets très compétitifs. ils ont développé un produit exclusif pour les châteaux et propriétés de caractère, qui est probablement le plus attractif du marché.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.dlcw.be" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/dlcw.png}" alt="dlcw">
+                        de le Court, Wahis & Partners
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Les activités du cabinet sont variées et s’exercent de diverses manières: l’intervention préventive, la négociation qui l’accompagne ou la suit, et bien entendu le contentieux. Le cabinet tend à privilégier dans ses rapports avec le client : la disponibilité, la rapidité, et le sérieux, en veillant à comprimer les coûts nécessaires et à éviter le superflu, dans le but d’établir et de conserver un lien de confiance durable avec lui.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.natsrawline.com/fr/" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/natsrawline.png}" alt="natsrawline">
+                        Nats Rawline
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Nos desserts et en-cas ne sont pas seulement délicieux, ils nous aident aussi à nous sentir mieux dans notre corps et dans notre esprit. Nous voulons promouvoir un style de vie sain, une alimentation raisonnable, nourrissante et savoureuse, respectueuse de la planète et à un prix accessible.Natsrawline constitue une philosophie de vie : se faire plaisir en se faisant du bien.                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="http://www.bertinchamps.be/agegate" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/bertinchamps.png}" alt="natsrawline">
+                        Bertinchamps
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Leur étiquette arbore fièrement un grand « B » majuscule, référence selon vos envies, à Bertinchamps, à la Belgique, à la Bière, à Benoît… En 2011,  ils découvrent à proximité de Gembloux,  la vieille Ferme de Bertinchamps au milieu des champs dans un superbe environnement. Puis en 2013, leur installation brassicole est placée dans les vieilles granges, contraste saisissant entre la pointe de la technologie et un site vieux de plus de 7 siècles.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.actito.be" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/actito.png}" alt="natsrawline">
+                        Actito
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Avec ACTITO, vous communiquez exactement à la bonne personne, au bon moment et via le bon canal. Cette plateforme agile de marketing automation répond aux besoins de tout marketeur moderne : autonomie, flexibilité et intelligence.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row align-middle sponsor">
+                <div class="columns small-12 medium-6 sponsor__logo" >
+                    <a href="https://www.scrily.be" target="_blank" rel="noreferrer nofollow">
+                        <img th:src="@{/static/dist/assets/img/sponsors/scrily.png}" alt="scrily">
+                        SCRILY
+                    </a>
+                </div>
+
+                <div class="columns small-12 medium-6">
+                    <p>
+                        Tim Mercier<br>
+                        Full Stack Developer / Développeur d'applications web et site web
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="row align-middle">
+            <div class="columns small-12 large-4 medium-3">
+                Made with ♥ by Tim Mercier & Arthur Englebert
+            </div>
+
+            <div class="columns small-12 large-4 medium-3">
+                <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                    www.vivresondeuil.be
+                </a>
+            </div>
+
+            <div class="columns small-12 large-4 medium-3">
+                <b>Nous contacter :</b><br>
+                <a href="mailto:championship@edenglen.be">championship@edenglen.be</a><br>
+                <a href="tel:0474 63 02 08">0474 63 02 08</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script th:src="@{/static/dist/assets/js/app.js}"></script>
+</body>
+</html>

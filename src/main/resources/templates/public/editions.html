@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="CSRF_TOKEN" />
+    <title>Edenglen Championship</title>
+    <link rel="stylesheet"  th:href="@{/static/dist/assets/css/app.css}" />
+
+    <script>
+        window.POST_REGISTER = '/inscription/submit';
+        window.POST_HELP = '/help/submit';
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header__logo">
+        <div class="row align-middle">
+            <div class="columns shrink">
+                <a href="/"><img class="header__logo__img" th:src="@{/static/dist/assets/img/logo-edenglen.png}" /></a>
+            </div>
+            <div class="columns">
+
+                <h1 class="header__logo__title">Edenglen <br>Championship</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="header__menu">
+        <ul>
+            <li><a href="/inscription">Inscription</a></li>
+            <li><a href="/help">Aide & Assistance</a></li>
+            <li><a href="/sponsors">Sponsors</a></li>
+            <li><a class="active" href="/editions">Editions précédentes</a></li>
+        </ul>
+    </div>
+</header>
+
+<div id="app" class="app grid-container">
+    <div class="container-center row">
+        <div class="block previous-edition">
+            <div class="row">
+                <div class="columns">
+                    <h3>Editions précédentes</h3>
+
+                    <a th:href="@{/static/dist/assets/img/previous-editions/1.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/1.jpg}" alt="tournoi-1">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/2.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/2.jpg}" alt="tournoi-2">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/3.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/3.jpg}" alt="tournoi-3">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/4.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/4.jpg}" alt="tournoi-4">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/5.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/5.jpg}" alt="tournoi-5">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/6.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/6.jpg}" alt="tournoi-6">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/7.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/7.jpg}" alt="tournoi-7">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/8.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/8.jpg}" alt="tournoi-8">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/9.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/9.jpg}" alt="tournoi-9">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/10.jpg}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/10.jpg}" alt="tournoi-10">
+                    </a>
+
+                    <a th:href="@{/static/dist/assets/img/previous-editions/11.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/11.JPG}" alt="tournoi-11">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/212.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/12.JPG}" alt="tournoi-12">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/13.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/13.JPG}" alt="tournoi-13">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/14.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/14.JPG}" alt="tournoi-14">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/15.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/15.JPG}" alt="tournoi-15">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/16.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/16.JPG}" alt="tournoi-16">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/17.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/17.JPG}" alt="tournoi-17">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/18.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/18.JPG}" alt="tournoi-18">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/19.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/19.JPG}" alt="tournoi-19">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/20.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/20.JPG}" alt="tournoi-20">
+                    </a>
+                    <a th:href="@{/static/dist/assets/img/previous-editions/21.JPG}" data-lightbox="tournoi">
+                        <img th:src="@{/static/dist/assets/img/previous-editions/21.JPG}" alt="tournoi-21">
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="row align-middle">
+            <div class="columns small-12 large-4 medium-3">
+                Made with ♥ by Tim Mercier & Arthur Englebert
+            </div>
+
+            <div class="columns small-12 large-4 medium-3">
+                <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                    www.vivresondeuil.be
+                </a>
+            </div>
+
+            <div class="columns small-12 large-4 medium-3">
+                <b>Nous contacter :</b><br>
+                <a href="mailto:championship@edenglen.be">championship@edenglen.be</a><br>
+                <a href="tel:0474 63 02 08">0474 63 02 08</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script th:src="@{/static/dist/assets/js/app.js}"></script>
+</body>
+</html>

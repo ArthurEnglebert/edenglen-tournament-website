@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>One Page Wonder - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/select/1.2.5/css/select.bootstrap4.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/one-page-wonder.css}">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Log In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section>
+    <div class="container">
+        <h1>Stats</h1>
+        <div class="row">
+            <div class="col-sm-10">
+                <p>
+                    Total recettes attendues : <span th:text="${stats.awaitedTotal.total}" th:remove="tag">10</span>
+                    (Tennis : <span th:text="${stats.awaitedTotal.fromTennis}" th:remove="tag">6</span>)
+                    (Diner : <span th:text="${stats.awaitedTotal.fromDinners}" th:remove="tag">3</span>)
+                    (Donation : <span th:text="${stats.awaitedTotal.fromDonations}" th:remove="tag">1</span>)
+                </p>
+                <p>
+                    Total recettes validées : <span th:text="${stats.validatedTotal.total}" th:remove="tag">6</span>
+                    (Tennis : <span th:text="${stats.validatedTotal.fromTennis}" th:remove="tag">3</span>)
+                    (Diner : <span th:text="${stats.validatedTotal.fromDinners}" th:remove="tag">2</span>)
+                    (Donation : <span th:text="${stats.validatedTotal.fromDonations}" th:remove="tag">1</span>)
+                </p>
+                <p>
+                    Total recettes en attente : <span th:text="${stats.waitingTotal.total}" th:remove="tag">4</span>
+                    (Tennis : <span th:text="${stats.waitingTotal.fromTennis}" th:remove="tag">2</span>)
+                    (Diner : <span th:text="${stats.waitingTotal.fromDinners}" th:remove="tag">2</span>)
+                    (Donation : <span th:text="${stats.waitingTotal.fromDonations}" th:remove="tag">0</span>)
+                </p>
+                <p>
+                    Disparité joueurs 10-12 : Hommes <span th:text="${stats.disparity1012.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1012.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 13-16 : Hommes <span th:text="${stats.disparity1316.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1316.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 17-25 : Hommes <span th:text="${stats.disparity1725.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity1725.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+                <p>
+                    Disparité joueurs 26-> : Hommes <span th:text="${stats.disparity26Onwards.absoluteMenNumber}" th:remove="tag">4</span> / <span th:text="${stats.disparity26Onwards.absoluteWomenNumber}" th:remove="tag">4</span> Femmes
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h1>Exports</h1>
+        <div class="row">
+            <div class="col-sm-3">
+                <button type="button" id="exportInscriptions" class="btn btn-info exportButton" data-target="admin/export?type=INSCRIPTIONS">Exporter les inscriptions</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="exportPlayers" class="btn btn-info exportButton" data-target="admin/export?type=PLAYERS">Exporter les joueurs</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="exportEaters" class="btn btn-info exportButton" data-target="admin/export?type=EATERS">Exporter les soupeurs</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" id="exportHelpers" class="btn btn-info exportButton" data-target="admin/export?type=HELPERS">Exporter les petites mains</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h1>Inscriptions</h1>
+        <button type="button" id="switchPaymentStatus" class="btn btn-info" disabled>Changer le statut de payement</button>
+        <table id="datatable" class="display">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Amount</th>
+                    <th>Paid</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Amount</th>
+                    <th>Paid</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5 bg-black">
+    <div class="container">
+        <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2018</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="webjars/jquery/3.3.1-1/jquery.min.js"></script>
+<script th:src="@{/static/js/jquery.fileDownload.js}" type="text/javascript"></script>
+<script src="webjars/bootstrap/4.0.0-2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>
+<script th:src="@{/static/js/admin.js}" type="text/javascript"></script>
+
+</body>
+
+</html>

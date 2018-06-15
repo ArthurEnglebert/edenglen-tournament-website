@@ -1,0 +1,51 @@
+@mixin transition($duration) {
+  -webkit-transition: all #{$duration} ease;
+  -moz-transition: all #{$duration} ease;
+  -o-transition: all #{$duration} ease;
+  transition: all #{$duration} ease;
+}
+
+@mixin column($padding) {
+  padding-right: $padding;
+  padding-left: $padding;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 0px;
+  flex: 1 1 0px;
+}
+
+@mixin row() {
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+
+@mixin shrink() {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+@mixin box-shadow($boxshadow) {
+  -webkit-box-shadow: $boxshadow;
+  -moz-box-shadow: $boxshadow;
+  box-shadow: $boxshadow;
+}
+
+*:focus {
+  outline: none;
+}
+
+.noscroll {
+  @include breakpoint(small only) {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    z-index: -1;
+    height: auto;
+  }
+
+  overflow: hidden !important;
+}

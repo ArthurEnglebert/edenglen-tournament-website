@@ -1,0 +1,96 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="CSRF_TOKEN" />
+    <title>Edenglen Championship</title>
+    <link rel="stylesheet"  th:href="@{/static/dist/assets/css/app.css}" />
+
+    <script>
+        window.POST_REGISTER = '/inscription/submit';
+        window.POST_HELP = '/help/submit';
+    </script>
+</head>
+<body>
+
+<header class="header">
+    <div class="header__logo">
+        <div class="row align-middle">
+            <div class="columns shrink">
+                <a href="/"><img class="header__logo__img" th:src="@{/static/dist/assets/img/logo-edenglen.png}" /></a>
+            </div>
+            <div class="columns">
+
+                <h1 class="header__logo__title">Edenglen <br>Championship</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="header__menu">
+        <ul>
+            <li><a href="/inscription">Inscription</a></li>
+            <li><a href="/help">Aide & Assistance</a></li>
+            <li><a href="/sponsors">Sponsors</a></li>
+            <li><a href="/editions">Editions précédentes</a></li>
+        </ul>
+    </div>
+</header>
+
+<div id="app" class="app grid-container">
+    <div class="home-message">
+        <div class="container-center row">
+            <p>
+                Bienvenue sur le site du tournoi “Edenglen Championship”. Si vous êtes sur ce site aujourd’hui, c’est parce que vous avez reçu une lettre dans votre boîte mail .
+                Voici une nouvelle occasion pour vous de jouer et de participer au Cheese & Wine et terminer par quelques pas de danse.
+            </p>
+            <p>
+                C’est donc avec plaisir que nous vous invitons à cliquer sur l’onglet <a href="/inscription">Inscription</a> pour finaliser votre démarche.
+                Vous pouvez également parcourir l’onglet <a href="/sponsors">Sponsors</a>  pour y visualiser tous ceux qui nous soutiennent ou encore l’onglet <a href="/editions">Editions précédentes</a> pour quelques photos souvenirs des tournois passés.
+                N’oubliez pas non plus de jeter un oeil à l’onglet <a href="/help">Aide & Assistance</a> si vous désirez venir aider au montage, démontage, ...
+            </p>
+            <p>
+                Tout ceci étant dit, l’activité du 15 septembre est organisé au profit de : Vivre Son Deuil-Belgique.
+                C’est une équipe de 10 bénévoles qui propose différents services pour accompagner les personnes endeuillées à traverser cette épreuve.
+                Parmi ces services, nous retrouvons : les écoutes téléphoniques, des groupes d’entraides d’adultes – un suivi individuel,
+                des groupes d’entraides pour des enfants de 5-12 ans dit “groupe tournesol”, accompagnement dans les écoles, …
+            </p>
+        </div>
+        <div class="container-center row">
+            <p style="text-align: center">
+                <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                    Vivre son Deuil <br><br>
+                    <img style="width: 110px" src="http://www.vivresondeuil.be/Vivre_son_Deuil/Qui_sommes-nous_files/shapeimage_4.png" th:src="@{/static/dist/assets/img/logo-vsd.png}" alt="vivre-son-deuil">
+                </a>
+            </p>
+        </div>
+        <div class="columns small-12 large-12 medium-12 footer__sponsors">
+            <sponsors-component></sponsors-component>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="row align-middle">
+        <div class="columns small-12 large-4 medium-3">
+            Made with ♥ by Tim Mercier & Arthur Englebert
+        </div>
+
+        <div class="columns small-12 large-4 medium-3">
+            <a href="http://www.vivresondeuil.be" target="_blank" rel="noreferrer nofollow">
+                www.vivresondeuil.be
+            </a>
+        </div>
+
+        <div class="columns small-12 large-4 medium-3">
+            <b>Nous contacter :</b><br>
+            <a href="mailto:championship@edenglen.be">championship@edenglen.be</a><br>
+            <a href="tel:0474 63 02 08">0474 63 02 08</a>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/static/dist/assets/js/app.js}"></script>
+</body>
+</html>

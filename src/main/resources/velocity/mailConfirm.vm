@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="HandheldFriendly" content="true" />
+    <style type="text/css">
+        li span {
+            display:table-cell;
+            width:130px;
+        }
+        li { /*pour l'alignement des puces*/
+            list-style-image:none;
+            list-style-type:none;
+            padding-left:20px;
+        }
+    </style>
+    <title>Confirmation d'inscription au tournoi edenglen 2018</title>
+</head>
+<body>
+    <h3>Inscription réussie !</h3>
+    <p>
+        N'oubliez pas de payer le montant total de <b>$inscription.amount €</b> sur le compte suivant : <b>BE30 3401 5068 6811</b><br>
+        communication : « TOURNOI 2018 REFERENCE INSCRIPTION : $inscription.id
+        #if($inscription.donation >= 40)
+            & $inscription.donation € dons
+        #end
+        »
+    </p>
+    <p>
+        Au 15 Septembre !
+    </p>
+    <h5>Recapitulatif inscription: </h5>
+    <div>
+        <ul>
+            <li>
+                <span>Nom :</span>
+                <span>$inscription.name</span>
+            </li>
+            <li>
+                <span>Prénom :</span>
+                <span>$inscription.firstName</span>
+            </li>
+            <li>
+                <span>Email :</span>
+                <span>$inscription.email</span>
+            </li>
+            <li>
+                <span>Téléphone :</span>
+                <span>$inscription.phone</span>
+            </li>
+            <li>
+                <span>Joueurs : </span>
+                <ul>
+                    #foreach($player in $inscription.players)
+                        <li>
+                            <span>Nom :</span>
+                            <span>$player.name</span>
+                        </li>
+                        <li>
+                            <span>Prénom :</span>
+                            <span>$player.firstName</span>
+                        </li>
+                        <li>
+                            <span>Email :</span>
+                            <span>$player.email</span>
+                        </li>
+                        <li>
+                            <span>Phone :</span>
+                            <span>$player.phone</span>
+                        </li>
+                        <li>
+                            <span>Age :</span>
+                            <span>$player.age ans</span>
+                        </li>
+                        <li>
+                            <span>Sexe :</span>
+                            <span>
+                                #if(${player.sex.name()} == "MALE")
+                                    Homme
+                                #else
+                                    Femme
+                                #end
+                            </span>
+                        </li>
+                        <li>
+                            <span>Niveau :</span>
+                            <span>${player.championshipLevel.name()}</span>
+                        </li>
+                        <li>
+                            <span>Classement :</span>
+                            <span>${player.skillLevel.name()}</span>
+                        </li>
+                        <li>
+                            <span>Reste manger :</span>
+                            <span>
+                                #if(${player.dining})
+                                    Oui
+                                #else
+                                    Non
+                                #end
+                            </span>
+                        </li>
+                    #end
+                </ul>
+            </li>
+            <li>
+                <span>Soupeurs :</span>
+                <ul>
+                    #foreach($eater in $inscription.eaters)
+                        <li>
+                            <span>Nom :</span>
+                            <span>$eater.name</span>
+                        </li>
+                        <li>
+                            <span>Prénom :</span>
+                            <span>$eater.firstName</span>
+                        </li>
+                        <li>
+                            <span>Email :</span>
+                            <span>$eater.email</span>
+                        </li>
+                        <li>
+                            <span>Age :</span>
+                            <span>$eater.age ans</span>
+                        </li>
+                    #end
+                </ul>
+            </li>
+            <li>
+                <span>Donation :</span>
+                <span>$inscription.donation €</span>
+            </li>
+            <li>
+                <span>Montant total :</span>
+                <span>$inscription.amount €</span>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

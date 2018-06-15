@@ -1,5 +1,6 @@
 package be.edenglen.tournament.ws.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,29 +15,39 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
-    }
+	@Value("${admin.username}")
+	private String username;
 
-    @Bean
-    @Override
-    protected UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
+	@Value("${admin.password}")
+	private String password;
 
-        return new InMemoryUserDetailsManager(user);
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/admin/**").authenticated()
+				.antMatchers("/**").permitAll()
+				.and()
+				.formLogin()
+				.loginPage("/login")
+				.defaultSuccessUrl("/admin", true)
+				.and()
+				.logout()
+				.and()
+				.headers().frameOptions().sameOrigin()
+				.and()
+				.csrf()
+				.disable();
+	}
+
+	@Bean
+	@Override
+	protected UserDetailsService userDetailsService() {
+		UserDetails user = User.withDefaultPasswordEncoder()
+				.username(username)
+				.password(password)
+				.roles("USER")
+				.build();
+
+		return new InMemoryUserDetailsManager(user);
+	}
 }
