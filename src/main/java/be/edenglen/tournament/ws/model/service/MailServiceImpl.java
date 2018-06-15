@@ -16,7 +16,7 @@ import be.edenglen.tournament.ws.model.Inscription;
 @Service
 public class MailServiceImpl implements MailService {
 
-	private static final String MAIL_FROM = "website@edenglen-championship.com";
+	private static final String MAIL_FROM = "championship@edenglen.be";
 	private static final String MAIL_SUBJECT = "Confirmation d'inscription au tournoi Edenglen 2018";
 
 	private static final String TEMPLATE_LOCATION = "velocity/mailConfirm.vm";

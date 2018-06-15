@@ -579,7 +579,7 @@
                             HTTP.post(window.POST_REGISTER, {
                                 referent: {
                                     name: this.name,
-                                    firstName: this.name,
+                                    firstName: this.firstName,
                                     email: this.email,
                                     phone: this.phone
                                 },

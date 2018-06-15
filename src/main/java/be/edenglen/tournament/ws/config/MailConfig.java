@@ -25,6 +25,8 @@ public class MailConfig {
 	private String auth;
 	@Value("${javax.mail.starttls}")
 	private String starttls;
+	@Value("${javax.mail.ssl}")
+	private String ssl;
 
 	@Bean
 	public JavaMailSender getJavaMailSender() {
@@ -40,7 +42,8 @@ public class MailConfig {
 		props.put("mail.transport.protocol", protocol);
 		props.put("mail.smtp.auth", auth);
 		props.put("mail.smtp.starttls.enable", starttls);
-//		props.put("mail.debug", "true");
+		props.put("mail.imap.ssl.enable", ssl);
+		props.put("mail.debug", "true");
 
 		return mailSender;
 	}

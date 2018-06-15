@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+    <property name="context-name" value="edenglen-championship" />
+    <property name="log.dir" value="${catalina.base}/logs" />
+
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
         </encoder>
     </appender>
 
-    <!--<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
-        <!--<file>logFile.log</file>-->
-        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
-            <!--&lt;!&ndash; daily rollover &ndash;&gt;-->
-            <!--<fileNamePattern>logFile.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.dir}/${context-name}-all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${log.dir}/${context-name}-all-%d{yyyyMMdd}.log.gz</fileNamePattern>
 
-            <!--&lt;!&ndash; keep 30 days' worth of history capped at 3GB total size &ndash;&gt;-->
-            <!--<maxHistory>30</maxHistory>-->
-            <!--<totalSizeCap>3GB</totalSizeCap>-->
+            <!-- keep 30 days' worth of history capped at 3GB total size -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
 
-        <!--</rollingPolicy>-->
-        <!--<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-            <!--<Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>-->
-        <!--</encoder>-->
-    <!--</appender>-->
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
 
 
     <root level="info">
         <appender-ref ref="console" />
-        <!--<appender-ref ref="file" />-->
+        <appender-ref ref="file" />
     </root>
 </configuration>
