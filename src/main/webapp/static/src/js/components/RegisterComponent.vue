@@ -310,8 +310,8 @@
                 </div>
                 <div class="columns small-12 medium-6">
                     <ul class="total-details">
-                        <li>Joueurs > 25 ans : {{ count.tennis.sup25 }} * 35,- €       <b>{{ (count.tennis.sup25 * prices.tennis.sup25) }} €</b></li>
-                        <li>Joueurs <= 25 ans : {{ count.tennis.sub25 }} * 25,- €      <b>{{ (count.tennis.sub25 * prices.tennis.sub25) }} €</b></li>
+                        <li>Joueurs > 25 ans : {{ count.tennis.sup25 }} * 35,- € (diner inclus)      <b>{{ (count.tennis.sup25 * prices.tennis.sup25) }} €</b></li>
+                        <li>Joueurs <= 25 ans : {{ count.tennis.sub25 }} * 25,- € (diner inclus)     <b>{{ (count.tennis.sub25 * prices.tennis.sub25) }} €</b></li>
                         <li>Soupeurs > 25 ans : {{ count.diner.sup25 }} * 30,- €      <b>{{ count.diner.sup25 * prices.diner.sup25 }} €</b></li>
                         <li>Soupeurs > 8 ans : {{ count.diner.sub25 }} * 20,- €       <b>{{ count.diner.sub25 * prices.diner.sub25 }} €</b></li>
                         <li>Soupeurs <= 8 ans : {{ count.diner.sub8 }} * 0,- €       <b>{{ count.diner.sub8 * prices.diner.sub8 }} €</b></li>

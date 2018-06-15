@@ -33,6 +33,8 @@
                     {img: '/static/dist/assets/img/sponsors/tstbat.jpg', link: "http://https://www.tstbat.be"},
                     {img: '/static/dist/assets/img/sponsors/consilium.png', link: "https://www.consilium-gst.be/"},
                     {img: '/static/dist/assets/img/sponsors/puilaetcodewaay.jpg', link: 'https://www.puilaetcodewaay.be/fr'},
+                    {img: '/static/dist/assets/img/sponsors/dbo.jpeg', link: null},
+                    {img: '/static/dist/assets/img/sponsors/scrily.png', link: "https://www.scrily.be"},
                     {img: '/static/dist/assets/img/sponsors/cossup.png', link: 'http://cossup.be/'},
                     {img: '/static/dist/assets/img/sponsors/rodolphecruysmans.png', link: null},
                     {img: '/static/dist/assets/img/sponsors/puttinggolfstudio.jpg', link: "http://www.puttinggolfstudio.com/"},
@@ -41,12 +43,10 @@
                     {img: '/static/dist/assets/img/sponsors/pro1gold.png', link: "http://www.pro1golf.com/"},
                     {img: '/static/dist/assets/img/sponsors/mrbricolage.png', link: "https://www.mr-bricolage.be/"},
                     {img: '/static/dist/assets/img/sponsors/madeinlouise.gif', link: "https://www.madeinlouise.com/"},
-                    {img: '/static/dist/assets/img/sponsors/dbo.jpeg', link: null},
                     {img: '/static/dist/assets/img/sponsors/dlcw.png', link: "http://www.dlcw.be"},
                     {img: '/static/dist/assets/img/sponsors/natsrawline.png', link: "http://www.natsrawline.com/fr/"},
                     {img: '/static/dist/assets/img/sponsors/bertinchamps.png', link: "http://www.bertinchamps.be/agegate"},
                     {img: '/static/dist/assets/img/sponsors/actito.png', link: "https://www.actito.be"},
-                    {img: '/static/dist/assets/img/sponsors/scrily.png', link: "https://www.scrily.be"},
                 ]
             };
         },
