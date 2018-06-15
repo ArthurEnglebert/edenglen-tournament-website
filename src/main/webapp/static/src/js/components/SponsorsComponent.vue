@@ -44,6 +44,8 @@
                     {img: '/static/dist/assets/img/sponsors/dbo.jpeg', link: null},
                     {img: '/static/dist/assets/img/sponsors/dlcw.png', link: "http://www.dlcw.be"},
                     {img: '/static/dist/assets/img/sponsors/natsrawline.png', link: "http://www.natsrawline.com/fr/"},
+                    {img: '/static/dist/assets/img/sponsors/bertinchamps.png', link: "http://www.bertinchamps.be/agegate"},
+                    {img: '/static/dist/assets/img/sponsors/actito.png', link: "https://www.actito.be"},
                     {img: '/static/dist/assets/img/sponsors/scrily.png', link: "https://www.scrily.be"},
                 ]
             };
