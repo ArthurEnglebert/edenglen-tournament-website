@@ -57,21 +57,24 @@ public class AdminController {
                 int result;
                 switch (order.getColumn()) {
                     case 0:
-                        result = o1.getFirstName().compareTo(o2.getFirstName());
+                        result = o1.getId().compareTo(o2.getId());
                         break;
                     case 1:
-                        result = o1.getName().compareTo(o2.getName());
+                        result = o1.getFirstName().compareTo(o2.getFirstName());
                         break;
                     case 2:
-                        result = o1.getEmail().compareTo(o2.getEmail());
+                        result = o1.getName().compareTo(o2.getName());
                         break;
                     case 3:
-                        result = o1.getPhone().compareTo(o2.getPhone());
+                        result = o1.getEmail().compareTo(o2.getEmail());
                         break;
                     case 4:
-                        result = o1.getAmount().compareTo(o2.getAmount());
+                        result = o1.getPhone().compareTo(o2.getPhone());
                         break;
                     case 5:
+                        result = o1.getAmount().compareTo(o2.getAmount());
+                        break;
+                    case 6:
                         result = Boolean.compare(o1.isPaid(), o2.isPaid());
                         break;
                     default:

@@ -302,7 +302,7 @@
                     <p class="donate-description">Une exoneration fiscale est possible<br> à partir d'un don de 40,- € compris</p>
                     <div class="input-group">
                         <span class="input-group-label">Faire un don</span>
-                        <input v-validate="globalRequired() ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}">&nbsp;
+                        <input v-validate="globalRequired() ? 'required' : ''" type="number" data-vv-as="Email" :name="'donate'" v-model="donate" :class="{'input-group-field': true, 'is-invalid-input': errors.has('donate')}" value="0">&nbsp;
                         <div class="input-group-euro">
                             €
                         </div>
@@ -360,28 +360,28 @@
                     email: '',
                     phone: '',
                     tennis: [
-                        {
-                            itemId: 1,
-                            firstName: '',
-                            name: '',
-                            sex: false,
-                            age: '',
-                            skillLevel: 'NONE',
-                            championshipLevel: 'DEBUTANT',
-                            email: '',
-                            phone: '',
-                            isDining: true,
-                            open: false
-                        }
+                        // {
+                        //     itemId: 1,
+                        //     firstName: '',
+                        //     name: '',
+                        //     sex: false,
+                        //     age: '',
+                        //     skillLevel: 'NONE',
+                        //     championshipLevel: 'DEBUTANT',
+                        //     email: '',
+                        //     phone: '',
+                        //     isDining: true,
+                        //     open: false
+                        // }
                     ],
                     diner: [
-                        {
-                            firstName: '',
-                            name: '',
-                            email: '',
-                            age: '',
-                            open: false
-                        }
+                        // {
+                        //     firstName: '',
+                        //     name: '',
+                        //     email: '',
+                        //     age: '',
+                        //     open: false
+                        // }
                     ],
                     prices: {
                         tennis: {
@@ -406,7 +406,7 @@
                         }
                     },
                     total: 0,
-                    donate: '',
+                    donate: 0,
                     refId: null,
                     error: false,
                     showMessage: false,
