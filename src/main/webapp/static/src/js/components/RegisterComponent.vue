@@ -62,7 +62,7 @@
                             <input v-validate="tenn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'tennis_' + index + '_firstName'" v-model="tenn.firstName" :class="{'is-invalid-input': errors.has('tennis_' + index + '_firstName')}">
                         </td>
                         <td>
-                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}" min="0">
                         </td>
                         <td>
                             <div class="switch large sex">
@@ -149,7 +149,7 @@
 
                         <label>
                             Âge
-                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}">
+                            <input v-validate="tenn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'tennis_' + index + '_age'" v-model="tenn.age" :class="{'is-invalid-input': errors.has('tennis_' + index + '_age')}" min="0">
                         </label>
 
                         <label>
@@ -253,7 +253,7 @@
                         <input v-validate="dinn.name !== '' ? 'required' : ''" type="text" data-vv-as="Prénom" :name="'diner_' + index + '_firstName'" v-model="dinn.firstName" :class="{'is-invalid-input': errors.has('diner_' + index + '_firstName')}">
                     </td>
                     <td>
-                        <input v-validate="dinn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
+                        <input v-validate="dinn.name !== '' ? 'required' : ''" type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}" min="0">
                     </td>
                     <td>
                         <input v-validate="dinn.name !== '' ? 'required|email' : ''" type="email" v-model="dinn.email" data-vv-as="Email" :name="'diner_' + index + '_email'" :class="{'is-invalid-input': errors.has('diner_' + index + '_email')}">
@@ -282,7 +282,7 @@
 
                         <label>
                             Âge
-                            <input v-validate="dinn.name !== '' ? 'required' : ''"  type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}">
+                            <input v-validate="dinn.name !== '' ? 'required' : ''"  type="number" data-vv-as="Âge" :name="'diner_' + index + '_age'" v-model="dinn.age" :class="{'is-invalid-input': errors.has('diner_' + index + '_age')}" min="0">
                         </label>
 
                         <label>
